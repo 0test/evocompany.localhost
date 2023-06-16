@@ -1,0 +1,6 @@
+.formtabs { margin: 0; padding: 0; }
+.formtab { display: inline-block; zoom:1; *display:inline; color: #313131; font-weight: bold; font-size: 12px; cursor: pointer; margin: 3px -10px 1px 10px; background: transparent; border: 1px solid transparent; }
+.formtab a { display: block; outline: none; font-weight: normal; font-size: 12px; color: #444; text-decoration: none; text-transform: uppercase; padding: 10px 15px 10px; }
+.formtab.active { position: relative; color: #333; z-index: 3; top: 0; background: #fff; border: 1px solid #ddd; border-color: #ddd #ddd #fff #ddd; }
+.formtab a.active { color: #444; font-weight: bold; }
+.formtabpage { background: #fff; border-top: 1px solid #ddd; z-index: 2; position: relative; top: -2px; padding: 10px }

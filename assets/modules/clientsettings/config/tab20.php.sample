@@ -1,0 +1,17 @@
+<?php
+
+return [
+    'caption'  => 'Custom TV',
+    'introtext' => 'Multi TV Configuration for used tvs should be created, datatable not supported',
+    'settings' => [
+        'multidemo' => [
+            'caption' => 'Multi TV',
+            'type' => 'custom_tv:multitv',
+        ],
+        'custom' => [
+            'caption' => 'Custom color',
+            'type' => 'custom_tv',
+            'elements' => '<input type="color" name="tv[+field_id+]" id="tv[+field_id+]" value="[+field_value+]" onchange="document.getElementById(\'tv_[+field_id+]\').value = this.value" style="float: left; margin-right: .5rem; height: 30px;"/> <input type="text" id="tv_[+field_id+]" value="[+field_value+]" onchange="document.getElementById(\'tv[+field_id+]\').value = this.value" style="float: left; width: 5rem;" />',
+        ],
+    ],
+];
