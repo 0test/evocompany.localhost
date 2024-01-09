@@ -218,7 +218,7 @@ class SiteContent extends Eloquent\Model
             $entity->closure->insertNode($ancestor, $descendant);
         });
 
-        static::saved(static function (SiteContent $entity) {
+        static::updated(static function (SiteContent $entity) {
             $parentIdChanged = $entity->isDirty($entity->getParentIdColumn());
 
             if ($parentIdChanged || $entity->isDirty($entity->getPositionColumn())) {
@@ -414,6 +414,10 @@ class SiteContent extends Eloquent\Model
     {
         return $builder->where('pub_date', '<=', $time)
             ->where('pub_date', '>', 0)
+            ->where(function (Eloquent\Builder $query) use ($time) {
+                $query->where('unpub_date', '>', $time)
+                    ->orWhere('unpub_date', '=', 0);
+            })
             ->where('published', '=', 0);
     }
 
@@ -2055,7 +2059,7 @@ class SiteContent extends Eloquent\Model
             if (EvolutionCMS()->isFrontend()) {
                 $query->where('privateweb', 0);
             } else {
-                $query->whereRaw("1 = {$_SESSION['mgrRole']}");
+                $query->whereRaw('1 = ' . ($_SESSION['mgrRole'] ?? 0));
                 $query->orWhere('site_content.privatemgr', 0);
             }
             if ($docgrp) {

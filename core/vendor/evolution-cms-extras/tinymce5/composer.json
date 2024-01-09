@@ -1,0 +1,24 @@
+{
+  "name": "evolution-cms-extras/tinymce5",
+  "description": "evocms package tinymce5",
+  "type": "EvolutionCMS-Plugin",
+  "license": "GPL-2.0",
+  "autoload": {
+    "psr-4": {
+      "EvolutionCMS\\TinyMCE5\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "EvolutionCMS\\TinyMCE5\\TinyMCE5ServiceProvider"
+      ],
+      "files": [
+        {
+          "source": "assets/",
+          "destination": ""
+        }
+      ]
+    }
+  }
+}

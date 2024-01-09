@@ -16,7 +16,10 @@
             'ucwords' => false,
             'str_to_upper' => true,
             'attributes' => 'onChange="documentDirty=true;" size="1"',
-            'comment' => __('global.language_message'),
+            'comment' =>
+                    (isset($disabledSettings['manager_language']) ? __('global.setting_from_file') . '<br>' : '') .
+                    __('global.language_message'),
+            'disabled' => $disabledSettings['manager_language'] ?? null,
         ])
 
         <div class="split my-1"></div>
@@ -98,7 +101,7 @@
                                         </div>
                                         <div class="col-md-4 text-right">
                                             <img name="login_logo" style="max-height: 48px" src="' .
-                ($settings['login_logo'] ? MODX_SITE_URL . $settings['login_logo'] : '') .
+                ($settings['login_logo'] ? (preg_match('#^https?://#i', $settings['login_logo']) == false ? MODX_SITE_URL : '') . $settings['login_logo'] : '') .
                 '" />
                                         </div>',
             'comment' =>
@@ -134,7 +137,7 @@
                                         </div>
                                         <div class="col-md-4 text-right">
                                             <img name="login_bg" style="max-height: 48px" src="' .
-                ($settings['login_bg'] ? MODX_SITE_URL . $settings['login_bg'] : '') .
+                ($settings['login_bg'] ? (preg_match('#^https?://#i', $settings['login_bg']) == false ? MODX_SITE_URL : '') . $settings['login_bg'] : '') .
                 '" />
                                         </div>',
             'comment' =>

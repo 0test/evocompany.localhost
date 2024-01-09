@@ -25,18 +25,28 @@ class HelperProcessor
         return str_replace('assets/images', '', $pathinfo['dirname']);
     }
 
-    public function phpThumb($input = '', $options = '', $webp = true)
+    /**
+     * @param string $input
+     * @param string $options
+     * @param bool|array $params boolean value here means webp = true or false for backward compatibility
+     * @return string
+     */
+    public function phpThumb($input = '', $options = '', $params = true)
     {
-        if (!empty($input) && strtolower(substr($input, -4)) == '.svg') {
-            return $input;
+        if(is_bool($params)) {
+            $params = ['webp' => $params];
+        } elseif(!is_array($params)) {
+            $params = ['webp' => true];
         }
 
+        $phpThumbNoImagePath = $params['phpThumbNoImagePath'] ?? 'assets/snippets/phpthumb/';
+        $params['noImage'] = $params['noImage'] ?? ($phpThumbNoImagePath . 'noimage.svg');
+
         $newFolderAccessMode = $this->core->getConfig('new_folder_permissions');
-        $newFolderAccessMode = empty($new) ? 0777 : octdec($newFolderAccessMode);
+        $newFolderAccessMode = empty($newFolderAccessMode) ? 0777 : octdec($newFolderAccessMode);
 
         $defaultCacheFolder = 'assets/cache/';
-        $cacheFolder = isset($cacheFolder) ? $cacheFolder : $defaultCacheFolder . 'images';
-        $phpThumbNoImagePath = isset($phpThumbNoImagePath) ? $phpThumbNoImagePath : 'assets/images/';
+        $cacheFolder = $params['cacheFolder'] ?? ($defaultCacheFolder . 'images');
 
         /**
          * @see: https://github.com/kalessil/phpinspectionsea/blob/master/docs/probable-bugs.md#mkdir-race-condition
@@ -51,7 +61,7 @@ class HelperProcessor
         }
 
         if (empty($input) || !file_exists(MODX_BASE_PATH . $input)) {
-            $input = isset($noImage) ? $noImage : $phpThumbNoImagePath . 'noimage.png';
+            $input = $params['noImage'];
         }
 
         /**
@@ -66,6 +76,9 @@ class HelperProcessor
 
         $path_parts = pathinfo($input);
         $ext = strtolower($path_parts['extension']);
+
+        if($ext == 'svg') return $input;
+
         $options = 'f=' . (in_array($ext, array('png', 'gif', 'jpeg')) ? $ext : 'jpg&q=85') . '&' .
             strtr($options, array(',' => '&', '_' => '=', '{' => '[', '}' => ']'));
 
@@ -116,7 +129,7 @@ class HelperProcessor
             }
         }
 
-        if (isset($webp) && $webp && class_exists('\WebPConvert\WebPConvert')) {
+        if (isset($params['webp']) && $params['webp'] && class_exists('\WebPConvert\WebPConvert')) {
             if( isset( $_SERVER['HTTP_ACCEPT'] ) && strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp' ) !== false && pathinfo($outputFilename, PATHINFO_EXTENSION) != 'gif') {
                 if (file_exists($outputFilename . '.webp')) {
                     $fNameSuf .= '.webp';

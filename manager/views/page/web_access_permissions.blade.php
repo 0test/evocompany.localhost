@@ -48,6 +48,7 @@
                 <div class="form-group">
                     <b>{{ ManagerTheme::getLexicon('access_permissions_add_user_group') }}</b>
                     <form method="post" action="index.php" name="accesspermissions">
+                        @csrf
                         <input type="hidden" name="a" value="92" />
                         <input type="hidden" name="operation" value="add_user_group" />
                         <div class="input-group">
@@ -66,26 +67,19 @@
                     @foreach($userGroups as $userGroup)
                         <div class="form-group">
                             <form method="post" action="index.php" name="accesspermissions">
+                                @csrf
                                 <input type="hidden" name="a" value="92" />
                                 <input type="hidden" name="groupid" value="{{ $userGroup->getKey() }}" />
                                 <input type="hidden" name="operation" value="rename_user_group" />
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="newgroupname" value="{{ $userGroup->name }}" />
                                     <div class="input-group-btn">
+                                        <a target="main" class="btn btn-success" href="?a=91&list=users&id={{ $userGroup->getKey() }}&tab=0">{{ ManagerTheme::getLexicon('users_list') }}</a>
                                         <input class="btn btn-secondary" type="submit" value="{{ ManagerTheme::getLexicon('rename') }}" />
                                         <input class="btn btn-danger" type="button" value="{{ ManagerTheme::getLexicon('delete') }}" onclick="deletegroup({{ $userGroup->getKey() }}, 'usergroup');" />
                                     </div>
                                 </div>
                             </form>
-                            <b>{{ ManagerTheme::getLexicon('access_permissions_users_in_group') }}</b>
-                            @if($userGroup->users->count() === 0)
-                                <i>{{ ManagerTheme::getLexicon('access_permissions_no_users_in_group') }}</i>
-                            @else
-                                <?php /** @var EvolutionCMS\Models\ManagerUser $user */?>
-                                @foreach($userGroup->users as $user)
-                                    <a href="index.php?a=88&id={{ $user->getKey() }}">{{ $user->username }}</a>@if($loop->last === false), @endif
-                                @endforeach
-                            @endif
                         </div>
                     @endforeach
                 @endif
@@ -101,6 +95,7 @@
                 <div class="form-group">
                     <b>{{ ManagerTheme::getLexicon('access_permissions_add_resource_group') }}</b>
                     <form method="post" action="index.php" name="accesspermissions">
+                        @csrf
                         <input type="hidden" name="a" value="92" />
                         <input type="hidden" name="operation" value="add_document_group" />
                         <div class="input-group">
@@ -118,26 +113,20 @@
                     @foreach($documentGroups as $documentGroup)
                         <div class="form-group">
                             <form method="post" action="index.php" name="accesspermissions">
+                                @csrf
                                 <input type="hidden" name="a" value="92" />
                                 <input type="hidden" name="groupid" value="{{ $documentGroup->getKey() }}" />
                                 <input type="hidden" name="operation" value="rename_document_group" />
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="newgroupname" value="{{ $documentGroup->name }}" />
                                     <div class="input-group-btn">
+                                        <a target="main" class="btn btn-success" href="?a=91&list=documents&id={{ $documentGroup->getKey() }}&tab=1">{{ ManagerTheme::getLexicon('documents_list') }}</a>
                                         <input class="btn btn-secondary" type="submit" value="{{ ManagerTheme::getLexicon('rename') }}" />
                                         <input class="btn btn-danger" type="button" value="{{ ManagerTheme::getLexicon('delete') }}" onclick="deletegroup({{ $documentGroup->getKey() }},'documentgroup');" />
                                     </div>
                                 </div>
                             </form>
-                            {!! ManagerTheme::getLexicon('access_permissions_resources_in_group') !!}
-                            @if($documentGroup->documents->count() === 0)
-                                <i>{{ ManagerTheme::getLexicon('access_permissions_no_resources_in_group') }}</i>
-                            @else
-                                <?php /** @var EvolutionCMS\Models\SiteContent $document */?>
-                                @foreach($documentGroup->documents as $document)
-                                    <a href="index.php?a=3&id={{ $document->getKey() }}" title="{{ $document->pagetitle }}">{{ $document->getKey() }}</a>@if($loop->last === false), @endif
-                                @endforeach
-                            @endif
+
                         </div>
                     @endforeach
                 @endif
@@ -154,6 +143,7 @@
                     <div class="form-group">
                         <b>{{ ManagerTheme::getLexicon('access_permissions_group_link') }}</b>
                         <form method="post" action="index.php" name="accesspermissions">
+                            @csrf
                             <input type="hidden" name="a" value="92" />
                             <input type="hidden" name="operation" value="add_document_group_to_user_group" />
 
