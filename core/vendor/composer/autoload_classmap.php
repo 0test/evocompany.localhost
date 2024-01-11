@@ -1012,6 +1012,7 @@ return array(
     'EvolutionCMS\\Legacy\\TemplateParser' => $baseDir . '/src/Legacy/TemplateParser.php',
     'EvolutionCMS\\Legacy\\mgrResources' => $baseDir . '/src/Legacy/mgrResources.php',
     'EvolutionCMS\\Mail' => $baseDir . '/src/Mail.php',
+    'EvolutionCMS\\Main\\MainServiceProvider' => $baseDir . '/custom/packages/main/src/MainServiceProvider.php',
     'EvolutionCMS\\ManagerTheme' => $baseDir . '/src/ManagerTheme.php',
     'EvolutionCMS\\Middleware\\CheckAuthToken' => $baseDir . '/src/Middleware/CheckAuthToken.php',
     'EvolutionCMS\\Middleware\\CheckManagerAuth' => $baseDir . '/src/Middleware/CheckManagerAuth.php',

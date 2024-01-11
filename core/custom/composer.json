@@ -1,0 +1,11 @@
+{
+    "name": "evolutioncms/custom",
+    "require": {
+        "evolution-cms-extras/tinymce5": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "EvolutionCMS\\Main\\": "packages/main/src/"
+        }
+    }
+}

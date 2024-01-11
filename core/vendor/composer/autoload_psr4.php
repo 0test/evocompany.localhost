@@ -88,6 +88,7 @@ return array(
     'EvolutionCMS\\UserManager\\' => array($vendorDir . '/evocms-services/user-manager/src'),
     'EvolutionCMS\\TinyMCE5\\' => array($vendorDir . '/evolution-cms-extras/tinymce5/src'),
     'EvolutionCMS\\Salo\\' => array($vendorDir . '/evolution-cms/salo/src'),
+    'EvolutionCMS\\Main\\' => array($baseDir . '/custom/packages/main/src'),
     'EvolutionCMS\\DocumentManager\\' => array($vendorDir . '/evocms-services/document-manager/src'),
     'EvolutionCMS\\' => array($baseDir . '/src'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),

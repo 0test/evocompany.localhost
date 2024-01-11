@@ -3,7 +3,7 @@
         'name' => 'evocms/core',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5ad676ad393874bb6951e231de422200f934db13',
+        'reference' => '57d109e285bc4af6e7ed17b86dcfee61621b4414',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -184,7 +184,7 @@
         'evocms/core' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5ad676ad393874bb6951e231de422200f934db13',
+            'reference' => '57d109e285bc4af6e7ed17b86dcfee61621b4414',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -683,7 +683,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'c8682d0318353f7979a429981e902463e4879cf0',
+            'reference' => '81ad497391b9fc55e18be0c94bf2a288f231630b',
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),

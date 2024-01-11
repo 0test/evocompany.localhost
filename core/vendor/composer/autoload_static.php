@@ -164,6 +164,7 @@ class ComposerStaticInit290afeda14f59ab96a6622520aef0a10
             'EvolutionCMS\\UserManager\\' => 25,
             'EvolutionCMS\\TinyMCE5\\' => 22,
             'EvolutionCMS\\Salo\\' => 18,
+            'EvolutionCMS\\Main\\' => 18,
             'EvolutionCMS\\DocumentManager\\' => 29,
             'EvolutionCMS\\' => 13,
             'Egulias\\EmailValidator\\' => 23,
@@ -525,6 +526,10 @@ class ComposerStaticInit290afeda14f59ab96a6622520aef0a10
         'EvolutionCMS\\Salo\\' => 
         array (
             0 => __DIR__ . '/..' . '/evolution-cms/salo/src',
+        ),
+        'EvolutionCMS\\Main\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/custom/packages/main/src',
         ),
         'EvolutionCMS\\DocumentManager\\' => 
         array (
@@ -1629,6 +1634,7 @@ class ComposerStaticInit290afeda14f59ab96a6622520aef0a10
         'EvolutionCMS\\Legacy\\TemplateParser' => __DIR__ . '/../..' . '/src/Legacy/TemplateParser.php',
         'EvolutionCMS\\Legacy\\mgrResources' => __DIR__ . '/../..' . '/src/Legacy/mgrResources.php',
         'EvolutionCMS\\Mail' => __DIR__ . '/../..' . '/src/Mail.php',
+        'EvolutionCMS\\Main\\MainServiceProvider' => __DIR__ . '/../..' . '/custom/packages/main/src/MainServiceProvider.php',
         'EvolutionCMS\\ManagerTheme' => __DIR__ . '/../..' . '/src/ManagerTheme.php',
         'EvolutionCMS\\Middleware\\CheckAuthToken' => __DIR__ . '/../..' . '/src/Middleware/CheckAuthToken.php',
         'EvolutionCMS\\Middleware\\CheckManagerAuth' => __DIR__ . '/../..' . '/src/Middleware/CheckManagerAuth.php',
