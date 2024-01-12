@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_active_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_active_users` (`sid`, `internalKey`, `username`, `lasthit`, `action`, `id`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1704981482, '27', 21);
+	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1705065197, '93', 0);
 
 CREATE TABLE IF NOT EXISTS `jdz6_active_user_locks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -29,13 +29,8 @@ CREATE TABLE IF NOT EXISTS `jdz6_active_user_locks` (
   `lasthit` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ix_element_id` (`elementType`,`elementId`,`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_active_user_locks` (`id`, `sid`, `internalKey`, `elementType`, `elementId`, `lasthit`) VALUES
-	(7, '9vjpjhplu591lphlfdtm6i3oechqannc', 1, 7, 17, 1704981403),
-	(8, '9vjpjhplu591lphlfdtm6i3oechqannc', 1, 7, 20, 1704981411),
-	(9, '9vjpjhplu591lphlfdtm6i3oechqannc', 1, 7, 21, 1704981482),
-	(10, '9vjpjhplu591lphlfdtm6i3oechqannc', 1, 7, 22, 1704981471);
 
 CREATE TABLE IF NOT EXISTS `jdz6_active_user_sessions` (
   `sid` varchar(32) NOT NULL DEFAULT '',
@@ -46,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_active_user_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_active_user_sessions` (`sid`, `internalKey`, `lasthit`, `ip`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1704981482, '127.0.0.1');
+	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1705065197, '127.0.0.1');
 
 CREATE TABLE IF NOT EXISTS `jdz6_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -126,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_manager_log` (
   KEY `manager_log_itemname_index` (`itemname`),
   KEY `manager_log_message_index` (`message`),
   KEY `manager_log_timestamp_index` (`timestamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=508 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `action`, `itemid`, `itemname`, `message`, `ip`, `useragent`) VALUES
 	(1, 1686310900, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
@@ -605,7 +600,37 @@ REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `
 	(474, 1704981471, 1, 'admin', 5, '22', 'Ключ М6-М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
 	(475, 1704981471, 1, 'admin', 27, '22', 'Ключ М6-М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
 	(476, 1704981482, 1, 'admin', 5, '21', 'Ключ М8-М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(477, 1704981483, 1, 'admin', 27, '21', 'Ключ М8-М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+	(477, 1704981483, 1, 'admin', 27, '21', 'Ключ М8-М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(478, 1705051174, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(479, 1705058472, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(480, 1705059838, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(481, 1705059946, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(482, 1705061375, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(483, 1705061376, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(484, 1705061737, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(485, 1705061762, 1, 'admin', 5, '23', 'Наши работы', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(486, 1705061765, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(487, 1705061932, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(488, 1705061960, 1, 'admin', 302, '-', 'Главное фото', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(489, 1705061961, 1, 'admin', 301, '7', 'Главное фото', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(490, 1705061963, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(491, 1705061974, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(492, 1705062013, 1, 'admin', 302, '-', 'Дополнительные фотографии', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(493, 1705062014, 1, 'admin', 301, '8', 'Дополнительные фотографии', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(494, 1705062017, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(495, 1705062535, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(496, 1705062570, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(497, 1705062602, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(498, 1705062632, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(499, 1705063297, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(500, 1705063298, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(501, 1705063310, 1, 'admin', 5, '25', 'Подключили где-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(502, 1705063310, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(503, 1705063321, 1, 'admin', 5, '25', 'Подключили где-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(504, 1705063322, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(505, 1705064377, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(506, 1705064938, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(507, 1705065200, 1, 'admin', 93, '', '-', 'Backup Manager', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
 CREATE TABLE IF NOT EXISTS `jdz6_membergroup_access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1030,7 +1055,7 @@ REPLACE INTO `jdz6_site_content` (`id`, `type`, `contentType`, `pagetitle`, `lon
 	(20, 'document', 'text/html', 'Коробка для болтов', '', '', 'korobka-dlya-boltov', '', 1, 0, 0, 12, 0, '', '', 1, 5, 1, 1, 1, 1, 1686906289, 1, 1704878285, 0, 0, 0, 1686906289, 1, '', 0, 0, 0, 0, 1, 1),
 	(21, 'document', 'text/html', 'Ключ М8-М10', '', '', 'klyuch-m8-m10', '', 1, 0, 0, 12, 0, '', '', 1, 5, 2, 1, 1, 1, 1686906303, 1, 1704878309, 0, 0, 0, 1686906302, 1, '', 0, 0, 0, 0, 1, 1),
 	(22, 'document', 'text/html', 'Ключ М6-М8', '', '', 'klyuch-m6-m8', '', 1, 0, 0, 12, 0, '', '', 1, 5, 3, 1, 1, 1, 1686906317, 1, 1704878327, 0, 0, 0, 1686906317, 1, '', 0, 0, 0, 0, 1, 1),
-	(23, 'document', 'text/html', 'Наши работы', '', 'portfolio_all', 'nashi-raboty', '', 1, 0, 0, 0, 1, '', '', 1, 10, 3, 1, 1, 1, 1704876348, 0, 1704876403, 0, 0, 0, 1704876348, 1, '', 0, 0, 0, 0, 0, 1),
+	(23, 'document', 'text/html', 'Наши работы', '', 'portfolio_all', 'portfolio_all', '', 1, 0, 0, 0, 1, '', '', 1, 10, 3, 1, 1, 1, 1704876348, 1, 1705061762, 0, 0, 0, 1704876348, 1, '', 0, 0, 0, 0, 0, 1),
 	(24, 'document', 'text/html', 'Установили что-то', '', '', 'ustanovili-chto-to', '', 1, 0, 0, 23, 0, '', '', 1, 11, 0, 1, 1, 1, 1704876387, 0, 1704876387, 0, 0, 0, 1704876387, 1, '', 0, 0, 0, 0, 1, 1),
 	(25, 'document', 'text/html', 'Подключили где-то', '', '', 'podklyuchili-gde-to', '', 1, 0, 0, 23, 0, '', '', 1, 11, 1, 1, 1, 1, 1704876403, 1, 1704876468, 0, 0, 0, 1704876403, 1, '', 0, 0, 0, 0, 1, 1),
 	(26, 'document', 'text/html', 'Гайка М10', '', '', 'gajka-m10', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 1, 1, 1, 1, 1704878211, 1, 1704974152, 0, 0, 0, 1704878225, 1, '', 0, 0, 0, 0, 1, 1),
@@ -1311,7 +1336,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvars` (
   `properties` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `indx_rank` (`rank`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_tmplvars` (`id`, `type`, `name`, `caption`, `description`, `editor_type`, `category`, `locked`, `elements`, `rank`, `display`, `display_params`, `default_text`, `createdon`, `editedon`, `properties`) VALUES
 	(1, 'text', 'metatitle', 'Meta title	', 'Содержимое тега title', 0, 5, 0, '', 0, '', '', '', 1688388991, 1688388991, '[]'),
@@ -1319,7 +1344,9 @@ REPLACE INTO `jdz6_site_tmplvars` (`id`, `type`, `name`, `caption`, `description
 	(3, 'image', 'news_photo', 'Главное фото', 'Главное фото к новости', 0, 6, 0, '', 0, '', '', '', 1688389051, 1688389051, '[]'),
 	(4, 'text', 'item_price', 'Цена', 'Цена товара', 0, 6, 0, '', 0, '', '', '', 1688389097, 1688389097, '[]'),
 	(5, 'image', 'item_photo', 'Фото товара', 'Фото товара', 0, 6, 0, '', 0, '', '', '', 1688389126, 1688389126, '[]'),
-	(6, 'text', 'item_article', 'Артикул', '', 0, 6, 0, '', 0, '', '', '', 1704973890, 1704973890, '[]');
+	(6, 'text', 'item_article', 'Артикул', '', 0, 6, 0, '', 0, '', '', '', 1704973890, 1704973890, '[]'),
+	(7, 'image', 'portfolio_mainphoto', 'Главное фото', 'Фото работы', 0, 6, 0, '', 0, '', '', '', 1705061960, 1705061960, '[]'),
+	(8, 'custom_tv:multitv', 'portfolio_photos', 'Дополнительные фотографии', 'Выберите несколько лучших фото работы', 0, 6, 0, '', 0, '', '', '', 1705062013, 1705062013, '[]');
 
 CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1339,7 +1366,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_contentvalues` (
   KEY `idx_tmplvarid` (`tmplvarid`),
   KEY `idx_id` (`contentid`),
   FULLTEXT KEY `content_ft_idx` (`value`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `value`) VALUES
 	(1, 3, 6, 'assets/images/100-34.jpg'),
@@ -1396,7 +1423,11 @@ REPLACE INTO `jdz6_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, 
 	(56, 4, 22, '1000'),
 	(57, 5, 22, 'assets/images/6158809007.jpg'),
 	(58, 4, 21, '998'),
-	(59, 5, 21, 'assets/images/6158809007.jpg');
+	(59, 5, 21, 'assets/images/6158809007.jpg'),
+	(60, 7, 24, 'assets/images/100-34.jpg'),
+	(61, 8, 24, '{"fieldValue":[{"image":"assets/images/100-34.jpg","thumb":""},{"image":"assets/images/65856_original-1.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}'),
+	(62, 7, 25, 'assets/images/1a14ab889878010be3390e9fa667abcb_xl.jpg'),
+	(63, 8, 25, '{"fieldValue":[{"image":"assets/images/ice_screenshot_20191014-140427.jpeg.jpg","thumb":""},{"image":"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}');
 
 CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_templates` (
   `tmplvarid` int(11) NOT NULL DEFAULT 0 COMMENT 'Template Variable id',
@@ -1431,7 +1462,9 @@ REPLACE INTO `jdz6_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) V
 	(3, 7, 0),
 	(4, 5, 0),
 	(5, 5, 0),
-	(6, 5, 0);
+	(6, 5, 0),
+	(7, 11, 0),
+	(8, 11, 0);
 
 CREATE TABLE IF NOT EXISTS `jdz6_system_eventnames` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

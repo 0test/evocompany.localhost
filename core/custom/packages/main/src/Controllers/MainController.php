@@ -1,12 +1,8 @@
 <?php
 namespace EvolutionCMS\Main\Controllers;
 
-class MainController {
-    public $data = [];
-    public function __construct() {
-        $this->setData();
-        $this->sendToView();
-    }
+class MainController extends BaseController {
+
     public function setData()
     {
         $result = EvolutionCMS()->runSnippet('DocLister',[
@@ -16,6 +12,7 @@ class MainController {
             'tvList' => 'news_photo',
             'display' => 3,
             'returnDLObject' => 1,
+            'orderBy' => 'createdon DESC'
         ]);
 
         $this->data['news'] = $result->getDocs();
@@ -26,13 +23,9 @@ class MainController {
             'tvList' => 'item_price,item_photo',
             'display' => 8,
             'returnDLObject' => 1,
-            'addWhereList' => 'c.template = 5'
+            'addWhereList' => 'c.template = 5',
+            'orderBy' => 'RAND()'
         ]);
         $this->data['products'] = $result->getDocs();        
-    }
-    public function sendToView()
-    {
-        EvolutionCMS()->addDataToView($this->data);
-        return $this;
     }
 }

@@ -1,204 +1,41 @@
 @extends('layouts.app')
 @section('content')
-<section class="py-5">
-	<div class="container px-4 px-lg-5 mt-5">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Гайка М6</h5>
-							<!-- Product price-->
-							$40.00 - $80.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Sale badge-->
-					<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Выгодно</div>
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Гайка М8</h5>
-							<!-- Product reviews-->
-							<div class="d-flex justify-content-center small text-warning mb-2">
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
+<section class="container px-5">
+	<div class="row">
+		<aside class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary py-3">
+			<h3 class="h6 fs-6 p-3">Разделы каталога</h3>
+			<ul class="nav flex-column">
+				<li class="nav-item"><a class="nav-link d-flex align-items-center" href="#">Продукты</a></li>
+				<li class="nav-item"><a class="nav-link d-flex align-items-center" href="#">Продукты</a></li>
+			</ul>
+		</aside>
+		<div class="col-md-9 ms-sm-auto col-lg-10 py-3">
+			<section>
+				<div class="container px-4 px-lg-5 mt-3">
+					<h1 class="pb-4">Каталог продукции</h1>
+					<div class="row py-2 gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+						@foreach ($products as $product)
+							<div class="col mb-5 col-12">
+								<div class="card h-100">
+									<img class="card-img-top" src="{{ $product['item_photo'] }}" />
+									<div class="card-body p-4">
+										<div class="text-center">
+											<h5 class="fw-bolder">{{ $product['pagetitle'] }}</h5>
+											<div class="price text-muted">{{ $product['item_price'] }}</div>
+										</div>
+									</div>
+									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+										<div class="text-center"><a class="stretched-link btn btn-outline-dark mt-auto" href="{{ urlProcessor::makeUrl($product['id'] ) }}">Подробнее</a></div>
+									</div>
+								</div>
 							</div>
-							<!-- Product price-->
-							<span class="text-muted text-decoration-line-through">$20.00</span>
-							$18.00
-						</div>
+						@endforeach
 					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
+					<div class="row py-2 gx-5">
+						{!! $modx->getPlaceholder('pages') !!}
 					</div>
 				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Sale badge-->
-					<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Выгодно</div>
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Гайка М10</h5>
-							<!-- Product price-->
-							<span class="text-muted text-decoration-line-through">$50.00</span>
-							$25.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Гайка М12</h5>
-							<!-- Product reviews-->
-							<div class="d-flex justify-content-center small text-warning mb-2">
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-							</div>
-							<!-- Product price-->
-							$40.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Sale badge-->
-					<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Выгодно</div>
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Болтик М6</h5>
-							<!-- Product price-->
-							<span class="text-muted text-decoration-line-through">$50.00</span>
-							$25.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Болтик М8</h5>
-							<!-- Product price-->
-							$120.00 - $280.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Sale badge-->
-					<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Выгодно</div>
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Болтик М10</h5>
-							<!-- Product reviews-->
-							<div class="d-flex justify-content-center small text-warning mb-2">
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-							</div>
-							<!-- Product price-->
-							<span class="text-muted text-decoration-line-through">$20.00</span>
-							$18.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- Product image-->
-					<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- Product details-->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- Product name-->
-							<h5 class="fw-bolder">Болтик М12</h5>
-							<!-- Product reviews-->
-							<div class="d-flex justify-content-center small text-warning mb-2">
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-							</div>
-							<!-- Product price-->
-							$40.00
-						</div>
-					</div>
-					<!-- Product actions-->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalog-item.html">Подробнее</a></div>
-					</div>
-				</div>
-			</div>
+			</section>
 		</div>
 	</div>
 </section>

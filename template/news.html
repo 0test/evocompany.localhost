@@ -6,7 +6,6 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Новости компании</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -15,7 +14,6 @@
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
-            <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
                     <a class="navbar-brand" href="index.html">ООО "Компания"</a>
@@ -24,6 +22,7 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
                             <li class="nav-item"><a class="nav-link" href="catalog.html">Каталог</a></li>
+                            <li class="nav-item"><a class="nav-link" href="portfolio-overview.html">Наши работы</a></li>
                             <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
                             <li class="nav-item"><a class="nav-link" href="about.html">О компании</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.html">Контакты</a></li>
@@ -31,81 +30,70 @@
                     </div>
                 </div>
             </nav>
-            <!-- Page Content-->
             <section class="py-5">
                 <div class="container px-5">
                     <h1 class="fw-bolder fs-5 mb-4">Новости компании</h1>
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <div class="col-lg-6 col-xl-5 py-lg-5">
-                                    <div class="p-4 p-md-5">
-                                        <div class="h2 fw-bolder">Какая-то важная новость</div>
-                                        <p>Сильно важно, надо почитать всем</p>
-                                        <a class="stretched-link text-decoration-none" href="news-one.html"></a>
+                    <div class="row gx-5">
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                <div class="card-body p-4">
+                                    <a class="text-decoration-none link-dark stretched-link" href="news-one.html"><div class="h5 card-title mb-3">Мы открылись</div></a>
+                                    <p class="card-text mb-0">Обеспечим население доступными и качественными болтиками и гаечками</p>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="small"><div class="text-muted">March 12, 2023</div></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"></div></div>
                             </div>
                         </div>
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
+                                <div class="card-body p-4">
+                                    <a class="text-decoration-none link-dark stretched-link" href="news-one.html"><div class="h5 card-title mb-3">Мы немного поработали</div></a>
+                                    <p class="card-text mb-0">Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики</p>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="small"><div class="text-muted">March 12, 2023</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
+                                <div class="card-body p-4">
+                                    <a class="text-decoration-none link-dark stretched-link" href="news-one.html"><div class="h5 card-title mb-3">Мы закрылись</div></a>
+                                    <p class="card-text mb-0">Гудит, как улей, родной завод.</p>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="small"><div class="text-muted">March 12, 2023</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-5">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" href="news-one.html">1</a></li>
+                                <li class="page-item"><span class="page-link active" href="news-one.html">2</span></li>
+                                <li class="page-item"><a class="page-link" href="news-one.html">3</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </section>
-            <!-- Blog preview section-->
-            <section class="py-5"></section>
-            <div class="container px-5">
-                <h2 class="fw-bolder fs-5 mb-4">Ещё новости</h2>
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5">
-                        <div class="card h-100 shadow border-0">
-                            <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                            <div class="card-body p-4">
-                                <a class="text-decoration-none link-dark stretched-link" href="news-one.html"><div class="h5 card-title mb-3">Мы открылись</div></a>
-                                <p class="card-text mb-0">Обеспечим население доступными и качественными болтиками и гаечками</p>
-                            </div>
-                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <div class="small"><div class="text-muted">March 12, 2023 &middot; 6 min read</div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-5">
-                        <div class="card h-100 shadow border-0">
-                            <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
-                            <div class="card-body p-4">
-                                <a class="text-decoration-none link-dark stretched-link" href="news-one.html"><div class="h5 card-title mb-3">Мы немного поработали</div></a>
-                                <p class="card-text mb-0">Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики</p>
-                            </div>
-                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <div class="small"><div class="text-muted">March 12, 2023 &middot; 6 min read</div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-5">
-                        <div class="card h-100 shadow border-0">
-                            <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
-                            <div class="card-body p-4">
-                                <a class="text-decoration-none link-dark stretched-link" href="news-one.html"><div class="h5 card-title mb-3">Мы закрылись</div></a>
-                                <p class="card-text mb-0">Гудит, как улей, родной завод.</p>
-                            </div>
-                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <div class="small"><div class="text-muted">March 12, 2023 &middot; 6 min read</div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
         <footer class="bg-dark py-4 mt-auto">
             <div class="container px-5">

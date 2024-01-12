@@ -5,7 +5,7 @@
 		<div class="row gx-5 justify-content-center">
 			<div class="col-lg-6">
 				<div class="text-center mb-5">
-					<h1 class="fw-bolder">Project Title</h1>
+					<h1 class="fw-bolder">Одна работа</h1>
 					<p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab similique, ducimus ut alias sit accusamus illum, asperiores deserunt dolorum quaerat qui! Ab, quisquam explicabo magni dolores unde beatae quam a.</p>
 				</div>
 			</div>
@@ -17,13 +17,7 @@
 		</div>
 		<div class="row gx-5 justify-content-center">
 			<div class="col-lg-6">
-				<div class="text-center mb-5">
-					<p class="lead fw-normal text-muted">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt architecto enim eos accusantium fugit recusandae illo iste dignissimos possimus facere ducimus odit voluptatibus exercitationem, ex laudantium illum voluptatum corporis.</p>
-					<a class="text-decoration-none" href="#!">
-						View project
-						<i class="bi-arrow-right"></i>
-					</a>
-				</div>
+				<div class="text-center mb-5"><p class="lead fw-normal text-muted">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt architecto enim eos accusantium fugit recusandae illo iste dignissimos possimus facere ducimus odit voluptatibus exercitationem, ex laudantium illum voluptatum corporis.</p></div>
 			</div>
 		</div>
 	</div>
