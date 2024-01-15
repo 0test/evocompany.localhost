@@ -27,21 +27,7 @@
 			</div>
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 				@foreach ($products as $product)
-				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="{{$product['item_photo']}}" />
-						<div class="card-body p-4">
-							<div class="text-center">
-								<h5 class="fw-bolder">{{$product['pagetitle']}}</h5>
-
-								<div class="price text-muted">{{ $product['item_price'] }} руб</div>
-							</div>
-						</div>
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center"><a class="stretched-link btn btn-outline-dark mt-auto" href="{{ urlProcessor::makeUrl($product['id'] ) }}">Подробнее</a></div>
-						</div>
-					</div>
-				</div>
+					@include('parts.product')
 				@endforeach
 			</div>
 		</div>
@@ -89,28 +75,7 @@
 			</div>
 			<div class="row gx-5">
 				@foreach ($news as $news_one)
-				<div class="col-lg-4 mb-5">
-					<div class="card h-100 shadow border-0">
-						<img class="card-img-top" src="{{ $news_one['news_photo'] }}" />
-						<div class="card-body p-4">
-							<a class="text-decoration-none link-dark stretched-link" href="{{ urlProcessor::makeUrl($news_one['id'] ) }}">
-								<h5 class="card-title mb-3">
-									{{ $news_one['pagetitle'] }}
-								</h5>
-							</a>
-							<p class="card-text mb-0">{{ $news_one['introtext'] }}</p>
-						</div>
-						<div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-							<div class="d-flex align-items-end justify-content-between">
-								<div class="d-flex align-items-center">
-									<div class="small">
-										<div class="text-muted">{{ date('d.m.Y H:i',$news_one['createdon']) }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					@include('parts.news')
 				@endforeach
 			</div>
 		</div>

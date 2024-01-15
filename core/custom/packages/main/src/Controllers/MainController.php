@@ -12,7 +12,7 @@ class MainController extends BaseController {
             'tvList' => 'news_photo',
             'display' => 3,
             'returnDLObject' => 1,
-            'orderBy' => 'createdon DESC'
+            'orderBy' => 'createdon DESC',
         ]);
 
         $this->data['news'] = $result->getDocs();
@@ -28,4 +28,11 @@ class MainController extends BaseController {
         ]);
         $this->data['products'] = $result->getDocs();        
     }
+
+
+    public static function resizeMainPhoto($data, $modx, $_DocLister, $_extDocLister){
+		$data['mainphoto'] = $modx->runSnippet('phpthumb', ['input' => $data['news_photo'], 'options' => 'w=15,h=245,zc=1,far=C']);
+		;
+		return $data;
+	}
 }

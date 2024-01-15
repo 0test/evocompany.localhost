@@ -10,7 +10,11 @@
 			@foreach ($our_works as $one_work)
 				<div class="col-lg-6">
 					<div class="position-relative mb-5">
-						<img class="img-fluid rounded-3 mb-3" src="{{ $one_work['portfolio_mainphoto'] }}" />
+						<img class="img-fluid rounded-3 mb-3" src="{{ evo()->runSnippet('phpthumb',[ 
+							'input' => $one_work['portfolio_mainphoto'],
+							'options' => 'w=600,h=400,zc=1'
+							])
+						 }}" />
 						<a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="{{ urlProcessor::makeUrl($one_work['id'] ) }}">{{ $one_work['pagetitle'] }}</a>
 					</div>
 				</div>
