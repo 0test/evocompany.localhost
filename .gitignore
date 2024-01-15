@@ -26,11 +26,11 @@
 !/assets/export/index.html
 !/assets/export/.htaccess
 
-/assets/files/*
+
 !/assets/files/index.html
 !/assets/files/.htaccess
 
-/assets/images/*
+
 !/assets/images/index.html
 !/assets/images/evo-logo.png
 !/assets/images/.htaccess
