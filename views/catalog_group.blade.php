@@ -2,13 +2,7 @@
 @section('content')
 <section class="container px-5">
 	<div class="row">
-		<aside class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary py-3">
-			<h3 class="h6 fs-6 p-3">Разделы каталога</h3>
-			<ul class="nav flex-column">
-				<li class="nav-item"><a class="nav-link d-flex align-items-center" href="#">Продукты</a></li>
-				<li class="nav-item"><a class="nav-link d-flex align-items-center" href="#">Продукты</a></li>
-			</ul>
-		</aside>
+		@include('parts/aside_catalog')
 		<div class="col-md-9 ms-sm-auto col-lg-10 py-3">
 			<section>
 				<div class="container px-4 px-lg-5 mt-3">

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_active_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_active_users` (`sid`, `internalKey`, `username`, `lasthit`, `action`, `id`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1705065197, '93', 0);
+	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1705314668, '67', 2);
 
 CREATE TABLE IF NOT EXISTS `jdz6_active_user_locks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_active_user_locks` (
   `lasthit` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ix_element_id` (`elementType`,`elementId`,`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE IF NOT EXISTS `jdz6_active_user_sessions` (
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_active_user_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_active_user_sessions` (`sid`, `internalKey`, `lasthit`, `ip`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1705065197, '127.0.0.1');
+	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1705314668, '127.0.0.1');
 
 CREATE TABLE IF NOT EXISTS `jdz6_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `jdz6_manager_log` (
   KEY `manager_log_itemname_index` (`itemname`),
   KEY `manager_log_message_index` (`message`),
   KEY `manager_log_timestamp_index` (`timestamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=508 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=511 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `action`, `itemid`, `itemname`, `message`, `ip`, `useragent`) VALUES
 	(1, 1686310900, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
@@ -630,7 +630,10 @@ REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `
 	(504, 1705063322, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
 	(505, 1705064377, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
 	(506, 1705064938, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(507, 1705065200, 1, 'admin', 93, '', '-', 'Backup Manager', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+	(507, 1705065200, 1, 'admin', 93, '', '-', 'Backup Manager', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(508, 1705313680, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(509, 1705314256, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(510, 1705314666, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
 CREATE TABLE IF NOT EXISTS `jdz6_membergroup_access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

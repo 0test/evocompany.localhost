@@ -4,5 +4,6 @@ class CatalogController extends BaseController{
     use CatalogTrait;
 	public function setData()  {
 		$this->getCatalog();
+		$this->getCatalogMenu();
 	}
 }
