@@ -7,48 +7,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE IF NOT EXISTS `jdz6_active_users` (
-  `sid` varchar(32) NOT NULL DEFAULT '',
-  `internalKey` int(11) NOT NULL DEFAULT 0,
-  `username` varchar(50) NOT NULL DEFAULT '',
-  `lasthit` int(11) NOT NULL DEFAULT 0,
-  `action` varchar(10) NOT NULL DEFAULT '',
-  `id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_active_users` (`sid`, `internalKey`, `username`, `lasthit`, `action`, `id`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1705318981, '67', 24);
+	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1705409460, '27', 5);
 
-CREATE TABLE IF NOT EXISTS `jdz6_active_user_locks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sid` varchar(32) NOT NULL DEFAULT '',
-  `internalKey` int(11) NOT NULL DEFAULT 0,
-  `elementType` int(11) NOT NULL DEFAULT 0,
-  `elementId` int(11) NOT NULL DEFAULT 0,
-  `lasthit` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_element_id` (`elementType`,`elementId`,`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_active_user_sessions` (
-  `sid` varchar(32) NOT NULL DEFAULT '',
-  `internalKey` int(11) NOT NULL DEFAULT 0,
-  `lasthit` int(11) NOT NULL DEFAULT 0,
-  `ip` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+REPLACE INTO `jdz6_active_user_locks` (`id`, `sid`, `internalKey`, `elementType`, `elementId`, `lasthit`) VALUES
+	(2, '9vjpjhplu591lphlfdtm6i3oechqannc', 1, 2, 14, 1705409414),
+	(3, '9vjpjhplu591lphlfdtm6i3oechqannc', 1, 7, 5, 1705409460);
 
 REPLACE INTO `jdz6_active_user_sessions` (`sid`, `internalKey`, `lasthit`, `ip`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1705318981, '127.0.0.1');
-
-CREATE TABLE IF NOT EXISTS `jdz6_categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(45) NOT NULL DEFAULT '',
-  `rank` int(10) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1705409460, '127.0.0.1');
 
 REPLACE INTO `jdz6_categories` (`id`, `category`, `rank`) VALUES
 	(1, 'Manager and Admin', 0),
@@ -58,39 +25,7 @@ REPLACE INTO `jdz6_categories` (`id`, `category`, `rank`) VALUES
 	(5, 'SEO', 0),
 	(6, 'Контент', 0);
 
-CREATE TABLE IF NOT EXISTS `jdz6_documentgroup_names` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(245) NOT NULL DEFAULT '',
-  `private_memgroup` int(11) DEFAULT 0 COMMENT 'determine whether the document group is private to manager users',
-  `private_webgroup` int(11) DEFAULT 0 COMMENT 'determines whether the document is private to web users',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-CREATE TABLE IF NOT EXISTS `jdz6_document_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `document_group` int(11) NOT NULL DEFAULT 0,
-  `document` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_dg_id` (`document_group`,`document`),
-  KEY `document_group` (`document_group`),
-  KEY `document` (`document`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_event_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `eventid` int(11) DEFAULT 0,
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `type` int(11) NOT NULL DEFAULT 1 COMMENT '1- information, 2 - warning, 3- error',
-  `user` int(11) NOT NULL DEFAULT 0 COMMENT 'link to user table',
-  `usertype` int(11) NOT NULL DEFAULT 0 COMMENT '0 - manager, 1 - web',
-  `source` varchar(50) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `event_log_user_index` (`user`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_event_log` (`id`, `eventid`, `createdon`, `type`, `user`, `usertype`, `source`, `description`) VALUES
 	(1, 0, 1688391322, 3, 1, 0, 'Parser -     include $file;\n / PHP Parse Error', '<b>htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : include(D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\composer/../psr/log/Psr/Log/LoggerInterface.php): Failed to open stream: No such file or directory</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\composer\\ClassLoader.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>571</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>    include $file;\n</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td></td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2023-07-03 16:35:22</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>5.8789 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>5.8789 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>18 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Application->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/artisan on line 37</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Application->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/vendor/illuminate/console/Application.php on line 94</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Symfony\\Component\\Console\\Application->doRun</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/vendor/symfony/console/Application.php on line 171</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Application->doRunCommand</strong>(EvolutionCMS\\Console\\Packages\\ExtrasCommand $var1, Symfony\\Component\\Console\\Input\\ArgvInput $var2, Symfony\\Component\\Console\\Output\\ConsoleOutput $var3)<br />core/vendor/symfony/console/Application.php on line 301</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/vendor/symfony/console/Application.php on line 1040</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Command\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/illuminate/console/Command.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->execute</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/symfony/console/Command/Command.php on line 298</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->call</strong>(array $var1)<br />core/vendor/illuminate/console/Command.php on line 136</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::call</strong>(DocumentParser $var1, array $var2, array $var3, NULL)<br />core/vendor/illuminate/container/Container.php on line 653</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::callBoundMethod</strong>(DocumentParser $var1, array $var2, Closure $var3)<br />core/vendor/illuminate/container/BoundMethod.php on line 37</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Util::unwrapIfClosure</strong>(Closure $var1)<br />core/vendor/illuminate/container/BoundMethod.php on line 93</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}</strong>()<br />core/vendor/illuminate/container/Util.php on line 40</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\ExtrasCommand->handle</strong>()<br />core/vendor/illuminate/container/BoundMethod.php on line 36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\ExtrasCommand->workWithExtras</strong>()<br />core/src/Console/Packages/ExtrasCommand.php on line 119</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->call</strong>(string $var1, array $var2)<br />core/src/Console/Packages/ExtrasCommand.php on line 151</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Console\\Command->runCommand</strong>(string $var1, array $var2, Illuminate\\Console\\OutputStyle $var3)<br />core/vendor/illuminate/console/Concerns/CallsCommands.php on line 28</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArrayInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/illuminate/console/Concerns/CallsCommands.php on line 68</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Command\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArrayInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/illuminate/console/Command.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->execute</strong>(Symfony\\Component\\Console\\Input\\ArrayInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/symfony/console/Command/Command.php on line 298</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->call</strong>(array $var1)<br />core/vendor/illuminate/console/Command.php on line 136</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::call</strong>(DocumentParser $var1, array $var2, array $var3, NULL)<br />core/vendor/illuminate/container/Container.php on line 653</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::callBoundMethod</strong>(DocumentParser $var1, array $var2, Closure $var3)<br />core/vendor/illuminate/container/BoundMethod.php on line 37</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Util::unwrapIfClosure</strong>(Closure $var1)<br />core/vendor/illuminate/container/BoundMethod.php on line 93</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}</strong>()<br />core/vendor/illuminate/container/Util.php on line 40</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\InstallPackageRequireCommand->handle</strong>()<br />core/vendor/illuminate/container/BoundMethod.php on line 36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\InstallPackageRequireCommand->runComposer</strong>()<br />core/src/Console/Packages/InstallPackageRequireCommand.php on line 52</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Console\\Application->__construct</strong>()<br />core/src/Console/Packages/InstallPackageRequireCommand.php on line 78</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(\'Composer\\IO\\NullIO\')<br />core/vendor/composer/composer/src/Composer/Console/Application.php on line 103</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(\'Composer\\IO\\BaseIO\')<br />core/vendor/composer/composer/src/Composer/IO/NullIO.php on line 20</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(string $var1)<br />core/vendor/composer/composer/src/Composer/IO/BaseIO.php on line 20</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(string $var1)<br />core/vendor/composer/composer/src/Composer/IO/IOInterface.php on line 23</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n</table>\n'),
@@ -107,26 +42,6 @@ REPLACE INTO `jdz6_event_log` (`id`, `eventid`, `createdon`, `type`, `user`, `us
 	(12, 0, 1705321165, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>foreach() argument must be of type array|object, null given</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : foreach() argument must be of type array|object, null given</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\custom\\packages\\main\\src\\Controllers\\PortfolioOneController.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>15</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/portfolio_all/podklyuchili-gde-to</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[25] <a href="http://evocompany.localhost/portfolio_all/podklyuchili-gde-to" target="_blank">Подключили где-то</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/portfolio_all/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:19:25</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3154 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3154 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>101.58657073975 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(string $var1)<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>(string $var1, array $var2)<br />core/src/Core.php on line 2916</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\TemplateProcessor->getBladeDocumentContent</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\AbstractLaravel->make</strong>(string $var1)<br />core/src/TemplateProcessor.php on line 63</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->make</strong>(string $var1, array $var2)<br />core/src/AbstractLaravel.php on line 473</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Container->resolve</strong>(string $var1, array $var2)<br />core/vendor/illuminate/container/Container.php on line 694</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->build</strong>(string $var1)<br />core/vendor/illuminate/container/Container.php on line 758</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>ReflectionClass->newInstanceArgs</strong>(array $var1)<br />core/vendor/illuminate/container/Container.php on line 917</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->__construct</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->setGlobalElements</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 7</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->getMainMenu</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 24</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'DLMenu\', array $var2)<br />core/custom/packages/main/src/Controllers/BaseController.php on line 37</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>eval</strong>()<br />core/src/Core.php on line 1910</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/src/Core.php(1910) : eval()\'d code on line 1</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'DocLister\', array $var2)<br />assets/snippets/DocLister/snippet.DLMenu.php on line 19</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
 	(13, 0, 1705323301, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>Trying to access array offset on value of type null</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Trying to access array offset on value of type null</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\1c91ae6b5791e5d99395ae4957b2772575520649.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>4</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/catalog/any/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[12] <a href="http://evocompany.localhost/catalog/any/" target="_blank">Разное</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/catalog/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:55:01</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3260 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3260 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.58683013916 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(\'catalog/any\')<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/storage/blade/021b893afe48b70fe5cb4e53ce4441a93e6f399d.php on line 12</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'product\', array $var2)<br />core/storage/blade/1c91ae6b5791e5d99395ae4957b2772575520649.php on line 5</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(\'return false;\', array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
 	(14, 0, 1705323578, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>Trying to access array offset on value of type null</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Trying to access array offset on value of type null</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\1c91ae6b5791e5d99395ae4957b2772575520649.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>4</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/catalog/screws/gajka-m8</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[18] <a href="http://evocompany.localhost/catalog/screws/gajka-m8" target="_blank">Гайка М8</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/catalog/screws/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:59:38</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3518 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3518 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.586784362793 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(string $var1)<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/storage/blade/139085d5608c3c3c17b5120f08d50574b730fb7c.php on line 31</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'phpthumb\', array $var2)<br />core/storage/blade/1c91ae6b5791e5d99395ae4957b2772575520649.php on line 5</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n');
-
-CREATE TABLE IF NOT EXISTS `jdz6_manager_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `timestamp` int(11) NOT NULL DEFAULT 0,
-  `internalKey` int(11) NOT NULL DEFAULT 0,
-  `username` varchar(255) DEFAULT NULL,
-  `action` int(11) NOT NULL DEFAULT 0,
-  `itemid` varchar(10) DEFAULT '0',
-  `itemname` varchar(255) DEFAULT NULL,
-  `message` varchar(255) NOT NULL DEFAULT '',
-  `ip` varchar(45) DEFAULT NULL,
-  `useragent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `manager_log_internalkey_index` (`internalKey`),
-  KEY `manager_log_action_index` (`action`),
-  KEY `manager_log_itemid_index` (`itemid`),
-  KEY `manager_log_itemname_index` (`itemname`),
-  KEY `manager_log_message_index` (`message`),
-  KEY `manager_log_timestamp_index` (`timestamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=523 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `action`, `itemid`, `itemname`, `message`, `ip`, `useragent`) VALUES
 	(1, 1686310900, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
@@ -650,40 +565,53 @@ REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `
 	(519, 1705317884, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
 	(520, 1705318484, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
 	(521, 1705318484, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(522, 1705318925, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+	(522, 1705318925, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(523, 1705400736, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(524, 1705400794, 1, 'admin', 302, '-', 'Главный заголовок', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(525, 1705400795, 1, 'admin', 301, '9', 'Главный заголовок', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(526, 1705400801, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(527, 1705400808, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(528, 1705400847, 1, 'admin', 302, '-', 'Подпись под главным заголовком', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(529, 1705400848, 1, 'admin', 301, '10', 'Подпись под главным заголовком', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(530, 1705400853, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(531, 1705400901, 1, 'admin', 302, '-', 'Изображение сверху', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(532, 1705400901, 1, 'admin', 301, '11', 'Изображение сверху', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(533, 1705400905, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(534, 1705400913, 1, 'admin', 301, '10', 'Подпись под главным заголовком', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(535, 1705400917, 1, 'admin', 302, '10', 'Подпись под главным заголовком', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(536, 1705400918, 1, 'admin', 301, '10', 'Подпись под главным заголовком', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(537, 1705400920, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(538, 1705400933, 1, 'admin', 301, '9', 'Главный заголовок', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(539, 1705400936, 1, 'admin', 302, '9', 'Главный заголовок', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(540, 1705400937, 1, 'admin', 301, '9', 'Главный заголовок', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(541, 1705400938, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(542, 1705401836, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(543, 1705401837, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(544, 1705402080, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(545, 1705405085, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(546, 1705405119, 1, 'admin', 302, '-', 'Блок услуг на главной', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(547, 1705405120, 1, 'admin', 301, '12', 'Блок услуг на главной', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(548, 1705405123, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(549, 1705405240, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(550, 1705405897, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(551, 1705405898, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(552, 1705405921, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(553, 1705405921, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(554, 1705409365, 1, 'admin', 77, '', 'Новый чанк', 'Creating a new Chunk (HTML Snippet)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(555, 1705409368, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(556, 1705409370, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(557, 1705409393, 1, 'admin', 302, '-', 'Адрес', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(558, 1705409393, 1, 'admin', 301, '13', 'Адрес', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(559, 1705409396, 1, 'admin', 304, '13', 'contacts_address Копия', 'Duplicate Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(560, 1705409396, 1, 'admin', 301, '14', 'Адрес Duplicate ', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(561, 1705409414, 1, 'admin', 302, '14', 'Код карты', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(562, 1705409415, 1, 'admin', 301, '14', 'Код карты', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(563, 1705409416, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(564, 1705409460, 1, 'admin', 5, '5', 'Контакты', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+	(565, 1705409461, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
-CREATE TABLE IF NOT EXISTS `jdz6_membergroup_access` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `membergroup` int(11) NOT NULL DEFAULT 0,
-  `documentgroup` int(11) NOT NULL DEFAULT 0,
-  `context` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE IF NOT EXISTS `jdz6_membergroup_names` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(245) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `membergroup_names_name_unique` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_member_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_group` int(11) NOT NULL DEFAULT 0,
-  `member` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_group_member` (`user_group`,`member`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_migrations_install` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_migrations_install` (`id`, `migration`, `batch`) VALUES
 	(1, '2018_06_29_182342_create_active_user_locks_table', 1),
@@ -748,18 +676,6 @@ REPLACE INTO `jdz6_migrations_install` (`id`, `migration`, `batch`) VALUES
 	(60, '2022_12_03_183200_add_unique_index_to_name_col_in_system_eventnames_table', 1),
 	(61, '2023_01_06_191600_add_indexes_to_fields_in_manager_log_table', 1),
 	(62, '2018_06_29_182342_create_permissions_table', 1);
-
-CREATE TABLE IF NOT EXISTS `jdz6_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `key` varchar(255) NOT NULL,
-  `lang_key` varchar(255) NOT NULL DEFAULT '',
-  `group_id` int(11) DEFAULT NULL,
-  `disabled` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_permissions` (`id`, `name`, `key`, `lang_key`, `group_id`, `disabled`, `created_at`, `updated_at`) VALUES
 	(1, 'Request manager frames', 'frames', 'role_frames', 1, 1, NULL, NULL),
@@ -829,15 +745,6 @@ REPLACE INTO `jdz6_permissions` (`id`, `name`, `key`, `lang_key`, `group_id`, `d
 	(65, 'Remove Locks', 'remove_locks', 'role_remove_locks', 14, 0, NULL, NULL),
 	(66, 'Display Locks', 'display_locks', 'role_display_locks', 14, 0, NULL, NULL);
 
-CREATE TABLE IF NOT EXISTS `jdz6_permissions_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `lang_key` varchar(255) NOT NULL DEFAULT '',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_permissions_groups` (`id`, `name`, `lang_key`, `created_at`, `updated_at`) VALUES
 	(1, 'General', 'page_data_general', NULL, NULL),
 	(2, 'Content Management', 'role_content_management', NULL, NULL),
@@ -853,15 +760,6 @@ REPLACE INTO `jdz6_permissions_groups` (`id`, `name`, `lang_key`, `created_at`, 
 	(12, 'Role Management', 'role_role_management', NULL, NULL),
 	(13, 'Events Log Management', 'role_eventlog_management', NULL, NULL),
 	(14, 'Config Management', 'role_config_management', NULL, NULL);
-
-CREATE TABLE IF NOT EXISTS `jdz6_role_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `permission` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_role_permissions` (`id`, `permission`, `role_id`, `created_at`, `updated_at`) VALUES
 	(1, 'frames', 1, NULL, NULL),
@@ -1005,60 +903,12 @@ REPLACE INTO `jdz6_role_permissions` (`id`, `permission`, `role_id`, `created_at
 	(139, 'access_permissions', 3, NULL, NULL),
 	(140, 'manage_document_permissions', 3, NULL, NULL);
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_content` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(20) NOT NULL DEFAULT 'document',
-  `contentType` varchar(50) NOT NULL DEFAULT 'text/html',
-  `pagetitle` varchar(255) NOT NULL DEFAULT '',
-  `longtitle` varchar(255) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
-  `alias` varchar(245) DEFAULT '',
-  `link_attributes` varchar(255) NOT NULL DEFAULT '' COMMENT 'Link attriubtes',
-  `published` int(11) NOT NULL DEFAULT 0,
-  `pub_date` int(11) NOT NULL DEFAULT 0,
-  `unpub_date` int(11) NOT NULL DEFAULT 0,
-  `parent` int(11) NOT NULL DEFAULT 0,
-  `isfolder` int(11) NOT NULL DEFAULT 0,
-  `introtext` text DEFAULT NULL COMMENT 'Used to provide quick summary of the document',
-  `content` longtext DEFAULT NULL,
-  `richtext` tinyint(1) NOT NULL DEFAULT 1,
-  `template` int(11) NOT NULL DEFAULT 0,
-  `menuindex` int(11) NOT NULL DEFAULT 0,
-  `searchable` int(11) NOT NULL DEFAULT 1,
-  `cacheable` int(11) NOT NULL DEFAULT 1,
-  `createdby` int(11) NOT NULL DEFAULT 0,
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedby` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  `deleted` int(11) NOT NULL DEFAULT 0,
-  `deletedon` int(11) NOT NULL DEFAULT 0,
-  `deletedby` int(11) NOT NULL DEFAULT 0,
-  `publishedon` int(11) NOT NULL DEFAULT 0 COMMENT 'Date the document was published',
-  `publishedby` int(11) NOT NULL DEFAULT 0 COMMENT 'ID of user who published the document',
-  `menutitle` varchar(255) NOT NULL DEFAULT '' COMMENT 'Menu title',
-  `hide_from_tree` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disable page hit count',
-  `privateweb` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Private web document',
-  `privatemgr` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Private manager document',
-  `content_dispo` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0-inline, 1-attachment',
-  `hidemenu` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Hide document from menu',
-  `alias_visible` int(11) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `typeidx` (`type`),
-  KEY `aliasidx` (`alias`),
-  KEY `parent` (`parent`),
-  KEY `pub_unpub_published` (`pub_date`,`unpub_date`,`published`),
-  KEY `pub_unpub` (`pub_date`,`unpub_date`),
-  KEY `unpub` (`unpub_date`),
-  KEY `pub` (`pub_date`),
-  FULLTEXT KEY `content_ft_idx` (`pagetitle`,`description`,`content`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longtitle`, `description`, `alias`, `link_attributes`, `published`, `pub_date`, `unpub_date`, `parent`, `isfolder`, `introtext`, `content`, `richtext`, `template`, `menuindex`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `menutitle`, `hide_from_tree`, `privateweb`, `privatemgr`, `content_dispo`, `hidemenu`, `alias_visible`) VALUES
-	(1, 'document', 'text/html', 'Главная', '', '', 'index', '', 1, 0, 0, 0, 0, '', '<h3>Install Successful!</h3>\r\n<p>You have successfully installed Evolution CMS.</p>\r\n\r\n<h3>Getting Help</h3>\r\n<p>The <a href="http://evo.im/" target="_blank">Evolution CMS Community</a> provides a great starting point to learn all things Evolution CMS, or you can also <a href="http://evo.im/">see some great learning resources</a> (books, tutorials, blogs and screencasts).</p>\r\n<p>Welcome to Evolution CMS!</p>\r\n', 1, 2, 0, 1, 1, 0, 1130304721, 1, 1704876355, 0, 0, 0, 1130304721, 1, '', 0, 0, 0, 0, 0, 1),
+	(1, 'document', 'text/html', 'Главная', '', '', 'index', '', 1, 0, 0, 0, 0, '', '<h3>Install Successful!</h3>\r\n<p>You have successfully installed Evolution CMS.</p>\r\n<h3>Getting Help</h3>\r\n<p>The <a href="http://evo.im/" target="_blank" rel="noopener">Evolution CMS Community</a> provides a great starting point to learn all things Evolution CMS, or you can also <a href="http://evo.im/">see some great learning resources</a> (books, tutorials, blogs and screencasts).</p>\r\n<p>Welcome to Evolution CMS!</p>', 1, 2, 0, 1, 1, 0, 1130304721, 1, 1705401836, 0, 0, 0, 1130304721, 1, '', 0, 0, 0, 0, 0, 1),
 	(2, 'document', 'text/html', 'Каталог', '', '', 'catalog', '', 1, 0, 0, 0, 1, '', '', 1, 3, 1, 1, 1, 1, 1686833672, 0, 1704876355, 0, 0, 0, 1686833672, 1, '', 0, 0, 0, 0, 0, 1),
 	(3, 'document', 'text/html', 'Новости', '', '', 'news', '', 1, 0, 0, 0, 1, '', '', 1, 6, 2, 1, 1, 1, 1686833696, 0, 1704876355, 0, 0, 0, 1686833696, 1, '', 0, 0, 0, 0, 0, 1),
 	(4, 'document', 'text/html', 'О компании', '', '', 'about', '', 1, 0, 0, 0, 0, '', '<p>Наша компания предлагает вам предложения, которые вам понравятся и смогут решить вот такие вот проблемы быстро и качественно.</p>\r\n<p>Ведь не может быть, чтобы тот, кто прочитал это, не вдохновился покупкой нашего уникального предложения. Оно настолько уникально, что его предлагают из каждого утюга. Значит, есть спрос.&nbsp;</p>\r\n<p>Покупайте сейчас. А то скоро опять страна начнёт клеить танчики и закручивать гайки, и всё будет как всегда дороже.</p>\r\n<p>А мы пока держим цены, вот такие мы хорошие и не обманываем ни разу.</p>', 1, 8, 4, 1, 1, 1, 1686833716, 1, 1704876355, 0, 0, 0, 1686833716, 1, '', 0, 0, 0, 0, 0, 1),
-	(5, 'document', 'text/html', 'Контакты', '', '', 'contacts', '', 1, 0, 0, 0, 0, '', '', 1, 9, 5, 1, 1, 1, 1686833733, 0, 1704876355, 0, 0, 0, 1686833732, 1, '', 0, 0, 0, 0, 0, 1),
+	(5, 'document', 'text/html', 'Контакты', '', '', 'contacts', '', 1, 0, 0, 0, 0, '', '<h1 class="h1">Контактная информация</h1>\r\n<p>Сайт сделан в рамках уроков по системе управления Evoluiton CMS. Компания выдумана, весь контент сгенерировала Алиса в соавторстве с Чатжпт. Картинки взяты первые попавшиеся.</p>\r\n<p>Уроки, в которых используется этот шаблон находятся на&nbsp;<a href="https://github.com/0test/lessons-evolution-company">моём гитхабе</a>&nbsp;, сам я нахожусь&nbsp;<a href="https://kazunin.ru/">тут</a>&nbsp;.</p>', 1, 9, 5, 1, 1, 1, 1686833733, 1, 1705409460, 0, 0, 0, 1686833732, 1, '', 0, 0, 0, 0, 0, 1),
 	(6, 'document', 'text/html', 'Мы открылись', '', '', 'my-otkrylis', '', 1, 0, 0, 3, 0, 'Обеспечим население доступными и качественными болтиками и гаечками', '<p>Мы рады сообщить о нашем открытии и начале нашей миссии по обеспечению доступности качественных болтиков и гаечек для всех, кто в них нуждается.</p>\r\n<p>С момента нашей идеи, мы стремились предложить нашим клиентам самый широкий ассортимент крепежных изделий и инструментов, который бы отвечал высоким стандартам качества и предпочтениям различных потребителей. Мы гордимся тем, что уже завоевали доверие среди наших клиентов благодаря нашим конкурентоспособным ценам и внимательному обслуживанию.</p>\r\n<p>Мы с нетерпением ждем продолжения нашего роста и развития на благо нашего сообщества и в поддержку местной экономики.</p>', 1, 7, 0, 1, 1, 1, 1686833938, 1, 1704967116, 0, 0, 0, 1686833938, 1, '', 0, 0, 0, 0, 1, 1),
 	(7, 'document', 'text/html', 'Мы немного поработали', '', '', 'my-nemnogo-porabotali', '', 1, 0, 0, 3, 0, 'Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики', '<p>С момента своего открытия, компания по продаже болтиков и гаечек активно работает над расширением своего ассортимента и клиентской базы. Всё больше местных предприятий и частных лиц обращаются к нам за качественными крепежными изделиями.</p>\r\n<p>Фирма также активно сотрудничает с другими поставщиками, чтобы предложить своим клиентам самый широкий выбор товаров. Это включает в себя не только обычные болтики и гаечки, но и специализированные крепежи для различных отраслей промышленности.</p>\r\n<p>Успешная работа этой компании уже оказала положительное влияние на местную экономику, создавая новые рабочие места и увеличивая налоговые поступления. Мы с нетерпением ждем дальнейшего роста и успеха нашей молодой, но перспективной компании.</p>', 1, 7, 1, 1, 1, 1, 1686833956, 1, 1704967192, 0, 0, 0, 1686833956, 1, '', 0, 0, 0, 0, 1, 1),
 	(8, 'document', 'text/html', 'У директора был день рождения', '', '', 'u-direktora-byl-den-rozhdeniya', '', 1, 0, 0, 3, 0, 'Празднование Дня Рождения основателя компании по продаже болтиков и гаечек', '<p>Недавно основатель и директор компании, занимающейся продажей болтиков и гаечек, отпраздновал свой день рождения. В честь этого события компания организовала специальное мероприятие, на котором присутствовали многие клиенты и партнеры компании.</p>\r\n<p>На празднике директор получил множество поздравлений и благодарностей за свою работу. Гости также отметили, что компания внесла значительный вклад в развитие местной экономики и улучшение качества жизни людей.</p>\r\n<p>Директор компании выразил свою благодарность всем присутствующим и отметил, что успех его предприятия был бы невозможен без поддержки клиентов и партнеров. Он также пообещал продолжать работать на благо общества и развивать свою компанию.</p>', 1, 7, 2, 1, 1, 1, 1686833974, 1, 1704967309, 0, 0, 0, 1686833974, 1, '', 0, 0, 0, 0, 1, 1),
@@ -1080,14 +930,6 @@ REPLACE INTO `jdz6_site_content` (`id`, `type`, `contentType`, `pagetitle`, `lon
 	(25, 'document', 'text/html', 'Подключили где-то', '', '', 'podklyuchili-gde-to', '', 1, 0, 0, 23, 0, '', '', 1, 11, 1, 1, 1, 1, 1704876403, 1, 1704876468, 0, 0, 0, 1704876403, 1, '', 0, 0, 0, 0, 1, 1),
 	(26, 'document', 'text/html', 'Гайка М10', '', '', 'gajka-m10', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 1, 1, 1, 1, 1704878211, 1, 1704974152, 0, 0, 0, 1704878225, 1, '', 0, 0, 0, 0, 1, 1),
 	(27, 'document', 'text/html', 'Болт М10', '', '', 'bolt-m10', '', 1, 0, 0, 14, 0, '', '<p>Болт М10 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров. Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 2, 1, 1, 1, 1704878256, 1, 1704973596, 0, 0, 0, 1704878256, 1, '', 0, 0, 0, 0, 1, 1);
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_content_closure` (
-  `closure_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ancestor` int(10) unsigned NOT NULL,
-  `descendant` int(10) unsigned NOT NULL,
-  `depth` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`closure_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_content_closure` (`closure_id`, `ancestor`, `descendant`, `depth`) VALUES
 	(1, 1, 1, 0),
@@ -1149,83 +991,14 @@ REPLACE INTO `jdz6_site_content_closure` (`closure_id`, `ancestor`, `descendant`
 	(89, 2, 27, 2),
 	(90, 27, 27, 0);
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_htmlsnippets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT 'Chunk',
-  `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
-  `editor_name` varchar(50) NOT NULL DEFAULT 'none',
-  `category` int(11) NOT NULL DEFAULT 0 COMMENT 'category id',
-  `cache_type` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cache option',
-  `snippet` mediumtext DEFAULT NULL,
-  `locked` tinyint(1) NOT NULL DEFAULT 0,
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the snippet',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_modules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '0',
-  `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
-  `disabled` tinyint(1) NOT NULL DEFAULT 0,
-  `category` int(11) NOT NULL DEFAULT 0 COMMENT 'category id',
-  `wrap` tinyint(1) NOT NULL DEFAULT 0,
-  `locked` tinyint(1) NOT NULL DEFAULT 0,
-  `icon` varchar(255) NOT NULL DEFAULT '' COMMENT 'url to module icon',
-  `enable_resource` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'enables the resource file feature',
-  `resourcefile` varchar(255) NOT NULL DEFAULT '' COMMENT 'a physical link to a resource file',
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  `guid` varchar(32) DEFAULT '' COMMENT 'globally unique identifier',
-  `enable_sharedparams` tinyint(1) NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
-  `modulecode` mediumtext DEFAULT NULL COMMENT 'module boot up code',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_modules` (`id`, `name`, `description`, `editor_type`, `disabled`, `category`, `wrap`, `locked`, `icon`, `enable_resource`, `resourcefile`, `createdon`, `editedon`, `guid`, `enable_sharedparams`, `properties`, `modulecode`) VALUES
 	(1, 'Extras', '<strong>0.1.3</strong> first repository for Evolution CMS', 0, 0, 1, 0, 0, '', 0, '', 1686310760, 1686310760, 'store435243542tf542t5t', 1, '', ' \r\n/**\r\n * Extras\r\n * \r\n * first repository for Evolution CMS\r\n * \r\n * @category	module\r\n * @version 	0.1.3\r\n * @internal	@properties\r\n * @internal	@guid store435243542tf542t5t	\r\n * @internal	@shareparams 1\r\n * @internal	@dependencies requires files located at /assets/modules/store/\r\n * @internal	@modx_category Manager and Admin\r\n * @internal    @installset base, sample\r\n * @lastupdate  25/11/2016\r\n */\r\n\r\n//AUTHORS: Bumkaka & Dmi3yy \r\ninclude_once(\'../assets/modules/store/core.php\');'),
 	(2, 'ClientSettings', '<strong>2.2.0</strong> Customizable set of fields for user settings', 0, 0, 1, 0, 0, '', 0, '', 1686312458, 1686312458, 'clsee234523g354f542t5t', 1, '{"prefix":[{"label":"Prefix for settings","type":"text","value":"client_","default":"client_","desc":""}],"config_path":[{"label":"Path to configuration files","type":"text","value":"","default":"","desc":""}]}', '\n\nrequire_once MODX_BASE_PATH . \'assets/modules/clientsettings/core/src/ClientSettings.php\';\n\nif (!$modx->hasPermission(\'exec_module\')) {\n    $modx->sendRedirect(\'index.php?a=106\');\n}\n\nif (!is_array($modx->event->params)) {\n    $modx->event->params = [];\n}\n\nif (!function_exists(\'renderFormElement\')) {\n    include_once MODX_MANAGER_PATH . \'includes/tmplvars.commands.inc.php\';\n    include_once MODX_MANAGER_PATH . \'includes/tmplvars.inc.php\';\n}\n\nif (isset($_REQUEST[\'stay\'])) {\n    $_SESSION[\'stay\'] = $_REQUEST[\'stay\'];\n} else if (isset($_SESSION[\'stay\'])) {\n    $_REQUEST[\'stay\'] = $_SESSION[\'stay\'];\n}\n\n(new ClientSettings($params))->processRequest();\n');
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_module_access` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `module` int(11) NOT NULL DEFAULT 0,
-  `usergroup` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_module_depobj` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module` int(11) NOT NULL DEFAULT 0,
-  `resource` int(11) NOT NULL DEFAULT 0,
-  `type` int(11) NOT NULL DEFAULT 0 COMMENT '10-chunks, 20-docs, 30-plugins, 40-snips, 50-tpls, 60-tvs',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_module_depobj` (`id`, `module`, `resource`, `type`) VALUES
 	(1, 2, 8, 30);
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_plugins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT 'Plugin',
-  `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
-  `category` int(11) NOT NULL DEFAULT 0 COMMENT 'category id',
-  `cache_type` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Cache option',
-  `plugincode` mediumtext DEFAULT NULL,
-  `locked` tinyint(1) NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL COMMENT 'Default Properties',
-  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the plugin',
-  `moduleguid` varchar(32) DEFAULT '' COMMENT 'GUID of module from which to import shared parameters',
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_plugins` (`id`, `name`, `description`, `editor_type`, `category`, `cache_type`, `plugincode`, `locked`, `properties`, `disabled`, `moduleguid`, `createdon`, `editedon`) VALUES
 	(1, 'AboutEvoWidget', '<strong>1.0.0</strong> displays useful links at the dashboardn', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/aboutevo/plugin.aboutevo.php\';\r\n', 0, '', 0, '', 1686310760, 1686310760),
@@ -1236,13 +1009,6 @@ REPLACE INTO `jdz6_site_plugins` (`id`, `name`, `description`, `editor_type`, `c
 	(6, 'userHelper', '<strong>1.19.10</strong> addition to FormLister', 0, 2, 0, 'require MODX_BASE_PATH.\'assets/snippets/FormLister/plugin.userHelper.php\';\n', 0, '{"model":[{"label":"Model","type":"text","value":"","default":"","desc":""}],"logoutKey":[{"label":"Request key","type":"text","value":"logout","default":"logout","desc":""}],"cookieName":[{"label":"Cookie Name","type":"text","value":"WebLoginPE","default":"WebLoginPE","desc":""}],"cookieLifetime":[{"label":"Cookie Lifetime, seconds","type":"text","value":"157680000","default":"157680000","desc":""}],"maxFails":[{"label":"Max failed logins","type":"text","value":"3","default":"3","desc":""}],"blockTime":[{"label":"Block for, seconds","type":"text","value":"3600","default":"3600","desc":""}],"trackWebUserActivity":[{"label":"Track web user activity","type":"list","value":"No","options":"No,Yes","default":"No","desc":""}]}', 1, '', 1686312437, 1686312437),
 	(7, 'TinyMCE4', '<strong>4.9.11</strong> Javascript rich text editor', 0, 1, 0, 'if (!defined(\'MODX_BASE_PATH\')) { die(\'What are you doing? Get out of here!\'); }\n\nrequire(MODX_BASE_PATH."assets/plugins/tinymce4/plugin.tinymce.inc.php");', 0, '{"styleFormats":[{"label":"Custom Style Formats <b>RAW<\\/b><br\\/><br\\/><ul><li>leave empty to use below block\\/inline formats<\\/li><li>allows simple-format: <i>Title,cssClass|Title2,cssClass2<\\/i><\\/li><li>Also accepts full JSON-config as per TinyMCE4 docs \\/ configure \\/ content-formating \\/ style_formats<\\/li><\\/ul>","type":"textarea","value":"","default":"","desc":""}],"styleFormats_inline":[{"label":"Custom Style Formats <b>INLINE<\\/b><br\\/><br\\/><ul><li>will wrap selected text with span-tag + css-class<\\/li><li>simple-format only<\\/li><\\/ul>","type":"textarea","value":"InlineTitle,cssClass1|InlineTitle2,cssClass2","default":"InlineTitle,cssClass1|InlineTitle2,cssClass2","desc":""}],"styleFormats_block":[{"label":"Custom Style Formats <b>BLOCK<\\/b><br\\/><br\\/><ul><li>will add css-class to selected block-element<\\/li><li>simple-format only<\\/li><\\/ul>","type":"textarea","value":"BlockTitle,cssClass3|BlockTitle2,cssClass4","default":"BlockTitle,cssClass3|BlockTitle2,cssClass4","desc":""}],"customParams":[{"label":"Custom Parameters<br\\/><b>(Be careful or leave empty!)<\\/b>","type":"textarea","value":"","default":"","desc":""}],"entityEncoding":[{"label":"Entity Encoding","type":"list","value":"named","options":"named,numeric,raw","default":"named","desc":""}],"entities":[{"label":"Entities","type":"text","value":"","default":"","desc":""}],"pathOptions":[{"label":"Path Options","type":"list","value":"Site config","options":"Site config,Absolute path,Root relative,URL,No convert","default":"Site config","desc":""}],"resizing":[{"label":"Advanced Resizing","type":"list","value":"false","options":"true,false","default":"false","desc":""}],"disabledButtons":[{"label":"Disabled Buttons","type":"text","value":"","default":"","desc":""}],"webTheme":[{"label":"Web Theme","type":"test","value":"webuser","default":"webuser","desc":""}],"webPlugins":[{"label":"Web Plugins","type":"text","value":"","default":"","desc":""}],"webButtons1":[{"label":"Web Buttons 1","type":"text","value":"bold italic underline strikethrough removeformat alignleft aligncenter alignright","default":"bold italic underline strikethrough removeformat alignleft aligncenter alignright","desc":""}],"webButtons2":[{"label":"Web Buttons 2","type":"text","value":"link unlink image undo redo","default":"link unlink image undo redo","desc":""}],"webButtons3":[{"label":"Web Buttons 3","type":"text","value":"","default":"","desc":""}],"webButtons4":[{"label":"Web Buttons 4","type":"text","value":"","default":"","desc":""}],"webAlign":[{"label":"Web Toolbar Alignment","type":"list","value":"ltr","options":"ltr,rtl","default":"ltr","desc":""}],"width":[{"label":"Width","type":"text","value":"100%","default":"100%","desc":""}],"height":[{"label":"Height","type":"text","value":"400px","default":"400px","desc":""}],"introtextRte":[{"label":"<b>Introtext RTE<\\/b><br\\/>add richtext-features to \\"introtext\\"","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}],"inlineMode":[{"label":"<b>Inline-Mode<\\/b>","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}],"inlineTheme":[{"label":"<b>Inline-Mode<\\/b><br\\/>Theme","type":"text","value":"inline","default":"inline","desc":""}],"browser_spellcheck":[{"label":"<b>Browser Spellcheck<\\/b><br\\/>At least one dictionary must be installed inside your browser","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}],"paste_as_text":[{"label":"<b>Force Paste as Text<\\/b>","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}]}', 0, '', 1686312453, 1686312453),
 	(8, 'ClientSettings', '<strong>2.2.0</strong> Creates menu item for user module ClientSettings', 0, 1, 0, '\n\nif ($modx->event->name == \'OnManagerMenuPrerender\') {\n    require_once MODX_BASE_PATH . \'assets/modules/clientsettings/core/src/ClientSettings.php\';\n\n    $cs   = new ClientSettings($params);\n    $mid  = $cs->getModuleId();\n    $lang = $cs->loadLang();\n    $tabs = $cs->loadStructure();\n\n    if (!empty($tabs)) {\n        $menuparams = [\'client_settings\', \'main\', \'<i class="fa fa-cog"></i>\' . $lang[\'cs.module_title\'], \'index.php?a=112&id=\' . $mid . \'&type=default\', $lang[\'cs.module_title\'], \'\', \'\', \'main\', 0, 100, \'\'];\n\n        if (count($tabs) > 1) {\n            $menuparams[3] = \'javscript:;\';\n            $menuparams[5] = \'return false;\';\n            $sort = 0;\n\n            $params[\'menu\'][\'client_settings_main\'] = [\'client_settings_main\', \'client_settings\', \'<i class="fa fa-cog"></i>\' . $lang[\'cs.module_title\'], \'index.php?a=112&id=\' . $mid . \'&type=default\', $lang[\'cs.module_title\'], \'\', \'\', \'main\', 0, $sort, \'\'];\n\n            foreach ($tabs as $alias => $item) {\n                if ($alias != \'default\') {\n                    $params[\'menu\'][\'client_settings_\' . $alias] = [\'client_settings_\' . $alias, \'client_settings\', \'<i class="fa \' . (isset($item[\'menu\'][\'icon\']) ? $item[\'menu\'][\'icon\'] : \'fa-cog\') . \'"></i>\' . $item[\'menu\'][\'caption\'], \'index.php?a=112&id=\' . $mid . \'&type=\' . $alias, $item[\'menu\'][\'caption\'], \'\', \'\', \'main\', 0, $sort += 10, \'\'];\n                }\n            }\n        }\n\n        $params[\'menu\'][\'client_settings\'] = $menuparams;\n        $modx->event->output(serialize($params[\'menu\']));\n    }\n\n    return;\n}\n\n', 0, '', 0, 'clsee234523g354f542t5t', 1686312458, 1686312458);
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_plugin_events` (
-  `pluginid` int(11) NOT NULL,
-  `evtid` int(11) NOT NULL DEFAULT 0,
-  `priority` int(11) NOT NULL DEFAULT 0 COMMENT 'determines plugin run order',
-  PRIMARY KEY (`pluginid`,`evtid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_plugin_events` (`pluginid`, `evtid`, `priority`) VALUES
 	(1, 83, 0),
@@ -1273,23 +1039,6 @@ REPLACE INTO `jdz6_site_plugin_events` (`pluginid`, `evtid`, `priority`) VALUES
 	(7, 129, 0),
 	(8, 74, 0);
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_snippets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT 'Snippet',
-  `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
-  `category` int(11) NOT NULL DEFAULT 0 COMMENT 'category id',
-  `cache_type` int(11) NOT NULL DEFAULT 0 COMMENT 'Cache option',
-  `snippet` mediumtext DEFAULT NULL,
-  `locked` tinyint(1) NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL COMMENT 'Default Properties',
-  `moduleguid` varchar(32) NOT NULL DEFAULT '' COMMENT 'GUID of module from which to import shared parameters',
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the snippet',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_site_snippets` (`id`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `moduleguid`, `createdon`, `editedon`, `disabled`) VALUES
 	(1, 'DDocInfo', '<strong>1</strong> DDocInfo', 0, 2, 0, '$id = isset($id) ? (int)$id : $modx->documentObject[\'id\'];\n$field = isset($field) ? (string)$field : \'id\';\nif($field == \'id\'){\n    $out = $id;\n}else{\n    if($modx->documentObject[\'id\'] == $id){\n        $out = isset($modx->documentObject[$field]) ? $modx->documentObject[$field] : \'\';\n        if(is_array($out)){\n           $out = isset($out[1]) ? $out[1] : \'\';\n        }\n    }else{\n        $out = $modx->doc->edit($id)->get($field);\n    }\n}\nreturn (string)$out;', 0, '', '', 0, 0, 0),
 	(2, 'DLBeforeAfter', '<strong>1</strong> Navigation between post and upcoming events relative to the current date.', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLBeforeAfter.php\';', 0, '', '', 0, 0, 0),
@@ -1308,23 +1057,6 @@ REPLACE INTO `jdz6_site_snippets` (`id`, `name`, `description`, `editor_type`, `
 	(15, 'multiTV', '<strong>2.0.16</strong> Custom Template Variabe containing a sortable multi item list or a datatable', 0, 2, 0, 'return require MODX_BASE_PATH . \'assets/tvs/multitv/multitv.snippet.php\';\n', 0, '', '', 0, 0, 0),
 	(16, 'phpthumb', '<strong>1.4.4</strong> PHPThumb creates thumbnails and altered images on the fly and caches them', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/phpthumb/snippet.phpthumb.php\';\r\n', 0, '', '', 0, 0, 0);
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_templates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `templatename` varchar(100) NOT NULL DEFAULT '',
-  `templatealias` varchar(100) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT 'Template',
-  `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
-  `category` int(11) NOT NULL DEFAULT 0 COMMENT 'category id',
-  `icon` varchar(255) NOT NULL DEFAULT '' COMMENT 'url to icon file',
-  `template_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-page,1-content',
-  `content` mediumtext DEFAULT NULL,
-  `locked` tinyint(1) NOT NULL DEFAULT 0,
-  `selectable` tinyint(1) NOT NULL DEFAULT 1,
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_site_templates` (`id`, `templatename`, `templatealias`, `description`, `editor_type`, `category`, `icon`, `template_type`, `content`, `locked`, `selectable`, `createdon`, `editedon`) VALUES
 	(1, 'Minimal Template', '', 'Default minimal empty template (content returned only)', 0, 0, '', 0, '[*content*]', 0, 1, 0, 0),
 	(2, 'Главная страница', 'main', 'Стартовая', 0, 4, '', 0, '', 0, 1, 1686313693, 1686832870),
@@ -1338,27 +1070,6 @@ REPLACE INTO `jdz6_site_templates` (`id`, `templatename`, `templatealias`, `desc
 	(10, 'Наши работы', 'portfolio_all', 'Всё портфолио', 0, 4, '', 0, '', 0, 1, 1704876097, 1704876185),
 	(11, 'Работа', 'portfolio_one', 'Одна работа в портфолио', 0, 4, '', 0, '', 0, 1, 1704876126, 1704876197);
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) NOT NULL DEFAULT '',
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `caption` varchar(80) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
-  `category` int(11) NOT NULL DEFAULT 0 COMMENT 'category id',
-  `locked` tinyint(1) NOT NULL DEFAULT 0,
-  `elements` text DEFAULT NULL,
-  `rank` int(11) NOT NULL DEFAULT 0,
-  `display` varchar(32) DEFAULT '' COMMENT 'Display Control',
-  `display_params` text DEFAULT NULL COMMENT 'Display Control Properties',
-  `default_text` text DEFAULT NULL,
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `indx_rank` (`rank`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_site_tmplvars` (`id`, `type`, `name`, `caption`, `description`, `editor_type`, `category`, `locked`, `elements`, `rank`, `display`, `display_params`, `default_text`, `createdon`, `editedon`, `properties`) VALUES
 	(1, 'text', 'metatitle', 'Meta title	', 'Содержимое тега title', 0, 5, 0, '', 0, '', '', '', 1688388991, 1688388991, '[]'),
 	(2, 'text', 'metadescription', 'Meta description', 'Содержимое description', 0, 5, 0, '', 0, '', '', '', 1688388995, 1688389011, '[]'),
@@ -1367,27 +1078,14 @@ REPLACE INTO `jdz6_site_tmplvars` (`id`, `type`, `name`, `caption`, `description
 	(5, 'image', 'item_photo', 'Фото товара', 'Фото товара', 0, 6, 0, '', 0, '', '', '', 1688389126, 1688389126, '[]'),
 	(6, 'text', 'item_article', 'Артикул', '', 0, 6, 0, '', 0, '', '', '', 1704973890, 1704973890, '[]'),
 	(7, 'image', 'portfolio_mainphoto', 'Главное фото', 'Фото работы', 0, 6, 0, '', 0, '', '', '', 1705061960, 1705061960, '[]'),
-	(8, 'custom_tv:multitv', 'portfolio_photos', 'Дополнительные фотографии', 'Выберите несколько лучших фото работы', 0, 6, 0, '', 0, '', '', '', 1705062013, 1705062013, '[]');
+	(8, 'custom_tv:multitv', 'portfolio_photos', 'Дополнительные фотографии', 'Выберите несколько лучших фото работы', 0, 6, 0, '', 0, '', '', '', 1705062013, 1705062013, '[]'),
+	(9, 'text', 'mainpage_header', 'Главный заголовок', 'Самый первый большой заголовок на главной странице', 0, 6, 0, '', 0, '', '', '', 1705400793, 1705400936, '[]'),
+	(10, 'textareamini', 'mainpage_intro', 'Подпись под главным заголовком', 'Текст под большим заголовком', 0, 6, 0, '', 0, '', '', '', 1705400847, 1705400917, '[]'),
+	(11, 'image', 'mainpage_topimage', 'Изображение сверху', 'Расположено на самом верху у большого заголовка', 0, 6, 0, '', 0, '', '', '', 1705400901, 1705400901, '[]'),
+	(12, 'custom_tv:multitv', 'mainpage_servicelist', 'Блок услуг на главной', 'Выберите фотографии и введите тексты для услуг', 0, 6, 0, '', 0, '', '', '', 1705405119, 1705405119, '[]'),
+	(13, 'text', 'contacts_address', 'Адрес', '', 0, 6, 0, '', 0, '', '', '', 1705409393, 1705409393, '[]'),
+	(14, 'textareamini', 'contacts_mapcode', 'Код карты', '', 0, 6, 0, '', 0, '', '', '', 1705409396, 1705409414, '[]');
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_access` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tmplvarid` int(11) NOT NULL DEFAULT 0,
-  `documentgroup` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_contentvalues` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tmplvarid` int(11) NOT NULL DEFAULT 0 COMMENT 'Template Variable id',
-  `contentid` int(11) NOT NULL DEFAULT 0 COMMENT 'Site Content Id',
-  `value` mediumtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_tvid_contentid` (`tmplvarid`,`contentid`),
-  KEY `idx_tmplvarid` (`tmplvarid`),
-  KEY `idx_id` (`contentid`),
-  FULLTEXT KEY `content_ft_idx` (`value`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `value`) VALUES
 	(1, 3, 6, 'assets/images/100-34.jpg'),
@@ -1448,14 +1146,13 @@ REPLACE INTO `jdz6_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, 
 	(60, 7, 24, 'assets/images/doc76ncd3jiwpfmb0x3jd6.jpg'),
 	(61, 8, 24, '{"fieldValue":[{"image":"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg","thumb":""},{"image":"assets/images/65856_original-1.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}'),
 	(62, 7, 25, 'assets/images/1a14ab889878010be3390e9fa667abcb_xl.jpg'),
-	(63, 8, 25, '{"fieldValue":[{"image":"assets/images/ice_screenshot_20191014-140427.jpeg.jpg","thumb":""},{"image":"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}');
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_templates` (
-  `tmplvarid` int(11) NOT NULL DEFAULT 0 COMMENT 'Template Variable id',
-  `templateid` int(11) NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`tmplvarid`,`templateid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+	(63, 8, 25, '{"fieldValue":[{"image":"assets/images/ice_screenshot_20191014-140427.jpeg.jpg","thumb":""},{"image":"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}'),
+	(64, 9, 1, 'Сайт компании по продаже болтиков'),
+	(65, 10, 1, 'Продадим вам нужные болтики и гаечки. А если надо, то приедем и прикрутим их куда там надо'),
+	(66, 11, 1, 'assets/images/pinup_girls_057.png'),
+	(67, 12, 1, '{"fieldValue":[{"image":"assets/images/bez-imeni-1.png","thumb":"","title":"Выточим гайки и болтики"},{"image":"assets/images/3549391_640_640.png","thumb":"","title":"Привезем куда скажете"},{"image":"assets/images/b88c0864818c7d2ae28687a0efbedf07-640x857.jpg","thumb":"","title":"Поможем с монтажом"}],"fieldSettings":{"autoincrement":1}}'),
+	(68, 13, 5, 'Адрес: город Вологда, улица Добрых Строителей, строение 5'),
+	(69, 14, 5, '<script type="text/javascript" charset="utf-8" async\r\n                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A65946ea648b913e9a26631d832814832839608dfd97f0d84960c17b4dbf88085&amp;width=100%25&amp;height=300&amp;lang=ru_RU&amp;scroll=true">\r\n </script>');
 
 REPLACE INTO `jdz6_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VALUES
 	(1, 1, 0),
@@ -1485,16 +1182,13 @@ REPLACE INTO `jdz6_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) V
 	(5, 5, 0),
 	(6, 5, 0),
 	(7, 11, 0),
-	(8, 11, 0);
-
-CREATE TABLE IF NOT EXISTS `jdz6_system_eventnames` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `service` int(11) NOT NULL DEFAULT 0 COMMENT 'System Service number',
-  `groupname` varchar(20) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `system_eventnames_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4;
+	(8, 11, 0),
+	(9, 2, 0),
+	(10, 2, 0),
+	(11, 2, 0),
+	(12, 2, 0),
+	(13, 9, 0),
+	(14, 9, 0);
 
 REPLACE INTO `jdz6_system_eventnames` (`id`, `name`, `service`, `groupname`) VALUES
 	(1, 'OnAfterLoadDocumentObject', 5, ''),
@@ -1629,12 +1323,6 @@ REPLACE INTO `jdz6_system_eventnames` (`id`, `name`, `service`, `groupname`) VAL
 	(130, 'OnBeforeMailSend', 1, ''),
 	(131, 'OnBeforeClientSettingsSave', 6, 'ClientSettings'),
 	(132, 'OnClientSettingsSave', 6, 'ClientSettings');
-
-CREATE TABLE IF NOT EXISTS `jdz6_system_settings` (
-  `setting_name` varchar(50) NOT NULL DEFAULT '',
-  `setting_value` text DEFAULT NULL,
-  PRIMARY KEY (`setting_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_system_settings` (`setting_name`, `setting_value`) VALUES
 	('a', '30'),
@@ -1796,101 +1484,18 @@ REPLACE INTO `jdz6_system_settings` (`setting_name`, `setting_value`) VALUES
 	('xhtml_urls', '0'),
 	('_token', 'CvCWJpsD6G0raKQbgHR6UWCawIFEqL4WPMxCWirb');
 
-CREATE TABLE IF NOT EXISTS `jdz6_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL DEFAULT '',
-  `password` varchar(100) NOT NULL DEFAULT '',
-  `cachepwd` varchar(100) NOT NULL DEFAULT '' COMMENT 'Store new unconfirmed password',
-  `refresh_token` varchar(255) DEFAULT NULL,
-  `access_token` varchar(255) DEFAULT NULL,
-  `valid_to` timestamp NULL DEFAULT NULL,
-  `verified_key` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `web_users_username_unique` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_users` (`id`, `username`, `password`, `cachepwd`, `refresh_token`, `access_token`, `valid_to`, `verified_key`) VALUES
 	(1, 'admin', '$P$BCgPVS7w5bvdtXVvhRpqOa26WzZYWR1', '', 'a170b51aa5309869e09934b9fbc13e655692d685f4f7dd2bcc5e1d0f35954621', 'ad2657e7b4c30f0eb4e135798058f51823feb833051b77aa62e036523d8fbdcd', '2024-01-09 21:43:02', NULL);
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_attributes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `internalKey` int(11) NOT NULL DEFAULT 0,
-  `fullname` varchar(100) NOT NULL DEFAULT '1',
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `middle_name` varchar(255) DEFAULT NULL,
-  `role` int(11) NOT NULL DEFAULT 0,
-  `email` varchar(100) NOT NULL DEFAULT '',
-  `phone` varchar(100) NOT NULL DEFAULT '',
-  `mobilephone` varchar(100) NOT NULL DEFAULT '',
-  `blocked` int(11) NOT NULL DEFAULT 0,
-  `blockeduntil` int(11) NOT NULL DEFAULT 0,
-  `blockedafter` int(11) NOT NULL DEFAULT 0,
-  `logincount` int(11) NOT NULL DEFAULT 0,
-  `lastlogin` int(11) NOT NULL DEFAULT 0,
-  `thislogin` int(11) NOT NULL DEFAULT 0,
-  `failedlogincount` int(11) NOT NULL DEFAULT 0,
-  `sessionid` varchar(100) NOT NULL DEFAULT '',
-  `dob` int(11) DEFAULT 0,
-  `gender` int(11) NOT NULL DEFAULT 0 COMMENT '0 - unknown, 1 - Male 2 - female',
-  `country` varchar(25) NOT NULL DEFAULT '',
-  `street` varchar(255) NOT NULL DEFAULT '',
-  `city` varchar(255) NOT NULL DEFAULT '',
-  `state` varchar(25) NOT NULL DEFAULT '',
-  `zip` varchar(25) NOT NULL DEFAULT '',
-  `fax` varchar(100) NOT NULL DEFAULT '',
-  `photo` varchar(255) NOT NULL DEFAULT '' COMMENT 'link to photo',
-  `comment` text DEFAULT NULL,
-  `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  `verified` tinyint(4) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `web_user_attributes_internalkey_index` (`internalKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
 REPLACE INTO `jdz6_user_attributes` (`id`, `internalKey`, `fullname`, `first_name`, `last_name`, `middle_name`, `role`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `country`, `street`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `createdon`, `editedon`, `verified`) VALUES
 	(1, 1, '1', NULL, NULL, NULL, 1, 'admin@evocompany.localhost', '', '', 0, 0, 0, 4, 1704796982, 1704796982, 0, '1', 0, 0, '', '', '', '', '', '', '', NULL, 1686310760, 1704796982, 1);
-
-CREATE TABLE IF NOT EXISTS `jdz6_user_roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 REPLACE INTO `jdz6_user_roles` (`id`, `name`, `description`) VALUES
 	(1, 'Administrator', 'Site administrators have full access to all functions'),
 	(2, 'Editor', 'Limited to managing content'),
 	(3, 'Publisher', 'Editor with expanded permissions including manage users, update Elements and site settings');
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_role_vars` (
-  `tmplvarid` int(11) NOT NULL DEFAULT 0,
-  `roleid` int(11) NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`tmplvarid`,`roleid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-CREATE TABLE IF NOT EXISTS `jdz6_user_settings` (
-  `user` int(11) NOT NULL,
-  `setting_name` varchar(50) NOT NULL DEFAULT '',
-  `setting_value` text DEFAULT NULL,
-  PRIMARY KEY (`user`,`setting_name`),
-  KEY `user_settings_user_index` (`user`),
-  KEY `setting_name` (`setting_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE IF NOT EXISTS `jdz6_user_values` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `tmplvarid` int(11) NOT NULL DEFAULT 0,
-  `userid` int(11) NOT NULL DEFAULT 0,
-  `value` mediumtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_values_tmplvarid_userid_unique` (`tmplvarid`,`userid`),
-  KEY `user_values_tmplvarid_index` (`tmplvarid`),
-  KEY `user_values_userid_index` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

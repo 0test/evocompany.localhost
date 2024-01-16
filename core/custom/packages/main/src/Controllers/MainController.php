@@ -26,8 +26,24 @@ class MainController extends BaseController {
             'addWhereList' => 'c.template = 5',
             'orderBy' => 'RAND()'
         ]);
-        $this->data['products'] = $result->getDocs();        
+        $this->data['products'] = $result->getDocs();
+
+
+        $value = json_decode(evolutionCMS()->documentObject['mainpage_servicelist'][1], true) ?? [];
+        if (isset($value['fieldValue'])) {
+            foreach ($value['fieldValue'] as $key => $src) {
+                $value['fieldValue'][$key]['image'] = evo()->runSnippet('phpthumb', [
+                    'input' => $src['image'],
+                    'options' => 'w=400,h=300,zc=1'
+                ]);
+            }
+        } else {
+            $value = [];
+        }
+        $this->data['service_photos'] = $value['fieldValue'];
     }
+
+
 
 
     public static function resizeMainPhoto($data, $modx, $_DocLister, $_extDocLister){
