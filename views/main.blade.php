@@ -38,7 +38,7 @@
     </div>
 </section>
 
-<section class="container py-5 py-5">
+<section class="container py-5 py-5" id="features">
     <div class="align-items-stretch g-4 row row-cols-1 row-cols-lg-3">
         @foreach ($service_photos as $service)
         <div class="col">
