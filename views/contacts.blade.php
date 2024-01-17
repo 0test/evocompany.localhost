@@ -9,26 +9,7 @@
                         <h5 class="mb-0">Хотите что-то нам написать?</h5>
                     </div>
                     <div class="card-body">
-                        <form class="needs-validation">
-                            <div class="form-group mb-3 mt-3">
-                                <input class="form-control form-control-sm" type="text" name="name" id="name" />
-                                <label class="form-label mt-1 text-shadow" for="name">Ваше имя</label>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group mb-3 mt-3">
-                                <input class="form-control form-control-sm" type="text" name="phone" id="phone" />
-                                <label class="form-label mt-1 text-shadow" for="phone">Ваше имя</label>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group mb-3 mt-3">
-                                <textarea class="form-control form-control-sm" name="phone" id="comment"></textarea>
-                                <label class="form-label mt-1 text-shadow" for="comment">Что бы вы хотели
-                                    узнать?</label>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group field"><input class="btn btn-primary" type="submit"
-                                    value="Отправить" /></div>
-                        </form>
+                        {!! $contact_form !!}
                     </div>
                 </div>
             </div>
@@ -59,4 +40,6 @@
         </div>
     </div>
 </section>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
 @endsection
