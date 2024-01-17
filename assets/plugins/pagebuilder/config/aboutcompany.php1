@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'show_in_templates' => [ 12 ],
+    'title' => 'Изображение',
+     //       'order' => 1,
+    'image' => 'assets/plugins/pagebuilder/images/text.jpg',
+    //        'container' => 'default',
+
+    'fields' => [
+        'image' => [
+            'caption' => 'Изображение',
+            'type'    => 'image',
+        ],
+        'richtext' => [
+            'caption' => 'Текстовая область',
+            'type'    => 'richtext',
+            'default' => '',
+            'theme'   => 'mini',
+            'options' => [
+                'height' => '300px',
+            ],
+        ],
+    ],
+];
