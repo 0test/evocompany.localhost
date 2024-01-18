@@ -2,7 +2,9 @@
 
 Создан по материалам  курса ["Уроки по созданию сайта компании на Evolution CMS 3"
 ](https://github.com/0test/lessons-evolution-company)
+
 Демо: [democompany.kazunin.ru](http://democompany.kazunin.ru/)
+
 ## Установка:
 * скачать или клонировать репозиторий
 * импортировать БД из файла `evocompany.sql`. Удалите его.
