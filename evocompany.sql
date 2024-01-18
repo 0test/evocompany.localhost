@@ -1,124 +1,157 @@
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Хост: 127.0.0.1:3306
+-- Время создания: Янв 18 2024 г., 19:27
+-- Версия сервера: 10.8.4-MariaDB
+-- Версия PHP: 8.1.9
 
-CREATE TABLE IF NOT EXISTS `jdz6_active_users` (
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- База данных: `evocompany`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_active_users`
+--
+
+CREATE TABLE `jdz6_active_users` (
   `sid` varchar(32) NOT NULL DEFAULT '',
   `internalKey` int(11) NOT NULL DEFAULT 0,
   `username` varchar(50) NOT NULL DEFAULT '',
   `lasthit` int(11) NOT NULL DEFAULT 0,
   `action` varchar(10) NOT NULL DEFAULT '',
-  `id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`sid`)
+  `id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_active_users` (`sid`, `internalKey`, `username`, `lasthit`, `action`, `id`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 'admin', 1705586675, '112', 2);
+--
+-- Дамп данных таблицы `jdz6_active_users`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_active_user_locks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_active_users` (`sid`, `internalKey`, `username`, `lasthit`, `action`, `id`) VALUES
+('p8o4lqp1jakkqs9vlvvgjp9skcd4tr5g', 1, 'admin', 1705595142, '67', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_active_user_locks`
+--
+
+CREATE TABLE `jdz6_active_user_locks` (
+  `id` int(11) NOT NULL,
   `sid` varchar(32) NOT NULL DEFAULT '',
   `internalKey` int(11) NOT NULL DEFAULT 0,
   `elementType` int(11) NOT NULL DEFAULT 0,
   `elementId` int(11) NOT NULL DEFAULT 0,
-  `lasthit` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_element_id` (`elementType`,`elementId`,`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4;
+  `lasthit` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_active_user_sessions` (
+--
+-- Структура таблицы `jdz6_active_user_sessions`
+--
+
+CREATE TABLE `jdz6_active_user_sessions` (
   `sid` varchar(32) NOT NULL DEFAULT '',
   `internalKey` int(11) NOT NULL DEFAULT 0,
   `lasthit` int(11) NOT NULL DEFAULT 0,
-  `ip` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`sid`)
+  `ip` varchar(50) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_active_user_sessions` (`sid`, `internalKey`, `lasthit`, `ip`) VALUES
-	('9vjpjhplu591lphlfdtm6i3oechqannc', 1, 1705586700, '127.0.0.1');
+--
+-- Дамп данных таблицы `jdz6_active_user_sessions`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_active_user_sessions` (`sid`, `internalKey`, `lasthit`, `ip`) VALUES
+('p8o4lqp1jakkqs9vlvvgjp9skcd4tr5g', 1, 1705595142, '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_categories`
+--
+
+CREATE TABLE `jdz6_categories` (
+  `id` int(11) NOT NULL,
   `category` varchar(45) NOT NULL DEFAULT '',
-  `rank` int(10) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_categories` (`id`, `category`, `rank`) VALUES
-	(1, 'Manager and Admin', 2),
-	(2, 'Content', 1),
-	(3, 'Navigation', 3),
-	(4, 'Шаблоны', 5),
-	(5, 'SEO', 6),
-	(6, 'Контент', 4);
+--
+-- Дамп данных таблицы `jdz6_categories`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_documentgroup_names` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_categories` (`id`, `category`, `rank`) VALUES
+(1, 'Manager and Admin', 2),
+(2, 'Content', 1),
+(3, 'Navigation', 3),
+(4, 'Шаблоны', 5),
+(5, 'SEO', 6),
+(6, 'Контент', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_documentgroup_names`
+--
+
+CREATE TABLE `jdz6_documentgroup_names` (
+  `id` int(11) NOT NULL,
   `name` varchar(245) NOT NULL DEFAULT '',
   `private_memgroup` int(11) DEFAULT 0 COMMENT 'determine whether the document group is private to manager users',
-  `private_webgroup` int(11) DEFAULT 0 COMMENT 'determines whether the document is private to web users',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  `private_webgroup` int(11) DEFAULT 0 COMMENT 'determines whether the document is private to web users'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_document_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_document_groups`
+--
+
+CREATE TABLE `jdz6_document_groups` (
+  `id` int(11) NOT NULL,
   `document_group` int(11) NOT NULL DEFAULT 0,
-  `document` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_dg_id` (`document_group`,`document`),
-  KEY `document_group` (`document_group`),
-  KEY `document` (`document`)
+  `document` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_event_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_event_log`
+--
+
+CREATE TABLE `jdz6_event_log` (
+  `id` int(11) NOT NULL,
   `eventid` int(11) DEFAULT 0,
   `createdon` int(11) NOT NULL DEFAULT 0,
   `type` int(11) NOT NULL DEFAULT 1 COMMENT '1- information, 2 - warning, 3- error',
   `user` int(11) NOT NULL DEFAULT 0 COMMENT 'link to user table',
   `usertype` int(11) NOT NULL DEFAULT 0 COMMENT '0 - manager, 1 - web',
   `source` varchar(50) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `event_log_user_index` (`user`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+  `description` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_event_log` (`id`, `eventid`, `createdon`, `type`, `user`, `usertype`, `source`, `description`) VALUES
-	(1, 0, 1688391322, 3, 1, 0, 'Parser -     include $file;\n / PHP Parse Error', '<b>htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : include(D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\composer/../psr/log/Psr/Log/LoggerInterface.php): Failed to open stream: No such file or directory</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\composer\\ClassLoader.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>571</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>    include $file;\n</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td></td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2023-07-03 16:35:22</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>5.8789 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>5.8789 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>18 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Application->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/artisan on line 37</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Application->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/vendor/illuminate/console/Application.php on line 94</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Symfony\\Component\\Console\\Application->doRun</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/vendor/symfony/console/Application.php on line 171</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Application->doRunCommand</strong>(EvolutionCMS\\Console\\Packages\\ExtrasCommand $var1, Symfony\\Component\\Console\\Input\\ArgvInput $var2, Symfony\\Component\\Console\\Output\\ConsoleOutput $var3)<br />core/vendor/symfony/console/Application.php on line 301</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Symfony\\Component\\Console\\Output\\ConsoleOutput $var2)<br />core/vendor/symfony/console/Application.php on line 1040</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Command\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/illuminate/console/Command.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->execute</strong>(Symfony\\Component\\Console\\Input\\ArgvInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/symfony/console/Command/Command.php on line 298</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->call</strong>(array $var1)<br />core/vendor/illuminate/console/Command.php on line 136</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::call</strong>(DocumentParser $var1, array $var2, array $var3, NULL)<br />core/vendor/illuminate/container/Container.php on line 653</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::callBoundMethod</strong>(DocumentParser $var1, array $var2, Closure $var3)<br />core/vendor/illuminate/container/BoundMethod.php on line 37</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Util::unwrapIfClosure</strong>(Closure $var1)<br />core/vendor/illuminate/container/BoundMethod.php on line 93</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}</strong>()<br />core/vendor/illuminate/container/Util.php on line 40</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\ExtrasCommand->handle</strong>()<br />core/vendor/illuminate/container/BoundMethod.php on line 36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\ExtrasCommand->workWithExtras</strong>()<br />core/src/Console/Packages/ExtrasCommand.php on line 119</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->call</strong>(string $var1, array $var2)<br />core/src/Console/Packages/ExtrasCommand.php on line 151</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Console\\Command->runCommand</strong>(string $var1, array $var2, Illuminate\\Console\\OutputStyle $var3)<br />core/vendor/illuminate/console/Concerns/CallsCommands.php on line 28</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArrayInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/illuminate/console/Concerns/CallsCommands.php on line 68</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Symfony\\Component\\Console\\Command\\Command->run</strong>(Symfony\\Component\\Console\\Input\\ArrayInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/illuminate/console/Command.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Console\\Command->execute</strong>(Symfony\\Component\\Console\\Input\\ArrayInput $var1, Illuminate\\Console\\OutputStyle $var2)<br />core/vendor/symfony/console/Command/Command.php on line 298</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->call</strong>(array $var1)<br />core/vendor/illuminate/console/Command.php on line 136</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::call</strong>(DocumentParser $var1, array $var2, array $var3, NULL)<br />core/vendor/illuminate/container/Container.php on line 653</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::callBoundMethod</strong>(DocumentParser $var1, array $var2, Closure $var3)<br />core/vendor/illuminate/container/BoundMethod.php on line 37</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Util::unwrapIfClosure</strong>(Closure $var1)<br />core/vendor/illuminate/container/BoundMethod.php on line 93</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}</strong>()<br />core/vendor/illuminate/container/Util.php on line 40</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\InstallPackageRequireCommand->handle</strong>()<br />core/vendor/illuminate/container/BoundMethod.php on line 36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Console\\Packages\\InstallPackageRequireCommand->runComposer</strong>()<br />core/src/Console/Packages/InstallPackageRequireCommand.php on line 52</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Console\\Application->__construct</strong>()<br />core/src/Console/Packages/InstallPackageRequireCommand.php on line 78</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(\'Composer\\IO\\NullIO\')<br />core/vendor/composer/composer/src/Composer/Console/Application.php on line 103</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(\'Composer\\IO\\BaseIO\')<br />core/vendor/composer/composer/src/Composer/IO/NullIO.php on line 20</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(string $var1)<br />core/vendor/composer/composer/src/Composer/IO/BaseIO.php on line 20</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Composer\\Autoload\\ClassLoader->loadClass</strong>(string $var1)<br />core/vendor/composer/composer/src/Composer/IO/IOInterface.php on line 23</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Composer\\Autoload\\includeFile</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 428</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>include</strong>(string $var1)<br />core/vendor/composer/ClassLoader.php on line 571</td>\n	</tr>\n</table>\n'),
-	(2, 0, 1704797018, 3, 1, 0, 'Parser / Declaration of React\\Promise\\ExtendedProm', '<b>Declaration of React\\Promise\\ExtendedPromiseInterface::otherwise(callable $onRejected) must be compatible with React\\Promise\\PromiseInterface::otherwise(callable $onRejected): React\\Promise\\PromiseInterface</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red">Declaration of React\\Promise\\ExtendedPromiseInterface::otherwise(callable $onRejected) must be compatible with React\\Promise\\PromiseInterface::otherwise(callable $onRejected): React\\Promise\\PromiseInterface</h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\react\\promise\\src\\ExtendedPromiseInterface.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>37</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td></td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-09 13:43:38</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>162.0911 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>162.0911 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>64 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\ExceptionHandler->handleShutdown</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ExceptionHandler->fatalExceptionFromError</strong>()<br />core/src/ExceptionHandler.php on line 53</td>\n	</tr>\n</table>\n'),
-	(3, 0, 1704798798, 3, 1, 0, 'Не удалена папка с файлами, использовавшимися в пр', 'Папка /install содержит инсталляционные файлы Evolution CMS. Злоумышленники могут воспользоваться этими файлами для взлома/повреждения сайта, так что лучше удалить папку с сервера.'),
-	(4, 0, 1704883435, 3, 0, 1, 'Parser / View [parts.nav] not found. (View: D:\\OSP', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red">View [parts.nav] not found. (View: D:\\OSP\\domains\\evocompany.localhost\\views\\layouts\\app.blade.php) (View: D:\\OSP\\domains\\evocompany.localhost\\views\\layouts\\app.blade.php)</h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\illuminate\\view\\FileViewFinder.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>137</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/catalog/screws/gajka-m10</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[26] <a href="http://evocompany.localhost/catalog/screws/gajka-m10" target="_blank">Гайка М10</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/?a=27&amp;amp;r=1&amp;amp;id=26</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-10 13:43:55</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2484 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2484 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>19.58699798584 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>()<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>()<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>()<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>()<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>()<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>()<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>()<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>()<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/storage/blade/139085d5608c3c3c17b5120f08d50574b730fb7c.php on line 2</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>()<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>()<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->handleViewException</strong>()<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 60</td>\n	</tr>\n</table>\n'),
-	(5, 0, 1704899325, 3, 1, 0, 'Parser / SQLSTATE[HY000] [2002] Подключение не уст', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red">SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение (SQL: select * from `jdz6_users` where `jdz6_users`.`id` = 1 limit 1)</h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\illuminate\\database\\Connection.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>712</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/</td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Current time</td>\n		<td>2024-01-10 18:08:45</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>17.5049 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>17.5049 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>14 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>evolutionCMS</strong>()<br />manager/index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core::getInstance</strong>()<br />core/functions/preload.php on line 20</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->__construct</strong>()<br />core/src/Core.php on line 248</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->initialize</strong>()<br />core/src/Core.php on line 213</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->checkAuth</strong>()<br />core/src/Core.php on line 227</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->checkAccess</strong>()<br />core/src/Core.php on line 322</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Database\\Eloquent\\Builder->find</strong>()<br />core/src/Core.php on line 341</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Database\\Eloquent\\Builder->first</strong>()<br />core/vendor/illuminate/database/Eloquent/Builder.php on line 400</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Database\\Eloquent\\Builder->get</strong>()<br />core/vendor/illuminate/database/Concerns/BuildsQueries.php on line 294</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Database\\Eloquent\\Builder->getModels</strong>()<br />core/vendor/illuminate/database/Eloquent/Builder.php on line 609</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Database\\Query\\Builder->get</strong>()<br />core/vendor/illuminate/database/Eloquent/Builder.php on line 625</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Database\\Query\\Builder->onceWithColumns</strong>()<br />core/vendor/illuminate/database/Query/Builder.php on line 2403</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}</strong>()<br />core/vendor/illuminate/database/Query/Builder.php on line 2936</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Database\\Query\\Builder->runSelect</strong>()<br />core/vendor/illuminate/database/Query/Builder.php on line 2402</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Database\\Connection->select</strong>()<br />core/vendor/illuminate/database/Query/Builder.php on line 2414</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Database\\Connection->run</strong>()<br />core/vendor/illuminate/database/Connection.php on line 376</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Database\\Connection->runQueryCallback</strong>()<br />core/vendor/illuminate/database/Connection.php on line 672</td>\n	</tr>\n</table>\n'),
-	(6, 0, 1704970629, 3, 0, 1, 'Parser / date(): Argument #2 ($timestamp) must be ', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red">date(): Argument #2 ($timestamp) must be of type ?int, string given (View: D:\\OSP\\domains\\evocompany.localhost\\views\\news_one.blade.php)</h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\1e8e2f86b13234724ea7f54392aee7d6d008b8e8.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>16</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/news/my-otkrylis</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[6] <a href="http://evocompany.localhost/news/my-otkrylis" target="_blank">Мы открылись</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/?a=27&amp;amp;r=1&amp;amp;id=6</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-11 13:57:09</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3000 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3000 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>19.586952209473 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>()<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>()<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>()<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>()<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>()<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>()<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>()<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>()<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>()<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>()<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>date</strong>()<br />core/storage/blade/1e8e2f86b13234724ea7f54392aee7d6d008b8e8.php on line 16</td>\n	</tr>\n</table>\n'),
-	(7, 0, 1704976159, 3, 0, 1, 'Parser', 'EvolutionCMS\\Main\\Controllers\\BaseController not exists!'),
-	(8, 0, 1704976163, 3, 0, 1, 'Parser', 'EvolutionCMS\\Main\\Controllers\\BaseController not exists!'),
-	(9, 0, 1704976164, 3, 0, 1, 'Parser', 'EvolutionCMS\\Main\\Controllers\\BaseController not exists!'),
-	(10, 0, 1705320233, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>Undefined array key "one_news"</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Undefined array key "one_news"</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\1e8e2f86b13234724ea7f54392aee7d6d008b8e8.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/news/u-nas-vyhodnoj</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[9] <a href="http://evocompany.localhost/news/u-nas-vyhodnoj" target="_blank">У нас выходной</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/news/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:03:53</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3794 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3794 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.586875915527 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(\'news/u-nas-vyhodnoj\')<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'phpthumb\', array $var2)<br />core/storage/blade/1e8e2f86b13234724ea7f54392aee7d6d008b8e8.php on line 37</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(11, 0, 1705321081, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>Undefined array key "fieldValue"</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Undefined array key "fieldValue"</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\custom\\packages\\main\\src\\Controllers\\PortfolioOneController.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>13</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/portfolio_all/podklyuchili-gde-to</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[25] <a href="http://evocompany.localhost/portfolio_all/podklyuchili-gde-to" target="_blank">Подключили где-то</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/portfolio_all/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:18:01</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2396 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2396 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.586570739746 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(string $var1)<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>(string $var1, array $var2)<br />core/src/Core.php on line 2916</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\TemplateProcessor->getBladeDocumentContent</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\AbstractLaravel->make</strong>(string $var1)<br />core/src/TemplateProcessor.php on line 63</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->make</strong>(string $var1, array $var2)<br />core/src/AbstractLaravel.php on line 473</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Container->resolve</strong>(string $var1, array $var2)<br />core/vendor/illuminate/container/Container.php on line 694</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->build</strong>(string $var1)<br />core/vendor/illuminate/container/Container.php on line 758</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>ReflectionClass->newInstanceArgs</strong>(array $var1)<br />core/vendor/illuminate/container/Container.php on line 917</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->__construct</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\PortfolioOneController->setData</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 6</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'phpthumb\', array $var2)<br />core/custom/packages/main/src/Controllers/PortfolioOneController.php on line 14</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(12, 0, 1705321165, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>foreach() argument must be of type array|object, null given</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : foreach() argument must be of type array|object, null given</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\custom\\packages\\main\\src\\Controllers\\PortfolioOneController.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>15</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/portfolio_all/podklyuchili-gde-to</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[25] <a href="http://evocompany.localhost/portfolio_all/podklyuchili-gde-to" target="_blank">Подключили где-то</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/portfolio_all/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:19:25</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3154 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3154 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>101.58657073975 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(string $var1)<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>(string $var1, array $var2)<br />core/src/Core.php on line 2916</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\TemplateProcessor->getBladeDocumentContent</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\AbstractLaravel->make</strong>(string $var1)<br />core/src/TemplateProcessor.php on line 63</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->make</strong>(string $var1, array $var2)<br />core/src/AbstractLaravel.php on line 473</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Container->resolve</strong>(string $var1, array $var2)<br />core/vendor/illuminate/container/Container.php on line 694</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->build</strong>(string $var1)<br />core/vendor/illuminate/container/Container.php on line 758</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>ReflectionClass->newInstanceArgs</strong>(array $var1)<br />core/vendor/illuminate/container/Container.php on line 917</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->__construct</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->setGlobalElements</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 7</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->getMainMenu</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 24</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'DLMenu\', array $var2)<br />core/custom/packages/main/src/Controllers/BaseController.php on line 37</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>eval</strong>()<br />core/src/Core.php on line 1910</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/src/Core.php(1910) : eval()\'d code on line 1</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'DocLister\', array $var2)<br />assets/snippets/DocLister/snippet.DLMenu.php on line 19</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(13, 0, 1705323301, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>Trying to access array offset on value of type null</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Trying to access array offset on value of type null</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\1c91ae6b5791e5d99395ae4957b2772575520649.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>4</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/catalog/any/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[12] <a href="http://evocompany.localhost/catalog/any/" target="_blank">Разное</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/catalog/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:55:01</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3260 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3260 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.58683013916 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(\'catalog/any\')<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/storage/blade/021b893afe48b70fe5cb4e53ce4441a93e6f399d.php on line 12</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'product\', array $var2)<br />core/storage/blade/1c91ae6b5791e5d99395ae4957b2772575520649.php on line 5</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(\'return false;\', array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(14, 0, 1705323578, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>Trying to access array offset on value of type null</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Trying to access array offset on value of type null</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\1c91ae6b5791e5d99395ae4957b2772575520649.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>4</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/catalog/screws/gajka-m8</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[18] <a href="http://evocompany.localhost/catalog/screws/gajka-m8" target="_blank">Гайка М8</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/catalog/screws/</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-15 15:59:38</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3518 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3518 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.586784362793 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(string $var1)<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/src/Core.php on line 2942</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->render</strong>()<br />core/storage/blade/139085d5608c3c3c17b5120f08d50574b730fb7c.php on line 31</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\View->renderContents</strong>()<br />core/vendor/illuminate/view/View.php on line 91</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\View->getContents</strong>()<br />core/vendor/illuminate/view/View.php on line 122</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\View\\Engines\\CompilerEngine->get</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/View.php on line 139</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Engines\\PhpEngine->evaluatePath</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/CompilerEngine.php on line 61</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem->getRequire</strong>(string $var1, array $var2)<br />core/vendor/illuminate/view/Engines/PhpEngine.php on line 58</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}</strong>()<br />core/vendor/illuminate/filesystem/Filesystem.php on line 108</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>require</strong>(string $var1)<br />core/vendor/illuminate/filesystem/Filesystem.php on line 107</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'phpthumb\', array $var2)<br />core/storage/blade/1c91ae6b5791e5d99395ae4957b2772575520649.php on line 5</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(15, 0, 1705410060, 3, 1, 0, 'Plugin - OutdatedExtrasCheck / Maximum execution t', '<b>Maximum execution time of 60 seconds exceeded</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red">Maximum execution time of 60 seconds exceeded</h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\src\\ExceptionHandler.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>97</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/index.php?a=2</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Manager action</td>\n		<td>2 - Viewing dashboard</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/index.php?a=2</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-16 16:01:00</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>61.6695 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>61.6695 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>23.586372375488 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\ExceptionHandler->handleShutdown</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ExceptionHandler->fatalExceptionFromError</strong>()<br />core/src/ExceptionHandler.php on line 53</td>\n	</tr>\n</table>\n'),
-	(16, 0, 1705485271, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Undefined array key "name.error"</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\41dfb1b629ce2c29887c4e352b4ce89063874847.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>6</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/contacts</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[5] <a href="http://evocompany.localhost/contacts" target="_blank">Контакты</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-17 12:54:31</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3234 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3234 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.587440490723 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(\'contacts\')<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>(string $var1, array $var2)<br />core/src/Core.php on line 2916</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\TemplateProcessor->getBladeDocumentContent</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\AbstractLaravel->make</strong>(string $var1)<br />core/src/TemplateProcessor.php on line 63</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->make</strong>(string $var1, array $var2)<br />core/src/AbstractLaravel.php on line 473</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Container->resolve</strong>(string $var1, array $var2)<br />core/vendor/illuminate/container/Container.php on line 694</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->build</strong>(string $var1)<br />core/vendor/illuminate/container/Container.php on line 758</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>ReflectionClass->newInstanceArgs</strong>(array $var1)<br />core/vendor/illuminate/container/Container.php on line 917</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->__construct</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\ContactsController->setData</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 6</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'FormLister\', array $var2)<br />core/custom/packages/main/src/Controllers/ContactsController.php on line 11</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(17, 0, 1705485527, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Undefined array key "name.classname"</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\41dfb1b629ce2c29887c4e352b4ce89063874847.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>5</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/contacts</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[5] <a href="http://evocompany.localhost/contacts" target="_blank">Контакты</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-17 12:58:47</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.3569 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.3569 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>27.587440490723 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(\'contacts\')<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>(string $var1, array $var2)<br />core/src/Core.php on line 2916</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\TemplateProcessor->getBladeDocumentContent</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\AbstractLaravel->make</strong>(string $var1)<br />core/src/TemplateProcessor.php on line 63</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->make</strong>(string $var1, array $var2)<br />core/src/AbstractLaravel.php on line 473</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Container->resolve</strong>(string $var1, array $var2)<br />core/vendor/illuminate/container/Container.php on line 694</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->build</strong>(string $var1)<br />core/vendor/illuminate/container/Container.php on line 758</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>ReflectionClass->newInstanceArgs</strong>(array $var1)<br />core/vendor/illuminate/container/Container.php on line 917</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->__construct</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\ContactsController->setData</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 6</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'FormLister\', array $var2)<br />core/custom/packages/main/src/Controllers/ContactsController.php on line 11</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(18, 0, 1705488322, 3, 0, 1, 'Parser - Snippet / PHP Parse Error', '<b>htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><pre style="font-weight:bold;border:1px solid #ccc;padding:8px;color:#333;background-color:#ffffcd;margin-bottom:15px;">Error : Undefined array key "g-recaptcha-response.error"</pre>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>ErrorType[num]</td>\n		<td>WARNING[2]</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\storage\\blade\\41dfb1b629ce2c29887c4e352b4ce89063874847.php</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Line</td>\n		<td>25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Source</td>\n		<td>Snippet</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/contacts</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Resource</td>\n		<td>[5] <a href="http://evocompany.localhost/contacts" target="_blank">Контакты</a></td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td></td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-17 13:45:22</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2606 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2606 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>27.587440490723 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->processRoutes</strong>()<br />index.php on line 137</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>(Illuminate\\Http\\Request $var1)<br />core/src/Core.php on line 2674</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->runRoute</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Routing\\Route $var2)<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->runRouteWithinStack</strong>(Illuminate\\Routing\\Route $var1, Illuminate\\Http\\Request $var2)<br />core/vendor/illuminate/routing/Router.php on line 698</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->then</strong>(Closure $var1)<br />core/vendor/illuminate/routing/Router.php on line 723</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 103</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest</strong>(Illuminate\\Http\\Request $var1, Illuminate\\Session\\Store $var2, Closure $var3)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 64</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/session/Middleware/StartSession.php on line 121</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Middleware\\SubstituteBindings->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/routing/Middleware/SubstituteBindings.php on line 50</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle</strong>(Illuminate\\Http\\Request $var1, Closure $var2)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 167</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/view/Middleware/ShareErrorsFromSession.php on line 49</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}</strong>(Illuminate\\Http\\Request $var1)<br />core/vendor/illuminate/pipeline/Pipeline.php on line 128</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Route->run</strong>()<br />core/vendor/illuminate/routing/Router.php on line 721</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Route->runCallable</strong>()<br />core/vendor/illuminate/routing/Route.php on line 208</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Extensions\\Router->EvolutionCMS\\Extensions\\{closure}</strong>(\'contacts\')<br />core/vendor/illuminate/routing/Route.php on line 238</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->executeParser</strong>()<br />core/src/Extensions/Router.php on line 25</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->prepareResponse</strong>()<br />core/src/Core.php on line 2824</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>(string $var1, array $var2)<br />core/src/Core.php on line 2916</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\TemplateProcessor->getBladeDocumentContent</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\AbstractLaravel->make</strong>(string $var1)<br />core/src/TemplateProcessor.php on line 63</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->make</strong>(string $var1, array $var2)<br />core/src/AbstractLaravel.php on line 473</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Container\\Container->resolve</strong>(string $var1, array $var2)<br />core/vendor/illuminate/container/Container.php on line 694</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Container\\Container->build</strong>(string $var1)<br />core/vendor/illuminate/container/Container.php on line 758</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>ReflectionClass->newInstanceArgs</strong>(array $var1)<br />core/vendor/illuminate/container/Container.php on line 917</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\BaseController->__construct</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Main\\Controllers\\ContactsController->setData</strong>()<br />core/custom/packages/main/src/Controllers/BaseController.php on line 6</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\Core->runSnippet</strong>(\'FormLister\', array $var2)<br />core/custom/packages/main/src/Controllers/ContactsController.php on line 11</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\Core->evalSnippet</strong>(string $var1, array $var2)<br />core/src/Core.php on line 4371</td>\n	</tr>\n</table>\n'),
-	(19, 0, 1705568783, 3, 1, 0, 'Plugin - OutdatedExtrasCheck / Maximum execution t', '<b>Maximum execution time of 60 seconds exceeded</b><br />\r\n<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red">Maximum execution time of 60 seconds exceeded</h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\src\\ExceptionHandler.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>97</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/index.php?a=2</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Manager action</td>\n		<td>2 - Viewing dashboard</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/index.php?a=2</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Current time</td>\n		<td>2024-01-18 12:06:23</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>60.6550 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>60.6550 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>25.586265563965 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>EvolutionCMS\\ExceptionHandler->handleShutdown</strong>()<br /> on line </td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ExceptionHandler->fatalExceptionFromError</strong>()<br />core/src/ExceptionHandler.php on line 53</td>\n	</tr>\n</table>\n'),
-	(20, 0, 1705578935, 3, 1, 0, 'Parser', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red"></h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\illuminate\\routing\\AbstractRouteCollection.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>43</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/%D0%9C%D1%8B%20%D0%B1%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%B5%20%D0%B2%D1%81%D0%B5%D1%85%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%20%D0%B3%D0%B0%D0%B9%D0%BA%D0%B8%20%D0%B8%20%D0%B1%D0%BE%D0%BB%D1%82%D1%8B</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/?a=27&amp;amp;r=1&amp;amp;id=4</td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Current time</td>\n		<td>2024-01-18 14:55:35</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2855 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2855 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>15.585502624512 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>()<br />manager/index.php on line 162</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ManagerTheme->handleRoute</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>()<br />core/src/ManagerTheme.php on line 406</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->findRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\RouteCollection->match</strong>()<br />core/vendor/illuminate/routing/Router.php on line 673</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute</strong>()<br />core/vendor/illuminate/routing/RouteCollection.php on line 162</td>\n	</tr>\n</table>\n'),
-	(21, 0, 1705578936, 3, 1, 0, 'Parser', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red"></h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\illuminate\\routing\\AbstractRouteCollection.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>43</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/%D0%9C%D1%8B%20%D0%B1%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%B5%20%D0%B2%D1%81%D0%B5%D1%85%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%20%D0%B3%D0%B0%D0%B9%D0%BA%D0%B8%20%D0%B8%20%D0%B1%D0%BE%D0%BB%D1%82%D1%8B</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/?a=27&amp;amp;r=1&amp;amp;id=4</td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Current time</td>\n		<td>2024-01-18 14:55:36</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2970 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2970 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>15.585502624512 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>()<br />manager/index.php on line 162</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ManagerTheme->handleRoute</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>()<br />core/src/ManagerTheme.php on line 406</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->findRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\RouteCollection->match</strong>()<br />core/vendor/illuminate/routing/Router.php on line 673</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute</strong>()<br />core/vendor/illuminate/routing/RouteCollection.php on line 162</td>\n	</tr>\n</table>\n'),
-	(22, 0, 1705578938, 3, 1, 0, 'Parser', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red"></h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\illuminate\\routing\\AbstractRouteCollection.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>43</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/%D0%9C%D1%8B%20%D0%B1%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%B5%20%D0%B2%D1%81%D0%B5%D1%85%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%20%D0%B3%D0%B0%D0%B9%D0%BA%D0%B8%20%D0%B8%20%D0%B1%D0%BE%D0%BB%D1%82%D1%8B</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/?a=27&amp;amp;r=1&amp;amp;id=4</td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Current time</td>\n		<td>2024-01-18 14:55:38</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2554 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2554 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>19.585502624512 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>()<br />manager/index.php on line 162</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ManagerTheme->handleRoute</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>()<br />core/src/ManagerTheme.php on line 406</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->findRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\RouteCollection->match</strong>()<br />core/vendor/illuminate/routing/Router.php on line 673</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute</strong>()<br />core/vendor/illuminate/routing/RouteCollection.php on line 162</td>\n	</tr>\n</table>\n'),
-	(23, 0, 1705578939, 3, 1, 0, 'Parser', '<h2 style="color:red">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style="color:red"></h3>\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>File</td>\n		<td>D:\\OSP\\domains\\evocompany.localhost\\core\\vendor\\illuminate\\routing\\AbstractRouteCollection.php</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Line</td>\n		<td>43</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/%D0%9C%D1%8B%20%D0%B1%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%B5%20%D0%B2%D1%81%D0%B5%D1%85%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%20%D0%B3%D0%B0%D0%B9%D0%BA%D0%B8%20%D0%B8%20%D0%B1%D0%BE%D0%BB%D1%82%D1%8B</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/?a=27&amp;amp;r=1&amp;amp;id=4</td>\n	</tr>\n	<tr class="gridItem">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Current time</td>\n		<td>2024-01-18 14:55:39</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th width="100px" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>PHP</td>\n		<td>0.2791 s</td>\n	</tr>\n	<tr class="gridItem">\n		<td>Total</td>\n		<td>0.2791 s</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td>Memory</td>\n		<td>17.585502624512 mb</td>\n	</tr>\n</table>\n<br />\n<table class="grid">\n	<thead>\n	<tr class="">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Support\\Facades\\Facade::__callStatic</strong>()<br />manager/index.php on line 162</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>EvolutionCMS\\ManagerTheme->handleRoute</strong>()<br />core/vendor/illuminate/support/Facades/Facade.php on line 261</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatch</strong>()<br />core/src/ManagerTheme.php on line 406</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\Router->dispatchToRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 651</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\Router->findRoute</strong>()<br />core/vendor/illuminate/routing/Router.php on line 662</td>\n	</tr>\n	<tr class="gridAltItem">\n		<td><strong>Illuminate\\Routing\\RouteCollection->match</strong>()<br />core/vendor/illuminate/routing/Router.php on line 673</td>\n	</tr>\n	<tr class="gridItem">\n		<td><strong>Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute</strong>()<br />core/vendor/illuminate/routing/RouteCollection.php on line 162</td>\n	</tr>\n</table>\n');
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_manager_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_manager_log`
+--
+
+CREATE TABLE `jdz6_manager_log` (
+  `id` int(11) NOT NULL,
   `timestamp` int(11) NOT NULL DEFAULT 0,
   `internalKey` int(11) NOT NULL DEFAULT 0,
   `username` varchar(255) DEFAULT NULL,
@@ -127,1159 +160,451 @@ CREATE TABLE IF NOT EXISTS `jdz6_manager_log` (
   `itemname` varchar(255) DEFAULT NULL,
   `message` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(45) DEFAULT NULL,
-  `useragent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `manager_log_internalkey_index` (`internalKey`),
-  KEY `manager_log_action_index` (`action`),
-  KEY `manager_log_itemid_index` (`itemid`),
-  KEY `manager_log_itemname_index` (`itemname`),
-  KEY `manager_log_message_index` (`message`),
-  KEY `manager_log_timestamp_index` (`timestamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=699 DEFAULT CHARSET=utf8mb4;
+  `useragent` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `action`, `itemid`, `itemname`, `message`, `ip`, `useragent`) VALUES
-	(1, 1686310900, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(2, 1686310901, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(3, 1686310935, 1, 'admin', 30, '', '-', 'Saving settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(4, 1686311083, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 YaBrowser/23.5.1.714 Yowser/2.5 Safari/537.36'),
-	(5, 1686311389, 1, 'admin', 53, '', '-', 'Viewing system info', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(6, 1686311593, 1, 'admin', 53, '', '-', 'Viewing system info', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(7, 1686311598, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(8, 1686311600, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(9, 1686311605, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(10, 1686311876, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(11, 1686312117, 1, 'admin', 30, '', '-', 'Saving settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(12, 1686312126, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(13, 1686312371, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(14, 1686312392, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(15, 1686313132, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(16, 1686313178, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(17, 1686313180, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(18, 1686313186, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(19, 1686313255, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(20, 1686313270, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(21, 1686313567, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(22, 1686313571, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(23, 1686313693, 1, 'admin', 20, '-', 'Главная страница', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(24, 1686313693, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(25, 1686314059, 1, 'admin', 20, '2', 'Главная страница', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(26, 1686314059, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(27, 1686314066, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(28, 1686314068, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(29, 1686314069, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(30, 1686314071, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(31, 1686314167, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(32, 1686650826, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(33, 1686726689, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(34, 1686832840, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(35, 1686832871, 1, 'admin', 20, '2', 'Главная страница', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(36, 1686832871, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(37, 1686832874, 1, 'admin', 20, '2', 'Главная страница', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(38, 1686832874, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(39, 1686832881, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(40, 1686832891, 1, 'admin', 20, '-', 'Каталог товаров', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(41, 1686832891, 1, 'admin', 16, '3', 'Каталог товаров', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(42, 1686832898, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(43, 1686832913, 1, 'admin', 20, '-', 'Раздел каталога', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(44, 1686832914, 1, 'admin', 16, '4', 'Раздел каталога', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(45, 1686832917, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(46, 1686832930, 1, 'admin', 20, '-', 'Товар', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(47, 1686832930, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(48, 1686832934, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(49, 1686832948, 1, 'admin', 20, '-', 'Новости', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(50, 1686832949, 1, 'admin', 16, '6', 'Новости', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(51, 1686832953, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(52, 1686832965, 1, 'admin', 20, '-', 'Новость', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(53, 1686832965, 1, 'admin', 16, '7', 'Новость', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(54, 1686832969, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(55, 1686832981, 1, 'admin', 20, '-', 'Текст', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(56, 1686832981, 1, 'admin', 16, '8', 'Текст', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(57, 1686832985, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(58, 1686832996, 1, 'admin', 20, '-', 'Контакты', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(59, 1686832997, 1, 'admin', 16, '9', 'Контакты', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(60, 1686832999, 1, 'admin', 16, '4', 'Раздел каталога', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(61, 1686833002, 1, 'admin', 16, '4', 'Раздел каталога', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(62, 1686833006, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(63, 1686833087, 1, 'admin', 27, '1', 'Evolution CMS Install Success', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(64, 1686833092, 1, 'admin', 27, '1', 'Evolution CMS Install Success', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(65, 1686833131, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(66, 1686833131, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(67, 1686833201, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(68, 1686833369, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(69, 1686833378, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(70, 1686833378, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(71, 1686833673, 1, 'admin', 5, '-', 'Каталог', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(72, 1686833674, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(73, 1686833679, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(74, 1686833686, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(75, 1686833686, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(76, 1686833697, 1, 'admin', 5, '-', 'Новости', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(77, 1686833697, 1, 'admin', 27, '3', 'Новости', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(78, 1686833703, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(79, 1686833712, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(80, 1686833713, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(81, 1686833716, 1, 'admin', 5, '-', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(82, 1686833717, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(83, 1686833720, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(84, 1686833730, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(85, 1686833731, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(86, 1686833733, 1, 'admin', 5, '-', 'Контакты', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(87, 1686833733, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(88, 1686833737, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(89, 1686833740, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(90, 1686833740, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(91, 1686833820, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(92, 1686833822, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(93, 1686833926, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(94, 1686833928, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(95, 1686833937, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(96, 1686833937, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(97, 1686833939, 1, 'admin', 5, '-', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(98, 1686833939, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(99, 1686833942, 1, 'admin', 5, '6', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(100, 1686833942, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(101, 1686833946, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(102, 1686833956, 1, 'admin', 5, '-', 'Мы немного поработали', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(103, 1686833956, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(104, 1686833959, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(105, 1686833974, 1, 'admin', 5, '-', 'У директора был день рождения', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(106, 1686833975, 1, 'admin', 27, '8', 'У директора был день рождения', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(107, 1686833978, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(108, 1686833998, 1, 'admin', 5, '-', 'У нас выходной', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(109, 1686833999, 1, 'admin', 27, '9', 'У нас выходной', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(110, 1686834002, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(111, 1686834012, 1, 'admin', 5, '-', 'А может быть, даже два выходных', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(112, 1686834012, 1, 'admin', 27, '10', 'А может быть, даже два выходных', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(113, 1686834015, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(114, 1686834022, 1, 'admin', 5, '-', 'Мы закрылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(115, 1686834022, 1, 'admin', 27, '11', 'Мы закрылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(116, 1686834054, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(117, 1686834059, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(118, 1686834182, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(119, 1686834182, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(120, 1686834190, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(121, 1686834288, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(122, 1686834288, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(123, 1686834295, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(124, 1686834302, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(125, 1686834302, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(126, 1686834309, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(127, 1686834313, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(128, 1686834313, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(129, 1686834484, 1, 'admin', 5, '-', 'Разное', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(130, 1686834484, 1, 'admin', 27, '12', 'Разное', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(131, 1686834490, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(132, 1686835019, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(133, 1686905836, 1, 'admin', 27, '12', 'Разное', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(134, 1686905839, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(135, 1686905866, 1, 'admin', 5, '-', 'Станки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(136, 1686905866, 1, 'admin', 27, '13', 'Станки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(137, 1686905874, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(138, 1686905904, 1, 'admin', 5, '-', 'Котята', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(139, 1686905904, 1, 'admin', 27, '14', 'Котята', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(140, 1686905951, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(141, 1686905954, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(142, 1686905955, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(143, 1686905971, 1, 'admin', 5, '-', 'Станция упаковки морковки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(144, 1686905971, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(145, 1686906018, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(146, 1686906020, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(147, 1686906021, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(148, 1686906192, 1, 'admin', 5, '-', 'Чеширский 3 месяца', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(149, 1686906192, 1, 'admin', 27, '16', 'Чеширский 3 месяца', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(150, 1686906195, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(151, 1686906202, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(152, 1686906202, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(153, 1686906217, 1, 'admin', 5, '-', 'Стретч-плёнка', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(154, 1686906217, 1, 'admin', 27, '17', 'Стретч-плёнка', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(155, 1686906221, 1, 'admin', 5, '16', 'Чеширский 3 месяца', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(156, 1686906221, 1, 'admin', 27, '16', 'Чеширский 3 месяца', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(157, 1686906225, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(158, 1686906252, 1, 'admin', 5, '-', 'Станция нарезки чипсов', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(159, 1686906252, 1, 'admin', 27, '18', 'Станция нарезки чипсов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(160, 1686906255, 1, 'admin', 5, '18', 'Станция нарезки чипсов', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(161, 1686906255, 1, 'admin', 27, '18', 'Станция нарезки чипсов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(162, 1686906263, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(163, 1686906274, 1, 'admin', 5, '-', 'Сиам, 1 месяц', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(164, 1686906275, 1, 'admin', 27, '19', 'Сиам, 1 месяц', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(165, 1686906281, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(166, 1686906289, 1, 'admin', 5, '-', 'Лоток для котятков', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(167, 1686906290, 1, 'admin', 27, '20', 'Лоток для котятков', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(168, 1686906293, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(169, 1686906303, 1, 'admin', 5, '-', 'Мешок для морковки 50 кг', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(170, 1686906303, 1, 'admin', 27, '21', 'Мешок для морковки 50 кг', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(171, 1686906308, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(172, 1686906317, 1, 'admin', 5, '-', 'Мешок для котятков', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(173, 1686906318, 1, 'admin', 27, '22', 'Мешок для котятков', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(174, 1686906322, 1, 'admin', 27, '17', 'Стретч-плёнка', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(175, 1686906360, 1, 'admin', 27, '22', 'Мешок для котятков', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(176, 1686906365, 1, 'admin', 5, '22', 'Мешок для котятков 10 кг', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(177, 1686906365, 1, 'admin', 27, '22', 'Мешок для котятков 10 кг', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(178, 1686906378, 1, 'admin', 5, '17', 'Лоток для морковки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(179, 1686906378, 1, 'admin', 27, '17', 'Лоток для морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(180, 1686906383, 1, 'admin', 27, '14', 'Котята', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(181, 1686906388, 1, 'admin', 5, '14', 'Котятки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(182, 1686906389, 1, 'admin', 27, '14', 'Котятки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(183, 1686906505, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(184, 1686906603, 1, 'admin', 27, '18', 'Станция нарезки чипсов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(185, 1686906611, 1, 'admin', 5, '18', 'Станция нарезки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(186, 1686906612, 1, 'admin', 27, '18', 'Станция нарезки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(187, 1686906633, 1, 'admin', 27, '10', 'А может быть, даже два выходных', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(188, 1686906651, 1, 'admin', 6, '10', 'А может быть, даже два выходных', 'Deleting resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(189, 1686906651, 1, 'admin', 3, '3', 'Новости', 'Viewing data for resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(190, 1686906655, 1, 'admin', 64, '', '-', 'Removing deleted content', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(191, 1686906831, 1, 'admin', 27, '17', 'Лоток для морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(192, 1688387309, 1, 'admin', 27, '13', 'Станки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(193, 1688387787, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(194, 1688388963, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(195, 1688388992, 1, 'admin', 302, '-', 'Meta title	', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(196, 1688388992, 1, 'admin', 301, '1', 'Meta title	', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(197, 1688388995, 1, 'admin', 304, '1', 'metatitle Копия', 'Duplicate Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(198, 1688388995, 1, 'admin', 301, '2', 'Meta title	 Duplicate ', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(199, 1688389011, 1, 'admin', 302, '2', 'Meta description', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(200, 1688389012, 1, 'admin', 301, '2', 'Meta description', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(201, 1688389019, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(202, 1688389051, 1, 'admin', 302, '-', 'Главное фото', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(203, 1688389052, 1, 'admin', 301, '3', 'Главное фото', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(204, 1688389073, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(205, 1688389097, 1, 'admin', 302, '-', 'Цена', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(206, 1688389097, 1, 'admin', 301, '4', 'Цена', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(207, 1688389104, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(208, 1688389126, 1, 'admin', 302, '-', 'Фото товара', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(209, 1688389126, 1, 'admin', 301, '5', 'Фото товара', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(210, 1688389149, 1, 'admin', 301, '2', 'Meta description', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(211, 1688389323, 1, 'admin', 301, '5', 'Фото товара', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(212, 1688389369, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(213, 1688389501, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(214, 1688389516, 1, 'admin', 27, '17', 'Лоток для морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(215, 1688389521, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(216, 1688389747, 1, 'admin', 5, '6', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(217, 1688389748, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(218, 1688390910, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(219, 1688391274, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(220, 1688391277, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(221, 1688391281, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(222, 1688391306, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(223, 1688391314, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(224, 1688391380, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(225, 1688391650, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(226, 1688391676, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(227, 1688391683, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(228, 1688391993, 1, 'admin', 5, '15', 'Станция упаковки морковки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(229, 1688391994, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(230, 1688649438, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(231, 1688649445, 1, 'admin', 30, '', '-', 'Saving settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(232, 1688649454, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(233, 1689854773, 1, 'admin', 301, '5', 'Фото товара', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'),
-	(234, 1695727666, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 YaBrowser/23.7.5.704 Yowser/2.5 Safari/537.36'),
-	(235, 1704796982, 1, 'admin', 58, '-', 'EVO', 'Logged in', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(236, 1704798795, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(237, 1704798797, 1, 'admin', 30, '', '-', 'Saving settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(238, 1704798830, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(239, 1704798836, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(240, 1704798838, 1, 'admin', 27, '18', 'Станция нарезки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(241, 1704798916, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(242, 1704800319, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(243, 1704800801, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(244, 1704800808, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(245, 1704800817, 1, 'admin', 27, '11', 'Мы закрылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(246, 1704876075, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(247, 1704876078, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(248, 1704876080, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(249, 1704876098, 1, 'admin', 20, '-', 'Наши работы', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(250, 1704876098, 1, 'admin', 16, '10', 'Наши работы', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(251, 1704876108, 1, 'admin', 20, '10', 'Наши работы', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(252, 1704876108, 1, 'admin', 16, '10', 'Наши работы', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(253, 1704876111, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(254, 1704876126, 1, 'admin', 20, '-', 'Работа', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(255, 1704876127, 1, 'admin', 16, '11', 'Работа', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(256, 1704876132, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(257, 1704876177, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(258, 1704876180, 1, 'admin', 16, '10', 'Наши работы', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(259, 1704876185, 1, 'admin', 20, '10', 'Наши работы', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(260, 1704876186, 1, 'admin', 16, '10', 'Наши работы', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(261, 1704876195, 1, 'admin', 16, '11', 'Работа', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(262, 1704876197, 1, 'admin', 20, '11', 'Работа', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(263, 1704876198, 1, 'admin', 16, '11', 'Работа', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(264, 1704876203, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(265, 1704876206, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(266, 1704876332, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(267, 1704876337, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(268, 1704876338, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(269, 1704876349, 1, 'admin', 5, '-', 'Наши работы', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(270, 1704876349, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(271, 1704876357, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(272, 1704876361, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(273, 1704876361, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(274, 1704876387, 1, 'admin', 5, '-', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(275, 1704876388, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(276, 1704876391, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(277, 1704876403, 1, 'admin', 5, '-', 'Подключили где-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(278, 1704876404, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(279, 1704876465, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(280, 1704876468, 1, 'admin', 5, '25', 'Подключили где-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(281, 1704876469, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(282, 1704877011, 1, 'admin', 27, '12', 'Разное', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(283, 1704877015, 1, 'admin', 27, '17', 'Лоток для морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(284, 1704878132, 1, 'admin', 27, '13', 'Станки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(285, 1704878159, 1, 'admin', 5, '13', 'Гайки', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(286, 1704878160, 1, 'admin', 27, '13', 'Гайки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(287, 1704878166, 1, 'admin', 27, '14', 'Котятки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(288, 1704878178, 1, 'admin', 5, '14', 'Болты', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(289, 1704878178, 1, 'admin', 27, '14', 'Болты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(290, 1704878182, 1, 'admin', 27, '15', 'Станция упаковки морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(291, 1704878193, 1, 'admin', 5, '15', 'Гайка М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(292, 1704878194, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(293, 1704878196, 1, 'admin', 27, '18', 'Станция нарезки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(294, 1704878203, 1, 'admin', 5, '18', 'Гайка М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(295, 1704878204, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(296, 1704878211, 1, 'admin', 94, '18', 'Гайка М8 Копия', 'Duplicate resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(297, 1704878212, 1, 'admin', 3, '26', 'Гайка М8 Копия', 'Viewing data for resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(298, 1704878213, 1, 'admin', 27, '26', 'Гайка М8 Копия', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(299, 1704878218, 1, 'admin', 5, '26', 'Гайка М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(300, 1704878218, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(301, 1704878226, 1, 'admin', 5, '26', 'Гайка М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(302, 1704878226, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(303, 1704878230, 1, 'admin', 27, '16', 'Чеширский 3 месяца', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(304, 1704878238, 1, 'admin', 5, '16', 'Болт М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(305, 1704878238, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(306, 1704878239, 1, 'admin', 27, '19', 'Сиам, 1 месяц', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(307, 1704878246, 1, 'admin', 5, '19', 'Болт М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(308, 1704878247, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(309, 1704878250, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(310, 1704878256, 1, 'admin', 5, '-', 'Болт М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(311, 1704878257, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(312, 1704878263, 1, 'admin', 5, '27', 'Болт М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(313, 1704878263, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(314, 1704878267, 1, 'admin', 27, '17', 'Лоток для морковки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(315, 1704878275, 1, 'admin', 5, '17', 'Коробка для гаек', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(316, 1704878275, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(317, 1704878277, 1, 'admin', 27, '20', 'Лоток для котятков', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(318, 1704878286, 1, 'admin', 5, '20', 'Коробка для болтов', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(319, 1704878286, 1, 'admin', 27, '20', 'Коробка для болтов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(320, 1704878290, 1, 'admin', 27, '21', 'Мешок для морковки 50 кг', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(321, 1704878302, 1, 'admin', 27, '21', 'Мешок для морковки 50 кг', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(322, 1704878310, 1, 'admin', 5, '21', 'Ключ М8-М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(323, 1704878310, 1, 'admin', 27, '21', 'Ключ М8-М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(324, 1704878312, 1, 'admin', 27, '22', 'Мешок для котятков 10 кг', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(325, 1704878327, 1, 'admin', 5, '22', 'Ключ М6-М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(326, 1704878328, 1, 'admin', 27, '22', 'Ключ М6-М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(327, 1704878399, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(328, 1704878415, 1, 'admin', 5, '15', 'Гайка М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(329, 1704878417, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(330, 1704878420, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(331, 1704878425, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(332, 1704878430, 1, 'admin', 5, '17', 'Коробка для гаек', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(333, 1704878431, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(334, 1704880608, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(335, 1704880683, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(336, 1704880891, 1, 'admin', 5, '15', 'Гайка М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(337, 1704880892, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(338, 1704883081, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(339, 1704883458, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(340, 1704885592, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(341, 1704885607, 1, 'admin', 27, '13', 'Гайки', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(342, 1704885614, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(343, 1704885748, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(344, 1704885748, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(345, 1704885777, 1, 'admin', 27, '3', 'Новости', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(346, 1704885782, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(347, 1704885823, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(348, 1704885852, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(349, 1704885868, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(350, 1704885873, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(351, 1704886605, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(352, 1704886616, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(353, 1704887156, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(354, 1704966415, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(355, 1704966419, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(356, 1704966424, 1, 'admin', 5, '26', 'Гайка М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(357, 1704966425, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(358, 1704966425, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(359, 1704966484, 1, 'admin', 5, '18', 'Гайка М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(360, 1704966484, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(361, 1704966487, 1, 'admin', 5, '26', 'Гайка М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(362, 1704966487, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(363, 1704966647, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(364, 1704966648, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(365, 1704966648, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(366, 1704966656, 1, 'admin', 5, '15', 'Гайка М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(367, 1704966657, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(368, 1704966886, 1, 'admin', 5, '16', 'Болт М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(369, 1704966886, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(370, 1704966890, 1, 'admin', 5, '19', 'Болт М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(371, 1704966890, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(372, 1704966893, 1, 'admin', 5, '27', 'Болт М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(373, 1704966893, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(374, 1704966946, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(375, 1704967116, 1, 'admin', 5, '6', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(376, 1704967117, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(377, 1704967123, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(378, 1704967192, 1, 'admin', 5, '7', 'Мы немного поработали', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(379, 1704967192, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(380, 1704967202, 1, 'admin', 5, '6', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(381, 1704967203, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(382, 1704967208, 1, 'admin', 27, '8', 'У директора был день рождения', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(383, 1704967310, 1, 'admin', 5, '8', 'У директора был день рождения', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(384, 1704967310, 1, 'admin', 27, '8', 'У директора был день рождения', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(385, 1704967313, 1, 'admin', 27, '9', 'У нас выходной', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(386, 1704967362, 1, 'admin', 5, '9', 'У нас выходной', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(387, 1704967363, 1, 'admin', 27, '9', 'У нас выходной', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(388, 1704967364, 1, 'admin', 27, '11', 'Мы закрылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(389, 1704967472, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(390, 1704967514, 1, 'admin', 5, '6', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(391, 1704967514, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(392, 1704967517, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(393, 1704967912, 1, 'admin', 5, '8', 'У директора был день рождения', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(394, 1704967913, 1, 'admin', 27, '8', 'У директора был день рождения', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(395, 1704967940, 1, 'admin', 5, '7', 'Мы немного поработали', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(396, 1704967941, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(397, 1704968013, 1, 'admin', 5, '6', 'Мы открылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(398, 1704968014, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(399, 1704968019, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(400, 1704968091, 1, 'admin', 5, '9', 'У нас выходной', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(401, 1704968091, 1, 'admin', 27, '9', 'У нас выходной', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(402, 1704968781, 1, 'admin', 5, '11', 'Мы закрылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(403, 1704968782, 1, 'admin', 27, '11', 'Мы закрылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(404, 1704968984, 1, 'admin', 5, '11', 'Мы закрылись', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(405, 1704968984, 1, 'admin', 27, '11', 'Мы закрылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(406, 1704970352, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(407, 1704972131, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(408, 1704972157, 1, 'admin', 27, '7', 'Мы немного поработали', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(409, 1704972166, 1, 'admin', 27, '11', 'Мы закрылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(410, 1704973020, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(411, 1704973537, 1, 'admin', 5, '16', 'Болт М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(412, 1704973538, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(413, 1704973561, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(414, 1704973581, 1, 'admin', 5, '16', 'Болт М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(415, 1704973582, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(416, 1704973583, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(417, 1704973586, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(418, 1704973596, 1, 'admin', 5, '27', 'Болт М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(419, 1704973597, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(420, 1704973611, 1, 'admin', 5, '19', 'Болт М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(421, 1704973611, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(422, 1704973617, 1, 'admin', 5, '16', 'Болт М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(423, 1704973617, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(424, 1704973819, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(425, 1704973890, 1, 'admin', 302, '-', 'Артикул', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(426, 1704973890, 1, 'admin', 301, '6', 'Артикул', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(427, 1704973896, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(428, 1704973916, 1, 'admin', 5, '27', 'Болт М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(429, 1704973916, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(430, 1704973926, 1, 'admin', 27, '27', 'Болт М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(431, 1704973943, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(432, 1704973950, 1, 'admin', 5, '19', 'Болт М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(433, 1704973950, 1, 'admin', 27, '19', 'Болт М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(434, 1704973952, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(435, 1704973960, 1, 'admin', 5, '16', 'Болт М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(436, 1704973960, 1, 'admin', 27, '16', 'Болт М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(437, 1704973961, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(438, 1704973962, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(439, 1704973963, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(440, 1704973974, 1, 'admin', 5, '15', 'Гайка М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(441, 1704973974, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(442, 1704973982, 1, 'admin', 5, '18', 'Гайка М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(443, 1704973982, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(444, 1704973989, 1, 'admin', 5, '26', 'Гайка М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(445, 1704973990, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(446, 1704974152, 1, 'admin', 5, '26', 'Гайка М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(447, 1704974152, 1, 'admin', 27, '26', 'Гайка М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(448, 1704974169, 1, 'admin', 5, '15', 'Гайка М6', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(449, 1704974170, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(450, 1704974185, 1, 'admin', 5, '18', 'Гайка М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(451, 1704974186, 1, 'admin', 27, '18', 'Гайка М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(452, 1704977035, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(453, 1704977215, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(454, 1704977224, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(455, 1704979196, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(456, 1704980778, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(457, 1704980849, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(458, 1704981172, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(459, 1704981173, 1, 'admin', 27, '20', 'Коробка для болтов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(460, 1704981174, 1, 'admin', 27, '21', 'Ключ М8-М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(461, 1704981175, 1, 'admin', 27, '22', 'Ключ М6-М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(462, 1704981287, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(463, 1704981338, 1, 'admin', 5, '17', 'Коробка для гаек', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(464, 1704981339, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(465, 1704981369, 1, 'admin', 27, '20', 'Коробка для болтов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(466, 1704981403, 1, 'admin', 5, '17', 'Коробка для гаек', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(467, 1704981404, 1, 'admin', 27, '17', 'Коробка для гаек', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(468, 1704981406, 1, 'admin', 5, '20', 'Коробка для болтов', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(469, 1704981407, 1, 'admin', 27, '20', 'Коробка для болтов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(470, 1704981411, 1, 'admin', 5, '20', 'Коробка для болтов', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(471, 1704981412, 1, 'admin', 27, '20', 'Коробка для болтов', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(472, 1704981454, 1, 'admin', 27, '21', 'Ключ М8-М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(473, 1704981455, 1, 'admin', 27, '22', 'Ключ М6-М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(474, 1704981471, 1, 'admin', 5, '22', 'Ключ М6-М8', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(475, 1704981471, 1, 'admin', 27, '22', 'Ключ М6-М8', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(476, 1704981482, 1, 'admin', 5, '21', 'Ключ М8-М10', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(477, 1704981483, 1, 'admin', 27, '21', 'Ключ М8-М10', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(478, 1705051174, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(479, 1705058472, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(480, 1705059838, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(481, 1705059946, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(482, 1705061375, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(483, 1705061376, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(484, 1705061737, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(485, 1705061762, 1, 'admin', 5, '23', 'Наши работы', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(486, 1705061765, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(487, 1705061932, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(488, 1705061960, 1, 'admin', 302, '-', 'Главное фото', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(489, 1705061961, 1, 'admin', 301, '7', 'Главное фото', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(490, 1705061963, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(491, 1705061974, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(492, 1705062013, 1, 'admin', 302, '-', 'Дополнительные фотографии', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(493, 1705062014, 1, 'admin', 301, '8', 'Дополнительные фотографии', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(494, 1705062017, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(495, 1705062535, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(496, 1705062570, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(497, 1705062602, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(498, 1705062632, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(499, 1705063297, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(500, 1705063298, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(501, 1705063310, 1, 'admin', 5, '25', 'Подключили где-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(502, 1705063310, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(503, 1705063321, 1, 'admin', 5, '25', 'Подключили где-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(504, 1705063322, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(505, 1705064377, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(506, 1705064938, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(507, 1705065200, 1, 'admin', 93, '', '-', 'Backup Manager', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(508, 1705313680, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(509, 1705314256, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(510, 1705314666, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(511, 1705315976, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(512, 1705316218, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(513, 1705316218, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(514, 1705316287, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(515, 1705316288, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(516, 1705317788, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(517, 1705317789, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(518, 1705317883, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(519, 1705317884, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(520, 1705318484, 1, 'admin', 5, '24', 'Установили что-то', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(521, 1705318484, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(522, 1705318925, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(523, 1705400736, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(524, 1705400794, 1, 'admin', 302, '-', 'Главный заголовок', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(525, 1705400795, 1, 'admin', 301, '9', 'Главный заголовок', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(526, 1705400801, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(527, 1705400808, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(528, 1705400847, 1, 'admin', 302, '-', 'Подпись под главным заголовком', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(529, 1705400848, 1, 'admin', 301, '10', 'Подпись под главным заголовком', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(530, 1705400853, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(531, 1705400901, 1, 'admin', 302, '-', 'Изображение сверху', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(532, 1705400901, 1, 'admin', 301, '11', 'Изображение сверху', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(533, 1705400905, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(534, 1705400913, 1, 'admin', 301, '10', 'Подпись под главным заголовком', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(535, 1705400917, 1, 'admin', 302, '10', 'Подпись под главным заголовком', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(536, 1705400918, 1, 'admin', 301, '10', 'Подпись под главным заголовком', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(537, 1705400920, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(538, 1705400933, 1, 'admin', 301, '9', 'Главный заголовок', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(539, 1705400936, 1, 'admin', 302, '9', 'Главный заголовок', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(540, 1705400937, 1, 'admin', 301, '9', 'Главный заголовок', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(541, 1705400938, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(542, 1705401836, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(543, 1705401837, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(544, 1705402080, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(545, 1705405085, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(546, 1705405119, 1, 'admin', 302, '-', 'Блок услуг на главной', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(547, 1705405120, 1, 'admin', 301, '12', 'Блок услуг на главной', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(548, 1705405123, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(549, 1705405240, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(550, 1705405897, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(551, 1705405898, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(552, 1705405921, 1, 'admin', 5, '1', 'Главная', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(553, 1705405921, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(554, 1705409365, 1, 'admin', 77, '', 'Новый чанк', 'Creating a new Chunk (HTML Snippet)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(555, 1705409368, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(556, 1705409370, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(557, 1705409393, 1, 'admin', 302, '-', 'Адрес', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(558, 1705409393, 1, 'admin', 301, '13', 'Адрес', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(559, 1705409396, 1, 'admin', 304, '13', 'contacts_address Копия', 'Duplicate Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(560, 1705409396, 1, 'admin', 301, '14', 'Адрес Duplicate ', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(561, 1705409414, 1, 'admin', 302, '14', 'Код карты', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(562, 1705409415, 1, 'admin', 301, '14', 'Код карты', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(563, 1705409416, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(564, 1705409460, 1, 'admin', 5, '5', 'Контакты', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(565, 1705409461, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(566, 1705491625, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(567, 1705491659, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(568, 1705491671, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(569, 1705491684, 1, 'admin', 103, '10', 'PageBuilder', 'Saving plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(570, 1705491685, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(571, 1705491690, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(572, 1705491718, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(573, 1705491731, 1, 'admin', 20, '-', 'О компании', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(574, 1705491732, 1, 'admin', 16, '12', 'О компании', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(575, 1705491734, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(576, 1705491739, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(577, 1705491743, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(578, 1705491743, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(579, 1705491876, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(580, 1705491929, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(581, 1705491931, 1, 'admin', 27, '25', 'Подключили где-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(582, 1705491953, 1, 'admin', 103, '10', 'PageBuilder', 'Saving plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(583, 1705491954, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(584, 1705492008, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(585, 1705492042, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(586, 1705492078, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(587, 1705492110, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(588, 1705492423, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(589, 1705492438, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(590, 1705492452, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(591, 1705492500, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(592, 1705492512, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(593, 1705492515, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(594, 1705492522, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(595, 1705492523, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(596, 1705492527, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(597, 1705492533, 1, 'admin', 103, '10', 'PageBuilder', 'Saving plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(598, 1705492533, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(599, 1705492535, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(600, 1705492543, 1, 'admin', 103, '10', 'PageBuilder', 'Saving plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(601, 1705492544, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(602, 1705492546, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(603, 1705492575, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(604, 1705492968, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(605, 1705492972, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(606, 1705493005, 1, 'admin', 302, '-', 'Конструктор страницы', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(607, 1705493020, 1, 'admin', 301, '15', 'Конструктор страницы', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(608, 1705493025, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(609, 1705493043, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(610, 1705493071, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(611, 1705493344, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(612, 1705493360, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(613, 1705493373, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(614, 1705493413, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(615, 1705568844, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(616, 1705573062, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(617, 1705573140, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(618, 1705573462, 1, 'admin', 16, '12', 'О компании', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(619, 1705573650, 1, 'admin', 20, '12', 'О компании', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(620, 1705573651, 1, 'admin', 16, '12', 'О компании', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(621, 1705573742, 1, 'admin', 301, '15', 'Конструктор страницы', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(622, 1705574107, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(623, 1705574766, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(624, 1705576125, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(625, 1705576145, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(626, 1705576354, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(627, 1705576386, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(628, 1705576391, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(629, 1705576392, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(630, 1705576466, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(631, 1705576490, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(632, 1705576743, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(633, 1705577062, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(634, 1705577153, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(635, 1705577555, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(636, 1705577574, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(637, 1705577759, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(638, 1705577760, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(639, 1705577771, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(640, 1705577783, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(641, 1705577807, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(642, 1705577975, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(643, 1705577977, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(644, 1705577995, 1, 'admin', 102, '10', 'PageBuilder', 'Edit plugin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(645, 1705578023, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(646, 1705578031, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(647, 1705578032, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(648, 1705578036, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(649, 1705578099, 1, 'admin', 17, '', '-', 'Editing settings', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(650, 1705578364, 1, 'admin', 76, '', '-', 'Element management', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(651, 1705578367, 1, 'admin', 22, '17', 'PageBuilder', 'Editing Snippet', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(652, 1705578845, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(653, 1705578859, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(654, 1705578908, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(655, 1705579014, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(656, 1705579014, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(657, 1705580991, 1, 'admin', 26, '', '-', 'Refreshing site', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(658, 1705582418, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(659, 1705582418, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(660, 1705582463, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(661, 1705582464, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(662, 1705583173, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(663, 1705583177, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(664, 1705583185, 1, 'admin', 5, '4', 'О компании', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(665, 1705583185, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(666, 1705583189, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(667, 1705583937, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(668, 1705584204, 1, 'admin', 300, '', 'Новый шаблон', 'Create Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(669, 1705584237, 1, 'admin', 302, '-', 'Период обновления', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(670, 1705584238, 1, 'admin', 301, '16', 'Период обновления', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(671, 1705584241, 1, 'admin', 304, '16', 'sitemap_changefreq Копия', 'Duplicate Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(672, 1705584241, 1, 'admin', 301, '17', 'Период обновления Duplicate ', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(673, 1705584262, 1, 'admin', 302, '17', 'Отображение в sitemap', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(674, 1705584263, 1, 'admin', 301, '17', 'Отображение в sitemap', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(675, 1705584265, 1, 'admin', 304, '17', 'sitemap_exclude Копия', 'Duplicate Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(676, 1705584265, 1, 'admin', 301, '18', 'Отображение в sitemap Duplicate ', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(677, 1705584289, 1, 'admin', 302, '18', 'Приоритет страницы', 'Save Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(678, 1705584289, 1, 'admin', 301, '18', 'Приоритет страницы', 'Edit Template Variable', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(679, 1705584291, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(680, 1705584314, 1, 'admin', 120, '', '-', 'Idle (unknown)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(681, 1705584324, 1, 'admin', 120, '-', '-', 'Idle (unknown)', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(682, 1705584328, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(683, 1705584491, 1, 'admin', 19, '', 'Новый шаблон', 'Creating a new template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(684, 1705584509, 1, 'admin', 20, '-', 'xmlsitemap', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(685, 1705584510, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(686, 1705584512, 1, 'admin', 4, '', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(687, 1705584516, 1, 'admin', 4, '-', 'Новый ресурс', 'Creating a resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(688, 1705584516, 1, 'admin', 67, '-', '-', 'Removing locks', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(689, 1705584590, 1, 'admin', 5, '-', 'sitemap.xml', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(690, 1705584591, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(691, 1705584595, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(692, 1705584760, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(693, 1705584841, 1, 'admin', 20, '13', 'xmlsitemap', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(694, 1705584842, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(695, 1705584845, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(696, 1705584848, 1, 'admin', 5, '28', 'sitemap.xml', 'Saving resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(697, 1705584849, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(698, 1705584888, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(699, 1705585443, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(700, 1705585861, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(701, 1705585943, 1, 'admin', 112, '1', 'Extras', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(702, 1705586014, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(703, 1705586051, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(704, 1705586112, 1, 'admin', 20, '5', 'Товар', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(705, 1705586113, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(706, 1705586142, 1, 'admin', 20, '5', 'Товар', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(707, 1705586142, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(708, 1705586145, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(709, 1705586158, 1, 'admin', 20, '5', 'Товар', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(710, 1705586159, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(711, 1705586164, 1, 'admin', 20, '5', 'Товар', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(712, 1705586165, 1, 'admin', 16, '5', 'Товар', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(713, 1705586167, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(714, 1705586272, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(715, 1705586275, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(716, 1705586301, 1, 'admin', 20, '2', 'Главная страница', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(717, 1705586302, 1, 'admin', 16, '2', 'Главная страница', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(718, 1705586307, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(719, 1705586321, 1, 'admin', 16, '3', 'Каталог товаров', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(720, 1705586324, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(721, 1705586337, 1, 'admin', 20, '3', 'Каталог товаров', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(722, 1705586337, 1, 'admin', 16, '3', 'Каталог товаров', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(723, 1705586339, 1, 'admin', 27, '2', 'Каталог', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(724, 1705586349, 1, 'admin', 16, '4', 'Раздел каталога', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(725, 1705586356, 1, 'admin', 20, '4', 'Раздел каталога', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(726, 1705586356, 1, 'admin', 16, '4', 'Раздел каталога', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(727, 1705586361, 1, 'admin', 27, '3', 'Новости', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(728, 1705586366, 1, 'admin', 16, '6', 'Новости', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(729, 1705586372, 1, 'admin', 20, '6', 'Новости', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(730, 1705586373, 1, 'admin', 16, '6', 'Новости', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(731, 1705586374, 1, 'admin', 27, '3', 'Новости', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(732, 1705586379, 1, 'admin', 16, '7', 'Новость', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(733, 1705586380, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(734, 1705586388, 1, 'admin', 20, '7', 'Новость', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(735, 1705586389, 1, 'admin', 16, '7', 'Новость', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(736, 1705586390, 1, 'admin', 27, '6', 'Мы открылись', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(737, 1705586400, 1, 'admin', 16, '9', 'Контакты', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(738, 1705586401, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(739, 1705586414, 1, 'admin', 20, '9', 'Контакты', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(740, 1705586414, 1, 'admin', 16, '9', 'Контакты', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(741, 1705586416, 1, 'admin', 27, '5', 'Контакты', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(742, 1705586424, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(743, 1705586427, 1, 'admin', 16, '10', 'Наши работы', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(744, 1705586433, 1, 'admin', 20, '10', 'Наши работы', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(745, 1705586434, 1, 'admin', 16, '10', 'Наши работы', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(746, 1705586435, 1, 'admin', 27, '23', 'Наши работы', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(747, 1705586439, 1, 'admin', 27, '24', 'Установили что-то', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(748, 1705586442, 1, 'admin', 16, '11', 'Работа', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(749, 1705586452, 1, 'admin', 20, '11', 'Работа', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(750, 1705586453, 1, 'admin', 16, '11', 'Работа', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(751, 1705586456, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(752, 1705586458, 1, 'admin', 16, '12', 'О компании', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(753, 1705586469, 1, 'admin', 20, '12', 'О компании', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(754, 1705586470, 1, 'admin', 16, '12', 'О компании', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(755, 1705586472, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(756, 1705586483, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(757, 1705586487, 1, 'admin', 16, '8', 'Текст', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(758, 1705586491, 1, 'admin', 20, '8', 'Текст', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(759, 1705586492, 1, 'admin', 16, '8', 'Текст', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(760, 1705586501, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(761, 1705586510, 1, 'admin', 20, '13', 'xmlsitemap', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(762, 1705586511, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(763, 1705586512, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(764, 1705586518, 1, 'admin', 27, '1', 'Главная', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(765, 1705586551, 1, 'admin', 27, '15', 'Гайка М6', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(766, 1705586650, 1, 'admin', 112, '2', 'ClientSettings', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
-	(767, 1705586675, 1, 'admin', 112, '2', 'ClientSettings', 'Execute module', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+--
+-- Дамп данных таблицы `jdz6_manager_log`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_membergroup_access` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `action`, `itemid`, `itemname`, `message`, `ip`, `useragent`) VALUES
+(1, 1705595122, 1, 'admin', 13, '', '-', 'Viewing logging', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(2, 1705595130, 1, 'admin', 114, '', '-', 'View event log', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_membergroup_access`
+--
+
+CREATE TABLE `jdz6_membergroup_access` (
+  `id` int(11) NOT NULL,
   `membergroup` int(11) NOT NULL DEFAULT 0,
   `documentgroup` int(11) NOT NULL DEFAULT 0,
-  `context` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
+  `context` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_membergroup_names` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(245) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `membergroup_names_name_unique` (`name`)
+--
+-- Структура таблицы `jdz6_membergroup_names`
+--
+
+CREATE TABLE `jdz6_membergroup_names` (
+  `id` int(11) NOT NULL,
+  `name` varchar(245) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_member_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_member_groups`
+--
+
+CREATE TABLE `jdz6_member_groups` (
+  `id` int(11) NOT NULL,
   `user_group` int(11) NOT NULL DEFAULT 0,
-  `member` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_group_member` (`user_group`,`member`)
+  `member` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_migrations_install` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_migrations_install`
+--
+
+CREATE TABLE `jdz6_migrations_install` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_migrations_install` (`id`, `migration`, `batch`) VALUES
-	(1, '2018_06_29_182342_create_active_user_locks_table', 1),
-	(2, '2018_06_29_182342_create_active_user_sessions_table', 1),
-	(3, '2018_06_29_182342_create_active_users_table', 1),
-	(4, '2018_06_29_182342_create_categories_table', 1),
-	(5, '2018_06_29_182342_create_document_groups_table', 1),
-	(6, '2018_06_29_182342_create_documentgroup_names_table', 1),
-	(7, '2018_06_29_182342_create_event_log_table', 1),
-	(8, '2018_06_29_182342_create_manager_log_table', 1),
-	(9, '2018_06_29_182342_create_manager_users_table', 1),
-	(10, '2018_06_29_182342_create_member_groups_table', 1),
-	(11, '2018_06_29_182342_create_membergroup_access_table', 1),
-	(12, '2018_06_29_182342_create_membergroup_names_table', 1),
-	(13, '2018_06_29_182342_create_permissions_groups_table', 1),
-	(14, '2018_06_29_182342_create_permissions_table', 1),
-	(15, '2018_06_29_182342_create_role_permissions_table', 1),
-	(16, '2018_06_29_182342_create_site_content_table', 1),
-	(17, '2018_06_29_182342_create_site_htmlsnippets_table', 1),
-	(18, '2018_06_29_182342_create_site_module_access_table', 1),
-	(19, '2018_06_29_182342_create_site_module_depobj_table', 1),
-	(20, '2018_06_29_182342_create_site_modules_table', 1),
-	(21, '2018_06_29_182342_create_site_plugin_events_table', 1),
-	(22, '2018_06_29_182342_create_site_plugins_table', 1),
-	(23, '2018_06_29_182342_create_site_snippets_table', 1),
-	(24, '2018_06_29_182342_create_site_templates_table', 1),
-	(25, '2018_06_29_182342_create_site_tmplvar_access_table', 1),
-	(26, '2018_06_29_182342_create_site_tmplvar_contentvalues_table', 1),
-	(27, '2018_06_29_182342_create_site_tmplvar_templates_table', 1),
-	(28, '2018_06_29_182342_create_site_tmplvars_table', 1),
-	(29, '2018_06_29_182342_create_system_eventnames_table', 1),
-	(30, '2018_06_29_182342_create_system_settings_table', 1),
-	(31, '2018_06_29_182342_create_user_attributes_table', 1),
-	(32, '2018_06_29_182342_create_user_roles_table', 1),
-	(33, '2018_06_29_182342_create_user_settings_table', 1),
-	(34, '2018_06_29_182342_create_web_groups_table', 1),
-	(35, '2018_06_29_182342_create_web_user_attributes_table', 1),
-	(36, '2018_06_29_182342_create_web_user_settings_table', 1),
-	(37, '2018_06_29_182342_create_web_users_table', 1),
-	(38, '2018_06_29_182342_create_webgroup_access_table', 1),
-	(39, '2018_06_29_182342_create_webgroup_names_table', 1),
-	(40, '2020_09_12_110820_create_site_content_closure', 1),
-	(41, '2020_09_16_110820_update_web_user_attributes_table', 1),
-	(42, '2020_10_05_124820_second_update_web_user_attributes_table', 1),
-	(43, '2020_10_05_154230_drop_manager_user_tables', 1),
-	(44, '2020_10_05_162325_rename_web_user_tables', 1),
-	(45, '2020_10_08_112342_remove_column_from_role_table', 1),
-	(46, '2020_10_12_065655_make_guid_nullable_in_modules', 1),
-	(47, '2020_10_12_065655_make_moduleguid_nullable_in_plugins', 1),
-	(48, '2020_10_28_154230_drop_webuser_group_tables', 1),
-	(49, '2020_10_30_065655_make_dob_nullable_in_userattributes', 1),
-	(50, '2020_11_02_100555_add_token_columns_to_user_table', 1),
-	(51, '2020_11_10_110555_add_verified_columns_to_user_table', 1),
-	(52, '2020_11_22_114803_create_user_role_vars', 1),
-	(53, '2020_11_22_114809_create_user_values', 1),
-	(54, '2020_12_23_065655_make_display_nullable_in_tmplvars', 1),
-	(55, '2021_02_05_121655_add_index_to_pubdate_column_content_table', 1),
-	(56, '2021_02_10_060454_add_properties_column_to_site_tmplvars', 1),
-	(57, '2021_02_17_102610_rename_donthit_column_in_site_content_table', 1),
-	(58, '2022_04_17_133922_add_context_column_to_membergroup_access', 1),
-	(59, '2022_09_07_130522_resize_ip_column_in_manager_log', 1),
-	(60, '2022_12_03_183200_add_unique_index_to_name_col_in_system_eventnames_table', 1),
-	(61, '2023_01_06_191600_add_indexes_to_fields_in_manager_log_table', 1),
-	(62, '2018_06_29_182342_create_permissions_table', 1);
+--
+-- Дамп данных таблицы `jdz6_migrations_install`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_pagebuilder` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `document_id` int(10) unsigned NOT NULL,
+INSERT INTO `jdz6_migrations_install` (`id`, `migration`, `batch`) VALUES
+(1, '2018_06_29_182342_create_active_user_locks_table', 1),
+(2, '2018_06_29_182342_create_active_user_sessions_table', 1),
+(3, '2018_06_29_182342_create_active_users_table', 1),
+(4, '2018_06_29_182342_create_categories_table', 1),
+(5, '2018_06_29_182342_create_document_groups_table', 1),
+(6, '2018_06_29_182342_create_documentgroup_names_table', 1),
+(7, '2018_06_29_182342_create_event_log_table', 1),
+(8, '2018_06_29_182342_create_manager_log_table', 1),
+(9, '2018_06_29_182342_create_manager_users_table', 1),
+(10, '2018_06_29_182342_create_member_groups_table', 1),
+(11, '2018_06_29_182342_create_membergroup_access_table', 1),
+(12, '2018_06_29_182342_create_membergroup_names_table', 1),
+(13, '2018_06_29_182342_create_permissions_groups_table', 1),
+(14, '2018_06_29_182342_create_permissions_table', 1),
+(15, '2018_06_29_182342_create_role_permissions_table', 1),
+(16, '2018_06_29_182342_create_site_content_table', 1),
+(17, '2018_06_29_182342_create_site_htmlsnippets_table', 1),
+(18, '2018_06_29_182342_create_site_module_access_table', 1),
+(19, '2018_06_29_182342_create_site_module_depobj_table', 1),
+(20, '2018_06_29_182342_create_site_modules_table', 1),
+(21, '2018_06_29_182342_create_site_plugin_events_table', 1),
+(22, '2018_06_29_182342_create_site_plugins_table', 1),
+(23, '2018_06_29_182342_create_site_snippets_table', 1),
+(24, '2018_06_29_182342_create_site_templates_table', 1),
+(25, '2018_06_29_182342_create_site_tmplvar_access_table', 1),
+(26, '2018_06_29_182342_create_site_tmplvar_contentvalues_table', 1),
+(27, '2018_06_29_182342_create_site_tmplvar_templates_table', 1),
+(28, '2018_06_29_182342_create_site_tmplvars_table', 1),
+(29, '2018_06_29_182342_create_system_eventnames_table', 1),
+(30, '2018_06_29_182342_create_system_settings_table', 1),
+(31, '2018_06_29_182342_create_user_attributes_table', 1),
+(32, '2018_06_29_182342_create_user_roles_table', 1),
+(33, '2018_06_29_182342_create_user_settings_table', 1),
+(34, '2018_06_29_182342_create_web_groups_table', 1),
+(35, '2018_06_29_182342_create_web_user_attributes_table', 1),
+(36, '2018_06_29_182342_create_web_user_settings_table', 1),
+(37, '2018_06_29_182342_create_web_users_table', 1),
+(38, '2018_06_29_182342_create_webgroup_access_table', 1),
+(39, '2018_06_29_182342_create_webgroup_names_table', 1),
+(40, '2020_09_12_110820_create_site_content_closure', 1),
+(41, '2020_09_16_110820_update_web_user_attributes_table', 1),
+(42, '2020_10_05_124820_second_update_web_user_attributes_table', 1),
+(43, '2020_10_05_154230_drop_manager_user_tables', 1),
+(44, '2020_10_05_162325_rename_web_user_tables', 1),
+(45, '2020_10_08_112342_remove_column_from_role_table', 1),
+(46, '2020_10_12_065655_make_guid_nullable_in_modules', 1),
+(47, '2020_10_12_065655_make_moduleguid_nullable_in_plugins', 1),
+(48, '2020_10_28_154230_drop_webuser_group_tables', 1),
+(49, '2020_10_30_065655_make_dob_nullable_in_userattributes', 1),
+(50, '2020_11_02_100555_add_token_columns_to_user_table', 1),
+(51, '2020_11_10_110555_add_verified_columns_to_user_table', 1),
+(52, '2020_11_22_114803_create_user_role_vars', 1),
+(53, '2020_11_22_114809_create_user_values', 1),
+(54, '2020_12_23_065655_make_display_nullable_in_tmplvars', 1),
+(55, '2021_02_05_121655_add_index_to_pubdate_column_content_table', 1),
+(56, '2021_02_10_060454_add_properties_column_to_site_tmplvars', 1),
+(57, '2021_02_17_102610_rename_donthit_column_in_site_content_table', 1),
+(58, '2022_04_17_133922_add_context_column_to_membergroup_access', 1),
+(59, '2022_09_07_130522_resize_ip_column_in_manager_log', 1),
+(60, '2022_12_03_183200_add_unique_index_to_name_col_in_system_eventnames_table', 1),
+(61, '2023_01_06_191600_add_indexes_to_fields_in_manager_log_table', 1),
+(62, '2018_06_29_182342_create_permissions_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_pagebuilder`
+--
+
+CREATE TABLE `jdz6_pagebuilder` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `document_id` int(10) UNSIGNED NOT NULL,
   `container` varchar(255) DEFAULT NULL,
   `title` varchar(255) CHARACTER SET utf8mb3 DEFAULT NULL,
   `config` varchar(255) NOT NULL,
   `values` mediumtext NOT NULL,
-  `visible` tinyint(1) unsigned DEFAULT 1,
-  `index` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `document_id` (`document_id`,`container`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `visible` tinyint(1) UNSIGNED DEFAULT 1,
+  `index` smallint(5) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_pagebuilder` (`id`, `document_id`, `container`, `title`, `config`, `values`, `visible`, `index`) VALUES
-	(2, 4, 'landing', '', 'landing_slider', '{"slides":[{"image":"assets/images/content_28_metizy_iz_kalibrovannogo_sortovogo_prokata.jpg","title":"Мы лучше всех крутим гайки"},{"image":"assets/images/5d64922c8ab64c472d80a9431e249110(1).jpg","title":"Мы быстрее всех доставляем гайки и болты"}]}', 1, 0),
-	(3, 4, 'landing', '', 'landing_photo_text', '{"title":"Молодая и амбициозная компания","content":"Мы гордимся тем, что уже завоевали доверие среди наших клиентов благодаря нашим конкурентоспособным ценам и внимательному обслуживанию.","image":"assets/images/doc76ncd3jiwpfmb0x3jd6.jpg"}', 1, 1),
-	(4, 4, 'landing', '', 'landing_cards', '{"slides":[{"image":"assets/images/bez-imeni-1.png","title":"Выточим гайки и болтики","content":"Качественно, быстро и в срок наши специалисты изготовят что вам там нужно было"},{"image":"assets/images/3549391_640_640.png","title":"Привезем куда скажете","content":"Гайки и болтики тяжёлые, а у нас крепкие парни, смогут привезти и притащить куда скажете"},{"image":"assets/images/b88c0864818c7d2ae28687a0efbedf07-640x857.jpg","title":"Поможем с монтажом","content":"Если есть желание, всегда сможем придти и прикрутить что-то к чему-то"}]}', 1, 2),
-	(5, 4, 'landing', '', 'landing_humans', '{"humans":[{"image":"assets/images/noimage.jpg","title":"Иван Иванов","position":"Отец & Основатель"},{"image":"assets/images/noimage.jpg","title":"Сергей Сергеев","position":"Директор"},{"image":"assets/images/bez-imeni-1.png","title":"Елена Наседкина","position":"Сижу на ресепшене"},{"image":"assets/images/noimage.jpg","title":"Андрей Казунин","position":"Делал сайт"}]}', 1, 3);
+--
+-- Дамп данных таблицы `jdz6_pagebuilder`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_pagebuilder` (`id`, `document_id`, `container`, `title`, `config`, `values`, `visible`, `index`) VALUES
+(2, 4, 'landing', '', 'landing_slider', '{\"slides\":[{\"image\":\"assets/images/content_28_metizy_iz_kalibrovannogo_sortovogo_prokata.jpg\",\"title\":\"Мы лучше всех крутим гайки\"},{\"image\":\"assets/images/5d64922c8ab64c472d80a9431e249110(1).jpg\",\"title\":\"Мы быстрее всех доставляем гайки и болты\"}]}', 1, 0),
+(3, 4, 'landing', '', 'landing_photo_text', '{\"title\":\"Молодая и амбициозная компания\",\"content\":\"Мы гордимся тем, что уже завоевали доверие среди наших клиентов благодаря нашим конкурентоспособным ценам и внимательному обслуживанию.\",\"image\":\"assets/images/doc76ncd3jiwpfmb0x3jd6.jpg\"}', 1, 1),
+(4, 4, 'landing', '', 'landing_cards', '{\"slides\":[{\"image\":\"assets/images/bez-imeni-1.png\",\"title\":\"Выточим гайки и болтики\",\"content\":\"Качественно, быстро и в срок наши специалисты изготовят что вам там нужно было\"},{\"image\":\"assets/images/3549391_640_640.png\",\"title\":\"Привезем куда скажете\",\"content\":\"Гайки и болтики тяжёлые, а у нас крепкие парни, смогут привезти и притащить куда скажете\"},{\"image\":\"assets/images/b88c0864818c7d2ae28687a0efbedf07-640x857.jpg\",\"title\":\"Поможем с монтажом\",\"content\":\"Если есть желание, всегда сможем придти и прикрутить что-то к чему-то\"}]}', 1, 2),
+(5, 4, 'landing', '', 'landing_humans', '{\"humans\":[{\"image\":\"assets/images/noimage.jpg\",\"title\":\"Иван Иванов\",\"position\":\"Отец & Основатель\"},{\"image\":\"assets/images/noimage.jpg\",\"title\":\"Сергей Сергеев\",\"position\":\"Директор\"},{\"image\":\"assets/images/bez-imeni-1.png\",\"title\":\"Елена Наседкина\",\"position\":\"Сижу на ресепшене\"},{\"image\":\"assets/images/noimage.jpg\",\"title\":\"Андрей Казунин\",\"position\":\"Делал сайт\"}]}', 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_permissions`
+--
+
+CREATE TABLE `jdz6_permissions` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `key` varchar(255) NOT NULL,
   `lang_key` varchar(255) NOT NULL DEFAULT '',
   `group_id` int(11) DEFAULT NULL,
   `disabled` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_permissions` (`id`, `name`, `key`, `lang_key`, `group_id`, `disabled`, `created_at`, `updated_at`) VALUES
-	(1, 'Request manager frames', 'frames', 'role_frames', 1, 1, NULL, NULL),
-	(2, 'Request manager intro page', 'home', 'role_home', 1, 1, NULL, NULL),
-	(3, 'Log out of the manager', 'logout', 'role_logout', 1, 1, NULL, NULL),
-	(4, 'View help pages', 'help', 'role_help', 1, 0, NULL, NULL),
-	(5, 'View action completed screen', 'action_ok', 'role_actionok', 1, 1, NULL, NULL),
-	(6, 'View error dialog', 'error_dialog', 'role_errors', 1, 1, NULL, NULL),
-	(7, 'View the about page', 'about', 'role_about', 1, 1, NULL, NULL),
-	(8, 'View credits', 'credits', 'role_credits', 1, 1, NULL, NULL),
-	(9, 'Change password', 'change_password', 'role_change_password', 1, 0, NULL, NULL),
-	(10, 'Save password', 'save_password', 'role_save_password', 1, 0, NULL, NULL),
-	(11, 'View a Resource\'s data', 'view_document', 'role_view_docdata', 2, 1, NULL, NULL),
-	(12, 'Create new Resources', 'new_document', 'role_create_doc', 2, 0, NULL, NULL),
-	(13, 'Edit a Resource', 'edit_document', 'role_edit_doc', 2, 0, NULL, NULL),
-	(14, 'Change Resource-Type', 'change_resourcetype', 'role_change_resourcetype', 2, 0, NULL, NULL),
-	(15, 'Save Resources', 'save_document', 'role_save_doc', 2, 0, NULL, NULL),
-	(16, 'Publish Resources', 'publish_document', 'role_publish_doc', 2, 0, NULL, NULL),
-	(17, 'Delete Resources', 'delete_document', 'role_delete_doc', 2, 0, NULL, NULL),
-	(18, 'Permanently purge deleted Resources', 'empty_trash', 'role_empty_trash', 2, 0, NULL, NULL),
-	(19, 'Empty the site\'s cache', 'empty_cache', 'role_cache_refresh', 2, 0, NULL, NULL),
-	(20, 'View Unpublished Resources', 'view_unpublished', 'role_view_unpublished', 2, 0, NULL, NULL),
-	(21, 'Use the file manager (full root access)', 'file_manager', 'role_file_manager', 3, 0, NULL, NULL),
-	(22, 'Manage assets/files', 'assets_files', 'role_assets_files', 3, 0, NULL, NULL),
-	(23, 'Manage assets/images', 'assets_images', 'role_assets_images', 3, 0, NULL, NULL),
-	(24, 'Use the Category Manager', 'category_manager', 'role_category_manager', 4, 0, NULL, NULL),
-	(25, 'Create new Module', 'new_module', 'role_new_module', 5, 0, NULL, NULL),
-	(26, 'Edit Module', 'edit_module', 'role_edit_module', 5, 0, NULL, NULL),
-	(27, 'Save Module', 'save_module', 'role_save_module', 5, 0, NULL, NULL),
-	(28, 'Delete Module', 'delete_module', 'role_delete_module', 5, 0, NULL, NULL),
-	(29, 'Run Module', 'exec_module', 'role_run_module', 5, 0, NULL, NULL),
-	(30, 'List Module', 'list_module', 'role_list_module', 5, 0, NULL, NULL),
-	(31, 'Create new site Templates', 'new_template', 'role_create_template', 6, 0, NULL, NULL),
-	(32, 'Edit site Templates', 'edit_template', 'role_edit_template', 6, 0, NULL, NULL),
-	(33, 'Save Templates', 'save_template', 'role_save_template', 6, 0, NULL, NULL),
-	(34, 'Delete Templates', 'delete_template', 'role_delete_template', 6, 0, NULL, NULL),
-	(35, 'Create new Snippets', 'new_snippet', 'role_create_snippet', 7, 0, NULL, NULL),
-	(36, 'Edit Snippets', 'edit_snippet', 'role_edit_snippet', 7, 0, NULL, NULL),
-	(37, 'Save Snippets', 'save_snippet', 'role_save_snippet', 7, 0, NULL, NULL),
-	(38, 'Delete Snippets', 'delete_snippet', 'role_delete_snippet', 7, 0, NULL, NULL),
-	(39, 'Create new Chunks', 'new_chunk', 'role_create_chunk', 8, 0, NULL, NULL),
-	(40, 'Edit Chunks', 'edit_chunk', 'role_edit_chunk', 8, 0, NULL, NULL),
-	(41, 'Save Chunks', 'save_chunk', 'role_save_chunk', 8, 0, NULL, NULL),
-	(42, 'Delete Chunks', 'delete_chunk', 'role_delete_chunk', 8, 0, NULL, NULL),
-	(43, 'Create new Plugins', 'new_plugin', 'role_create_plugin', 9, 0, NULL, NULL),
-	(44, 'Edit Plugins', 'edit_plugin', 'role_edit_plugin', 9, 0, NULL, NULL),
-	(45, 'Save Plugins', 'save_plugin', 'role_save_plugin', 9, 0, NULL, NULL),
-	(46, 'Delete Plugins', 'delete_plugin', 'role_delete_plugin', 9, 0, NULL, NULL),
-	(47, 'Create new users', 'new_user', 'role_new_user', 10, 0, NULL, NULL),
-	(48, 'Edit users', 'edit_user', 'role_edit_user', 10, 0, NULL, NULL),
-	(49, 'Save users', 'save_user', 'role_save_user', 10, 0, NULL, NULL),
-	(50, 'Delete users', 'delete_user', 'role_delete_user', 10, 0, NULL, NULL),
-	(51, 'Manager access permissions', 'access_permissions', 'manager_access_permissions', 11, 0, NULL, NULL),
-	(52, 'Manage document and user groups', 'manage_groups', 'manage_groups', 11, 0, NULL, NULL),
-	(53, 'Manage document permissions', 'manage_document_permissions', 'manage_document_permissions', 11, 0, NULL, NULL),
-	(54, 'Manage module permissions', 'manage_module_permissions', 'manage_module_permissions', 11, 0, NULL, NULL),
-	(55, 'Manage TV permissions', 'manage_tv_permissions', 'manage_tv_permissions', 11, 0, NULL, NULL),
-	(56, 'Create new roles', 'new_role', 'role_new_role', 12, 0, NULL, NULL),
-	(57, 'Edit roles', 'edit_role', 'role_edit_role', 12, 0, NULL, NULL),
-	(58, 'Save roles', 'save_role', 'role_save_role', 12, 0, NULL, NULL),
-	(59, 'Delete roles', 'delete_role', 'role_delete_role', 12, 0, NULL, NULL),
-	(60, 'View event log', 'view_eventlog', 'role_view_eventlog', 13, 0, NULL, NULL),
-	(61, 'Delete event log', 'delete_eventlog', 'role_delete_eventlog', 13, 0, NULL, NULL),
-	(62, 'View system logs', 'logs', 'role_view_logs', 14, 0, NULL, NULL),
-	(63, 'Change site settings', 'settings', 'role_edit_settings', 14, 0, NULL, NULL),
-	(64, 'Use the Backup Manager', 'bk_manager', 'role_bk_manager', 14, 0, NULL, NULL),
-	(65, 'Remove Locks', 'remove_locks', 'role_remove_locks', 14, 0, NULL, NULL),
-	(66, 'Display Locks', 'display_locks', 'role_display_locks', 14, 0, NULL, NULL);
+--
+-- Дамп данных таблицы `jdz6_permissions`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_permissions_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_permissions` (`id`, `name`, `key`, `lang_key`, `group_id`, `disabled`, `created_at`, `updated_at`) VALUES
+(1, 'Request manager frames', 'frames', 'role_frames', 1, 1, NULL, NULL),
+(2, 'Request manager intro page', 'home', 'role_home', 1, 1, NULL, NULL),
+(3, 'Log out of the manager', 'logout', 'role_logout', 1, 1, NULL, NULL),
+(4, 'View help pages', 'help', 'role_help', 1, 0, NULL, NULL),
+(5, 'View action completed screen', 'action_ok', 'role_actionok', 1, 1, NULL, NULL),
+(6, 'View error dialog', 'error_dialog', 'role_errors', 1, 1, NULL, NULL),
+(7, 'View the about page', 'about', 'role_about', 1, 1, NULL, NULL),
+(8, 'View credits', 'credits', 'role_credits', 1, 1, NULL, NULL),
+(9, 'Change password', 'change_password', 'role_change_password', 1, 0, NULL, NULL),
+(10, 'Save password', 'save_password', 'role_save_password', 1, 0, NULL, NULL),
+(11, 'View a Resource\'s data', 'view_document', 'role_view_docdata', 2, 1, NULL, NULL),
+(12, 'Create new Resources', 'new_document', 'role_create_doc', 2, 0, NULL, NULL),
+(13, 'Edit a Resource', 'edit_document', 'role_edit_doc', 2, 0, NULL, NULL),
+(14, 'Change Resource-Type', 'change_resourcetype', 'role_change_resourcetype', 2, 0, NULL, NULL),
+(15, 'Save Resources', 'save_document', 'role_save_doc', 2, 0, NULL, NULL),
+(16, 'Publish Resources', 'publish_document', 'role_publish_doc', 2, 0, NULL, NULL),
+(17, 'Delete Resources', 'delete_document', 'role_delete_doc', 2, 0, NULL, NULL),
+(18, 'Permanently purge deleted Resources', 'empty_trash', 'role_empty_trash', 2, 0, NULL, NULL),
+(19, 'Empty the site\'s cache', 'empty_cache', 'role_cache_refresh', 2, 0, NULL, NULL),
+(20, 'View Unpublished Resources', 'view_unpublished', 'role_view_unpublished', 2, 0, NULL, NULL),
+(21, 'Use the file manager (full root access)', 'file_manager', 'role_file_manager', 3, 0, NULL, NULL),
+(22, 'Manage assets/files', 'assets_files', 'role_assets_files', 3, 0, NULL, NULL),
+(23, 'Manage assets/images', 'assets_images', 'role_assets_images', 3, 0, NULL, NULL),
+(24, 'Use the Category Manager', 'category_manager', 'role_category_manager', 4, 0, NULL, NULL),
+(25, 'Create new Module', 'new_module', 'role_new_module', 5, 0, NULL, NULL),
+(26, 'Edit Module', 'edit_module', 'role_edit_module', 5, 0, NULL, NULL),
+(27, 'Save Module', 'save_module', 'role_save_module', 5, 0, NULL, NULL),
+(28, 'Delete Module', 'delete_module', 'role_delete_module', 5, 0, NULL, NULL),
+(29, 'Run Module', 'exec_module', 'role_run_module', 5, 0, NULL, NULL),
+(30, 'List Module', 'list_module', 'role_list_module', 5, 0, NULL, NULL),
+(31, 'Create new site Templates', 'new_template', 'role_create_template', 6, 0, NULL, NULL),
+(32, 'Edit site Templates', 'edit_template', 'role_edit_template', 6, 0, NULL, NULL),
+(33, 'Save Templates', 'save_template', 'role_save_template', 6, 0, NULL, NULL),
+(34, 'Delete Templates', 'delete_template', 'role_delete_template', 6, 0, NULL, NULL),
+(35, 'Create new Snippets', 'new_snippet', 'role_create_snippet', 7, 0, NULL, NULL),
+(36, 'Edit Snippets', 'edit_snippet', 'role_edit_snippet', 7, 0, NULL, NULL),
+(37, 'Save Snippets', 'save_snippet', 'role_save_snippet', 7, 0, NULL, NULL),
+(38, 'Delete Snippets', 'delete_snippet', 'role_delete_snippet', 7, 0, NULL, NULL),
+(39, 'Create new Chunks', 'new_chunk', 'role_create_chunk', 8, 0, NULL, NULL),
+(40, 'Edit Chunks', 'edit_chunk', 'role_edit_chunk', 8, 0, NULL, NULL),
+(41, 'Save Chunks', 'save_chunk', 'role_save_chunk', 8, 0, NULL, NULL),
+(42, 'Delete Chunks', 'delete_chunk', 'role_delete_chunk', 8, 0, NULL, NULL),
+(43, 'Create new Plugins', 'new_plugin', 'role_create_plugin', 9, 0, NULL, NULL),
+(44, 'Edit Plugins', 'edit_plugin', 'role_edit_plugin', 9, 0, NULL, NULL),
+(45, 'Save Plugins', 'save_plugin', 'role_save_plugin', 9, 0, NULL, NULL),
+(46, 'Delete Plugins', 'delete_plugin', 'role_delete_plugin', 9, 0, NULL, NULL),
+(47, 'Create new users', 'new_user', 'role_new_user', 10, 0, NULL, NULL),
+(48, 'Edit users', 'edit_user', 'role_edit_user', 10, 0, NULL, NULL),
+(49, 'Save users', 'save_user', 'role_save_user', 10, 0, NULL, NULL),
+(50, 'Delete users', 'delete_user', 'role_delete_user', 10, 0, NULL, NULL),
+(51, 'Manager access permissions', 'access_permissions', 'manager_access_permissions', 11, 0, NULL, NULL),
+(52, 'Manage document and user groups', 'manage_groups', 'manage_groups', 11, 0, NULL, NULL),
+(53, 'Manage document permissions', 'manage_document_permissions', 'manage_document_permissions', 11, 0, NULL, NULL),
+(54, 'Manage module permissions', 'manage_module_permissions', 'manage_module_permissions', 11, 0, NULL, NULL),
+(55, 'Manage TV permissions', 'manage_tv_permissions', 'manage_tv_permissions', 11, 0, NULL, NULL),
+(56, 'Create new roles', 'new_role', 'role_new_role', 12, 0, NULL, NULL),
+(57, 'Edit roles', 'edit_role', 'role_edit_role', 12, 0, NULL, NULL),
+(58, 'Save roles', 'save_role', 'role_save_role', 12, 0, NULL, NULL),
+(59, 'Delete roles', 'delete_role', 'role_delete_role', 12, 0, NULL, NULL),
+(60, 'View event log', 'view_eventlog', 'role_view_eventlog', 13, 0, NULL, NULL),
+(61, 'Delete event log', 'delete_eventlog', 'role_delete_eventlog', 13, 0, NULL, NULL),
+(62, 'View system logs', 'logs', 'role_view_logs', 14, 0, NULL, NULL),
+(63, 'Change site settings', 'settings', 'role_edit_settings', 14, 0, NULL, NULL),
+(64, 'Use the Backup Manager', 'bk_manager', 'role_bk_manager', 14, 0, NULL, NULL),
+(65, 'Remove Locks', 'remove_locks', 'role_remove_locks', 14, 0, NULL, NULL),
+(66, 'Display Locks', 'display_locks', 'role_display_locks', 14, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_permissions_groups`
+--
+
+CREATE TABLE `jdz6_permissions_groups` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `lang_key` varchar(255) NOT NULL DEFAULT '',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_permissions_groups` (`id`, `name`, `lang_key`, `created_at`, `updated_at`) VALUES
-	(1, 'General', 'page_data_general', NULL, NULL),
-	(2, 'Content Management', 'role_content_management', NULL, NULL),
-	(3, 'File Management', 'role_file_management', NULL, NULL),
-	(4, 'Category Management', 'category_management', NULL, NULL),
-	(5, 'Module Management', 'role_module_management', NULL, NULL),
-	(6, 'Template Management', 'role_template_management', NULL, NULL),
-	(7, 'Snippet Management', 'role_snippet_management', NULL, NULL),
-	(8, 'Chunk Management', 'role_chunk_management', NULL, NULL),
-	(9, 'Plugin Management', 'role_plugin_management', NULL, NULL),
-	(10, 'User Management', 'role_user_management', NULL, NULL),
-	(11, 'Permissions', 'role_udperms', NULL, NULL),
-	(12, 'Role Management', 'role_role_management', NULL, NULL),
-	(13, 'Events Log Management', 'role_eventlog_management', NULL, NULL),
-	(14, 'Config Management', 'role_config_management', NULL, NULL);
+--
+-- Дамп данных таблицы `jdz6_permissions_groups`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_role_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_permissions_groups` (`id`, `name`, `lang_key`, `created_at`, `updated_at`) VALUES
+(1, 'General', 'page_data_general', NULL, NULL),
+(2, 'Content Management', 'role_content_management', NULL, NULL),
+(3, 'File Management', 'role_file_management', NULL, NULL),
+(4, 'Category Management', 'category_management', NULL, NULL),
+(5, 'Module Management', 'role_module_management', NULL, NULL),
+(6, 'Template Management', 'role_template_management', NULL, NULL),
+(7, 'Snippet Management', 'role_snippet_management', NULL, NULL),
+(8, 'Chunk Management', 'role_chunk_management', NULL, NULL),
+(9, 'Plugin Management', 'role_plugin_management', NULL, NULL),
+(10, 'User Management', 'role_user_management', NULL, NULL),
+(11, 'Permissions', 'role_udperms', NULL, NULL),
+(12, 'Role Management', 'role_role_management', NULL, NULL),
+(13, 'Events Log Management', 'role_eventlog_management', NULL, NULL),
+(14, 'Config Management', 'role_config_management', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_role_permissions`
+--
+
+CREATE TABLE `jdz6_role_permissions` (
+  `id` int(11) NOT NULL,
   `permission` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_role_permissions` (`id`, `permission`, `role_id`, `created_at`, `updated_at`) VALUES
-	(1, 'frames', 1, NULL, NULL),
-	(2, 'home', 1, NULL, NULL),
-	(3, 'logout', 1, NULL, NULL),
-	(4, 'help', 1, NULL, NULL),
-	(5, 'role_actionok', 1, NULL, NULL),
-	(6, 'error_dialog', 1, NULL, NULL),
-	(7, 'about', 1, NULL, NULL),
-	(8, 'credits', 1, NULL, NULL),
-	(9, 'change_password', 1, NULL, NULL),
-	(10, 'save_password', 1, NULL, NULL),
-	(11, 'view_document', 1, NULL, NULL),
-	(12, 'new_document', 1, NULL, NULL),
-	(13, 'edit_document', 1, NULL, NULL),
-	(14, 'change_resourcetype', 1, NULL, NULL),
-	(15, 'save_document', 1, NULL, NULL),
-	(16, 'publish_document', 1, NULL, NULL),
-	(17, 'delete_document', 1, NULL, NULL),
-	(18, 'empty_trash', 1, NULL, NULL),
-	(19, 'empty_cache', 1, NULL, NULL),
-	(20, 'view_unpublished', 1, NULL, NULL),
-	(21, 'file_manager', 1, NULL, NULL),
-	(22, 'assets_files', 1, NULL, NULL),
-	(23, 'assets_images', 1, NULL, NULL),
-	(24, 'category_manager', 1, NULL, NULL),
-	(25, 'new_module', 1, NULL, NULL),
-	(26, 'edit_module', 1, NULL, NULL),
-	(27, 'save_module', 1, NULL, NULL),
-	(28, 'delete_module', 1, NULL, NULL),
-	(29, 'exec_module', 1, NULL, NULL),
-	(30, 'list_module', 1, NULL, NULL),
-	(31, 'new_template', 1, NULL, NULL),
-	(32, 'edit_template', 1, NULL, NULL),
-	(33, 'save_template', 1, NULL, NULL),
-	(34, 'delete_template', 1, NULL, NULL),
-	(35, 'new_snippet', 1, NULL, NULL),
-	(36, 'edit_snippet', 1, NULL, NULL),
-	(37, 'save_snippet', 1, NULL, NULL),
-	(38, 'delete_snippet', 1, NULL, NULL),
-	(39, 'new_chunk', 1, NULL, NULL),
-	(40, 'edit_chunk', 1, NULL, NULL),
-	(41, 'save_chunk', 1, NULL, NULL),
-	(42, 'delete_chunk', 1, NULL, NULL),
-	(43, 'new_plugin', 1, NULL, NULL),
-	(44, 'edit_plugin', 1, NULL, NULL),
-	(45, 'save_plugin', 1, NULL, NULL),
-	(46, 'delete_plugin', 1, NULL, NULL),
-	(47, 'new_user', 1, NULL, NULL),
-	(48, 'edit_user', 1, NULL, NULL),
-	(49, 'save_user', 1, NULL, NULL),
-	(50, 'delete_user', 1, NULL, NULL),
-	(51, 'access_permissions', 1, NULL, NULL),
-	(52, 'manage_groups', 1, NULL, NULL),
-	(53, 'manage_document_permissions', 1, NULL, NULL),
-	(54, 'manage_module_permissions', 1, NULL, NULL),
-	(55, 'manage_tv_permissions', 1, NULL, NULL),
-	(56, 'new_role', 1, NULL, NULL),
-	(57, 'edit_role', 1, NULL, NULL),
-	(58, 'save_role', 1, NULL, NULL),
-	(59, 'delete_role', 1, NULL, NULL),
-	(60, 'view_eventlog', 1, NULL, NULL),
-	(61, 'delete_eventlog', 1, NULL, NULL),
-	(62, 'logs', 1, NULL, NULL),
-	(63, 'settings', 1, NULL, NULL),
-	(64, 'bk_manager', 1, NULL, NULL),
-	(65, 'remove_locks', 1, NULL, NULL),
-	(66, 'display_locks', 1, NULL, NULL),
-	(67, 'frames', 2, NULL, NULL),
-	(68, 'home', 2, NULL, NULL),
-	(69, 'logout', 2, NULL, NULL),
-	(70, 'help', 2, NULL, NULL),
-	(71, 'role_actionok', 2, NULL, NULL),
-	(72, 'error_dialog', 2, NULL, NULL),
-	(73, 'about', 2, NULL, NULL),
-	(74, 'credits', 2, NULL, NULL),
-	(75, 'change_password', 2, NULL, NULL),
-	(76, 'save_password', 2, NULL, NULL),
-	(77, 'view_document', 2, NULL, NULL),
-	(78, 'new_document', 2, NULL, NULL),
-	(79, 'edit_document', 2, NULL, NULL),
-	(80, 'change_resourcetype', 2, NULL, NULL),
-	(81, 'save_document', 2, NULL, NULL),
-	(82, 'publish_document', 2, NULL, NULL),
-	(83, 'delete_document', 2, NULL, NULL),
-	(84, 'empty_cache', 2, NULL, NULL),
-	(85, 'view_unpublished', 2, NULL, NULL),
-	(86, 'file_manager', 2, NULL, NULL),
-	(87, 'assets_files', 2, NULL, NULL),
-	(88, 'assets_images', 2, NULL, NULL),
-	(89, 'exec_module', 2, NULL, NULL),
-	(90, 'list_module', 2, NULL, NULL),
-	(91, 'edit_chunk', 2, NULL, NULL),
-	(92, 'save_chunk', 2, NULL, NULL),
-	(93, 'remove_locks', 2, NULL, NULL),
-	(94, 'display_locks', 2, NULL, NULL),
-	(95, 'access_permissions', 2, NULL, NULL),
-	(96, 'manage_document_permissions', 2, NULL, NULL),
-	(97, 'frames', 3, NULL, NULL),
-	(98, 'home', 3, NULL, NULL),
-	(99, 'logout', 3, NULL, NULL),
-	(100, 'help', 3, NULL, NULL),
-	(101, 'role_actionok', 3, NULL, NULL),
-	(102, 'error_dialog', 3, NULL, NULL),
-	(103, 'about', 3, NULL, NULL),
-	(104, 'credits', 3, NULL, NULL),
-	(105, 'change_password', 3, NULL, NULL),
-	(106, 'save_password', 3, NULL, NULL),
-	(107, 'view_document', 3, NULL, NULL),
-	(108, 'new_document', 3, NULL, NULL),
-	(109, 'edit_document', 3, NULL, NULL),
-	(110, 'change_resourcetype', 3, NULL, NULL),
-	(111, 'save_document', 3, NULL, NULL),
-	(112, 'publish_document', 3, NULL, NULL),
-	(113, 'delete_document', 3, NULL, NULL),
-	(114, 'empty_trash', 3, NULL, NULL),
-	(115, 'empty_cache', 3, NULL, NULL),
-	(116, 'view_unpublished', 3, NULL, NULL),
-	(117, 'file_manager', 3, NULL, NULL),
-	(118, 'assets_files', 3, NULL, NULL),
-	(119, 'assets_images', 3, NULL, NULL),
-	(120, 'exec_module', 3, NULL, NULL),
-	(121, 'list_module', 3, NULL, NULL),
-	(122, 'new_template', 3, NULL, NULL),
-	(123, 'edit_template', 3, NULL, NULL),
-	(124, 'save_template', 3, NULL, NULL),
-	(125, 'delete_template', 3, NULL, NULL),
-	(126, 'new_chunk', 3, NULL, NULL),
-	(127, 'edit_chunk', 3, NULL, NULL),
-	(128, 'save_chunk', 3, NULL, NULL),
-	(129, 'delete_chunk', 3, NULL, NULL),
-	(130, 'new_user', 3, NULL, NULL),
-	(131, 'edit_user', 3, NULL, NULL),
-	(132, 'save_user', 3, NULL, NULL),
-	(133, 'delete_user', 3, NULL, NULL),
-	(134, 'logs', 3, NULL, NULL),
-	(135, 'settings', 3, NULL, NULL),
-	(136, 'bk_manager', 3, NULL, NULL),
-	(137, 'remove_locks', 3, NULL, NULL),
-	(138, 'display_locks', 3, NULL, NULL),
-	(139, 'access_permissions', 3, NULL, NULL),
-	(140, 'manage_document_permissions', 3, NULL, NULL);
+--
+-- Дамп данных таблицы `jdz6_role_permissions`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_content` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_role_permissions` (`id`, `permission`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 'frames', 1, NULL, NULL),
+(2, 'home', 1, NULL, NULL),
+(3, 'logout', 1, NULL, NULL),
+(4, 'help', 1, NULL, NULL),
+(5, 'role_actionok', 1, NULL, NULL),
+(6, 'error_dialog', 1, NULL, NULL),
+(7, 'about', 1, NULL, NULL),
+(8, 'credits', 1, NULL, NULL),
+(9, 'change_password', 1, NULL, NULL),
+(10, 'save_password', 1, NULL, NULL),
+(11, 'view_document', 1, NULL, NULL),
+(12, 'new_document', 1, NULL, NULL),
+(13, 'edit_document', 1, NULL, NULL),
+(14, 'change_resourcetype', 1, NULL, NULL),
+(15, 'save_document', 1, NULL, NULL),
+(16, 'publish_document', 1, NULL, NULL),
+(17, 'delete_document', 1, NULL, NULL),
+(18, 'empty_trash', 1, NULL, NULL),
+(19, 'empty_cache', 1, NULL, NULL),
+(20, 'view_unpublished', 1, NULL, NULL),
+(21, 'file_manager', 1, NULL, NULL),
+(22, 'assets_files', 1, NULL, NULL),
+(23, 'assets_images', 1, NULL, NULL),
+(24, 'category_manager', 1, NULL, NULL),
+(25, 'new_module', 1, NULL, NULL),
+(26, 'edit_module', 1, NULL, NULL),
+(27, 'save_module', 1, NULL, NULL),
+(28, 'delete_module', 1, NULL, NULL),
+(29, 'exec_module', 1, NULL, NULL),
+(30, 'list_module', 1, NULL, NULL),
+(31, 'new_template', 1, NULL, NULL),
+(32, 'edit_template', 1, NULL, NULL),
+(33, 'save_template', 1, NULL, NULL),
+(34, 'delete_template', 1, NULL, NULL),
+(35, 'new_snippet', 1, NULL, NULL),
+(36, 'edit_snippet', 1, NULL, NULL),
+(37, 'save_snippet', 1, NULL, NULL),
+(38, 'delete_snippet', 1, NULL, NULL),
+(39, 'new_chunk', 1, NULL, NULL),
+(40, 'edit_chunk', 1, NULL, NULL),
+(41, 'save_chunk', 1, NULL, NULL),
+(42, 'delete_chunk', 1, NULL, NULL),
+(43, 'new_plugin', 1, NULL, NULL),
+(44, 'edit_plugin', 1, NULL, NULL),
+(45, 'save_plugin', 1, NULL, NULL),
+(46, 'delete_plugin', 1, NULL, NULL),
+(47, 'new_user', 1, NULL, NULL),
+(48, 'edit_user', 1, NULL, NULL),
+(49, 'save_user', 1, NULL, NULL),
+(50, 'delete_user', 1, NULL, NULL),
+(51, 'access_permissions', 1, NULL, NULL),
+(52, 'manage_groups', 1, NULL, NULL),
+(53, 'manage_document_permissions', 1, NULL, NULL),
+(54, 'manage_module_permissions', 1, NULL, NULL),
+(55, 'manage_tv_permissions', 1, NULL, NULL),
+(56, 'new_role', 1, NULL, NULL),
+(57, 'edit_role', 1, NULL, NULL),
+(58, 'save_role', 1, NULL, NULL),
+(59, 'delete_role', 1, NULL, NULL),
+(60, 'view_eventlog', 1, NULL, NULL),
+(61, 'delete_eventlog', 1, NULL, NULL),
+(62, 'logs', 1, NULL, NULL),
+(63, 'settings', 1, NULL, NULL),
+(64, 'bk_manager', 1, NULL, NULL),
+(65, 'remove_locks', 1, NULL, NULL),
+(66, 'display_locks', 1, NULL, NULL),
+(67, 'frames', 2, NULL, NULL),
+(68, 'home', 2, NULL, NULL),
+(69, 'logout', 2, NULL, NULL),
+(70, 'help', 2, NULL, NULL),
+(71, 'role_actionok', 2, NULL, NULL),
+(72, 'error_dialog', 2, NULL, NULL),
+(73, 'about', 2, NULL, NULL),
+(74, 'credits', 2, NULL, NULL),
+(75, 'change_password', 2, NULL, NULL),
+(76, 'save_password', 2, NULL, NULL),
+(77, 'view_document', 2, NULL, NULL),
+(78, 'new_document', 2, NULL, NULL),
+(79, 'edit_document', 2, NULL, NULL),
+(80, 'change_resourcetype', 2, NULL, NULL),
+(81, 'save_document', 2, NULL, NULL),
+(82, 'publish_document', 2, NULL, NULL),
+(83, 'delete_document', 2, NULL, NULL),
+(84, 'empty_cache', 2, NULL, NULL),
+(85, 'view_unpublished', 2, NULL, NULL),
+(86, 'file_manager', 2, NULL, NULL),
+(87, 'assets_files', 2, NULL, NULL),
+(88, 'assets_images', 2, NULL, NULL),
+(89, 'exec_module', 2, NULL, NULL),
+(90, 'list_module', 2, NULL, NULL),
+(91, 'edit_chunk', 2, NULL, NULL),
+(92, 'save_chunk', 2, NULL, NULL),
+(93, 'remove_locks', 2, NULL, NULL),
+(94, 'display_locks', 2, NULL, NULL),
+(95, 'access_permissions', 2, NULL, NULL),
+(96, 'manage_document_permissions', 2, NULL, NULL),
+(97, 'frames', 3, NULL, NULL),
+(98, 'home', 3, NULL, NULL),
+(99, 'logout', 3, NULL, NULL),
+(100, 'help', 3, NULL, NULL),
+(101, 'role_actionok', 3, NULL, NULL),
+(102, 'error_dialog', 3, NULL, NULL),
+(103, 'about', 3, NULL, NULL),
+(104, 'credits', 3, NULL, NULL),
+(105, 'change_password', 3, NULL, NULL),
+(106, 'save_password', 3, NULL, NULL),
+(107, 'view_document', 3, NULL, NULL),
+(108, 'new_document', 3, NULL, NULL),
+(109, 'edit_document', 3, NULL, NULL),
+(110, 'change_resourcetype', 3, NULL, NULL),
+(111, 'save_document', 3, NULL, NULL),
+(112, 'publish_document', 3, NULL, NULL),
+(113, 'delete_document', 3, NULL, NULL),
+(114, 'empty_trash', 3, NULL, NULL),
+(115, 'empty_cache', 3, NULL, NULL),
+(116, 'view_unpublished', 3, NULL, NULL),
+(117, 'file_manager', 3, NULL, NULL),
+(118, 'assets_files', 3, NULL, NULL),
+(119, 'assets_images', 3, NULL, NULL),
+(120, 'exec_module', 3, NULL, NULL),
+(121, 'list_module', 3, NULL, NULL),
+(122, 'new_template', 3, NULL, NULL),
+(123, 'edit_template', 3, NULL, NULL),
+(124, 'save_template', 3, NULL, NULL),
+(125, 'delete_template', 3, NULL, NULL),
+(126, 'new_chunk', 3, NULL, NULL),
+(127, 'edit_chunk', 3, NULL, NULL),
+(128, 'save_chunk', 3, NULL, NULL),
+(129, 'delete_chunk', 3, NULL, NULL),
+(130, 'new_user', 3, NULL, NULL),
+(131, 'edit_user', 3, NULL, NULL),
+(132, 'save_user', 3, NULL, NULL),
+(133, 'delete_user', 3, NULL, NULL),
+(134, 'logs', 3, NULL, NULL),
+(135, 'settings', 3, NULL, NULL),
+(136, 'bk_manager', 3, NULL, NULL),
+(137, 'remove_locks', 3, NULL, NULL),
+(138, 'display_locks', 3, NULL, NULL),
+(139, 'access_permissions', 3, NULL, NULL),
+(140, 'manage_document_permissions', 3, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_content`
+--
+
+CREATE TABLE `jdz6_site_content` (
+  `id` int(10) UNSIGNED NOT NULL,
   `type` varchar(20) NOT NULL DEFAULT 'document',
   `contentType` varchar(50) NOT NULL DEFAULT 'text/html',
   `pagetitle` varchar(255) NOT NULL DEFAULT '',
@@ -1314,118 +639,128 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_content` (
   `privatemgr` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Private manager document',
   `content_dispo` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0-inline, 1-attachment',
   `hidemenu` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Hide document from menu',
-  `alias_visible` int(11) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `typeidx` (`type`),
-  KEY `aliasidx` (`alias`),
-  KEY `parent` (`parent`),
-  KEY `pub_unpub_published` (`pub_date`,`unpub_date`,`published`),
-  KEY `pub_unpub` (`pub_date`,`unpub_date`),
-  KEY `unpub` (`unpub_date`),
-  KEY `pub` (`pub_date`),
-  FULLTEXT KEY `content_ft_idx` (`pagetitle`,`description`,`content`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+  `alias_visible` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longtitle`, `description`, `alias`, `link_attributes`, `published`, `pub_date`, `unpub_date`, `parent`, `isfolder`, `introtext`, `content`, `richtext`, `template`, `menuindex`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `menutitle`, `hide_from_tree`, `privateweb`, `privatemgr`, `content_dispo`, `hidemenu`, `alias_visible`) VALUES
-	(1, 'document', 'text/html', 'Главная', '', '', 'index', '', 1, 0, 0, 0, 0, '', '<h3>Install Successful!</h3>\r\n<p>You have successfully installed Evolution CMS.</p>\r\n<h3>Getting Help</h3>\r\n<p>The <a href="http://evo.im/" target="_blank" rel="noopener">Evolution CMS Community</a> provides a great starting point to learn all things Evolution CMS, or you can also <a href="http://evo.im/">see some great learning resources</a> (books, tutorials, blogs and screencasts).</p>\r\n<p>Welcome to Evolution CMS!</p>', 1, 2, 0, 1, 1, 0, 1130304721, 1, 1705401836, 0, 0, 0, 1130304721, 1, '', 0, 0, 0, 0, 0, 1),
-	(2, 'document', 'text/html', 'Каталог', '', '', 'catalog', '', 1, 0, 0, 0, 1, '', '', 1, 3, 1, 1, 1, 1, 1686833672, 0, 1704876355, 0, 0, 0, 1686833672, 1, '', 0, 0, 0, 0, 0, 1),
-	(3, 'document', 'text/html', 'Новости', '', '', 'news', '', 1, 0, 0, 0, 1, '', '', 1, 6, 2, 1, 1, 1, 1686833696, 0, 1704876355, 0, 0, 0, 1686833696, 1, '', 0, 0, 0, 0, 0, 1),
-	(4, 'document', 'text/html', 'О компании', '', '', 'about', '', 1, 0, 0, 0, 0, '', '<p>Наша компания предлагает вам предложения, которые вам понравятся и смогут решить вот такие вот проблемы быстро и качественно.</p>\r\n<p>Ведь не может быть, чтобы тот, кто прочитал это, не вдохновился покупкой нашего уникального предложения. Оно настолько уникально, что его предлагают из каждого утюга. Значит, есть спрос.&nbsp;</p>\r\n<p>Покупайте сейчас. А то скоро опять страна начнёт клеить танчики и закручивать гайки, и всё будет как всегда дороже.</p>\r\n<p>А мы пока держим цены, вот такие мы хорошие и не обманываем ни разу.</p>', 1, 12, 4, 1, 1, 1, 1686833716, 1, 1705583185, 0, 0, 0, 1686833716, 1, '', 0, 0, 0, 0, 0, 1),
-	(5, 'document', 'text/html', 'Контакты', '', '', 'contacts', '', 1, 0, 0, 0, 0, '', '<h1 class="h1">Контактная информация</h1>\r\n<p>Сайт сделан в рамках уроков по системе управления Evoluiton CMS. Компания выдумана, весь контент сгенерировала Алиса в соавторстве с Чатжпт. Картинки взяты первые попавшиеся.</p>\r\n<p>Уроки, в которых используется этот шаблон находятся на&nbsp;<a href="https://github.com/0test/lessons-evolution-company">моём гитхабе</a>&nbsp;, сам я нахожусь&nbsp;<a href="https://kazunin.ru/">тут</a>&nbsp;.</p>', 1, 9, 5, 1, 1, 1, 1686833733, 1, 1705409460, 0, 0, 0, 1686833732, 1, '', 0, 0, 0, 0, 0, 1),
-	(6, 'document', 'text/html', 'Мы открылись', '', '', 'my-otkrylis', '', 1, 0, 0, 3, 0, 'Обеспечим население доступными и качественными болтиками и гаечками', '<p>Мы рады сообщить о нашем открытии и начале нашей миссии по обеспечению доступности качественных болтиков и гаечек для всех, кто в них нуждается.</p>\r\n<p>С момента нашей идеи, мы стремились предложить нашим клиентам самый широкий ассортимент крепежных изделий и инструментов, который бы отвечал высоким стандартам качества и предпочтениям различных потребителей. Мы гордимся тем, что уже завоевали доверие среди наших клиентов благодаря нашим конкурентоспособным ценам и внимательному обслуживанию.</p>\r\n<p>Мы с нетерпением ждем продолжения нашего роста и развития на благо нашего сообщества и в поддержку местной экономики.</p>', 1, 7, 0, 1, 1, 1, 1686833938, 1, 1704967116, 0, 0, 0, 1686833938, 1, '', 0, 0, 0, 0, 1, 1),
-	(7, 'document', 'text/html', 'Мы немного поработали', '', '', 'my-nemnogo-porabotali', '', 1, 0, 0, 3, 0, 'Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики', '<p>С момента своего открытия, компания по продаже болтиков и гаечек активно работает над расширением своего ассортимента и клиентской базы. Всё больше местных предприятий и частных лиц обращаются к нам за качественными крепежными изделиями.</p>\r\n<p>Фирма также активно сотрудничает с другими поставщиками, чтобы предложить своим клиентам самый широкий выбор товаров. Это включает в себя не только обычные болтики и гаечки, но и специализированные крепежи для различных отраслей промышленности.</p>\r\n<p>Успешная работа этой компании уже оказала положительное влияние на местную экономику, создавая новые рабочие места и увеличивая налоговые поступления. Мы с нетерпением ждем дальнейшего роста и успеха нашей молодой, но перспективной компании.</p>', 1, 7, 1, 1, 1, 1, 1686833956, 1, 1704967192, 0, 0, 0, 1686833956, 1, '', 0, 0, 0, 0, 1, 1),
-	(8, 'document', 'text/html', 'У директора был день рождения', '', '', 'u-direktora-byl-den-rozhdeniya', '', 1, 0, 0, 3, 0, 'Празднование Дня Рождения основателя компании по продаже болтиков и гаечек', '<p>Недавно основатель и директор компании, занимающейся продажей болтиков и гаечек, отпраздновал свой день рождения. В честь этого события компания организовала специальное мероприятие, на котором присутствовали многие клиенты и партнеры компании.</p>\r\n<p>На празднике директор получил множество поздравлений и благодарностей за свою работу. Гости также отметили, что компания внесла значительный вклад в развитие местной экономики и улучшение качества жизни людей.</p>\r\n<p>Директор компании выразил свою благодарность всем присутствующим и отметил, что успех его предприятия был бы невозможен без поддержки клиентов и партнеров. Он также пообещал продолжать работать на благо общества и развивать свою компанию.</p>', 1, 7, 2, 1, 1, 1, 1686833974, 1, 1704967309, 0, 0, 0, 1686833974, 1, '', 0, 0, 0, 0, 1, 1),
-	(9, 'document', 'text/html', 'У нас выходной', '', '', 'u-nas-vyhodnoj', '', 1, 0, 0, 3, 0, 'Новогодние праздники в компании по продаже болтиков и гаечек', '<p>С 31 декабря по 10 января включительно, компания не будет работать.</p>\r\n<p>Сотрудники компании благодарят своих клиентов за поддержку и желают им счастливых праздников. Они также обещают вернуться к работе 11 января и быть готовыми к новым заказам.</p>', 1, 7, 3, 1, 1, 1, 1686833998, 1, 1704967362, 0, 0, 0, 1686833998, 1, '', 0, 0, 0, 0, 1, 1),
-	(11, 'document', 'text/html', 'Мы закрылись', '', '', 'my-zakrylis', '', 1, 0, 0, 3, 0, 'Гудит, как улей, родной завод.', '<p>С сожалением сообщаем, что наша компания закрывается.&nbsp;</p>\r\n<p>Последний день работы - 31 нулебря 2024 года. До этого дня у вас есть возможность сделать последние покупки по выгодным ценам.</p>\r\n<p>Если вы ищете альтернативные варианты для покупок, рекомендуем обратить внимание на наших партнеров: магазины &laquo;Компания 2&raquo; и &laquo;Компания 3&raquo;. Они предлагают широкий ассортимент болтиков и гаечек.</p>\r\n<p>Спасибо всем клиентам за лояльность и поддержку нашего магазина. Ваши покупки были для нас очень важны, и мы ценим ваше доверие.</p>', 1, 7, 5, 1, 1, 1, 1686834022, 1, 1704968983, 0, 0, 0, 1686834021, 1, '', 0, 0, 0, 0, 1, 1),
-	(12, 'document', 'text/html', 'Разное', '', '', 'any', '', 1, 0, 0, 2, 1, '', '', 1, 4, 2, 1, 1, 1, 1686834484, 0, 1686906317, 0, 0, 0, 1686834483, 1, '', 0, 0, 0, 0, 0, 1),
-	(13, 'document', 'text/html', 'Гайки', '', '', 'screws', '', 1, 0, 0, 2, 1, '', '', 1, 4, 0, 1, 1, 1, 1686905865, 1, 1704878159, 0, 0, 0, 1686905865, 1, '', 0, 0, 0, 0, 0, 1),
-	(14, 'document', 'text/html', 'Болты', '', '', 'bolt', '', 1, 0, 0, 2, 1, '', '', 1, 4, 1, 1, 1, 1, 1686905903, 1, 1704878256, 0, 0, 0, 1686905903, 1, '', 0, 0, 0, 0, 0, 1),
-	(15, 'document', 'text/html', 'Гайка М6', '', '', 'gajka-m6', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 0, 1, 1, 1, 1686905970, 1, 1704974169, 0, 0, 0, 1686905970, 1, '', 0, 0, 0, 0, 1, 1),
-	(16, 'document', 'text/html', 'Болт М6', '', '', 'bolt-m6', '', 1, 0, 0, 14, 0, '', '<p>Болт М6 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров. Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 0, 1, 1, 1, 1686906192, 1, 1704973581, 0, 0, 0, 1686906191, 1, '', 0, 0, 0, 0, 1, 1),
-	(17, 'document', 'text/html', 'Коробка для гаек', '', '', 'korobka-dlya-gaek', '', 1, 0, 0, 12, 0, '', '', 1, 5, 0, 1, 1, 1, 1686906217, 1, 1704878430, 0, 0, 0, 1686906216, 1, '', 0, 0, 0, 0, 1, 1),
-	(18, 'document', 'text/html', 'Гайка М8', '', '', 'gajka-m8', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 1, 1, 1, 1, 1686906252, 1, 1704974185, 0, 0, 0, 1686906252, 1, '', 0, 0, 0, 0, 1, 1),
-	(19, 'document', 'text/html', 'Болт М8', '', '', 'bolt-m8', '', 1, 0, 0, 14, 0, '', '<p>Болт М8 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров.</p>\r\n<p>Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 1, 1, 1, 1, 1686906274, 1, 1704973610, 0, 0, 0, 1686906274, 1, '', 0, 0, 0, 0, 1, 1),
-	(20, 'document', 'text/html', 'Коробка для болтов', '', '', 'korobka-dlya-boltov', '', 1, 0, 0, 12, 0, '', '', 1, 5, 1, 1, 1, 1, 1686906289, 1, 1704878285, 0, 0, 0, 1686906289, 1, '', 0, 0, 0, 0, 1, 1),
-	(21, 'document', 'text/html', 'Ключ М8-М10', '', '', 'klyuch-m8-m10', '', 1, 0, 0, 12, 0, '', '', 1, 5, 2, 1, 1, 1, 1686906303, 1, 1704878309, 0, 0, 0, 1686906302, 1, '', 0, 0, 0, 0, 1, 1),
-	(22, 'document', 'text/html', 'Ключ М6-М8', '', '', 'klyuch-m6-m8', '', 1, 0, 0, 12, 0, '', '', 1, 5, 3, 1, 1, 1, 1686906317, 1, 1704878327, 0, 0, 0, 1686906317, 1, '', 0, 0, 0, 0, 1, 1),
-	(23, 'document', 'text/html', 'Наши работы', '', 'portfolio_all', 'portfolio_all', '', 1, 0, 0, 0, 1, '', '', 1, 10, 3, 1, 1, 1, 1704876348, 1, 1705061762, 0, 0, 0, 1704876348, 1, '', 0, 0, 0, 0, 0, 1),
-	(24, 'document', 'text/html', 'Установили что-то', '', '', 'ustanovili-chto-to', '', 1, 0, 0, 23, 0, 'Мы очень круто установили какое-то сложное оборудование, прикрутив его гайками и болтиками из нашего ассортимента', '<p>Мы рады сообщить о недавнем успешном проекте, в котором мы приняли активное участие. Наш клиент, крупная международная компания, столкнулся с необходимостью установки сложного высокотехнологичного оборудования.</p>\r\n<p>В рамках проекта мы не только предоставили высококачественные гайки и болты из нашего ассортимента, но и приняли непосредственное участие в процессе установки оборудования. Наша команда специалистов провела тщательное планирование и подготовительные работы, что позволило нам установить оборудование быстро, аккуратно и без ошибок.</p>\r\n<p>Оборудование, которое мы устанавливали, имеет важное значение для клиента и его деятельности. Благодаря использованию наших гаек и болтов, установка оборудования прошла без каких-либо проблем и затруднений. Мы были особенно горды тем, что смогли внести свой вклад в этот проект и обеспечить надежное крепление оборудования.</p>\r\n<p>Сотрудничество с клиентом началось с обсуждения его требований и пожеланий, а также уточнения всех деталей и особенностей проекта. На основе полученных данных, мы разработали план установки оборудования, который учитывал все аспекты и обеспечивал наилучший результат.</p>', 1, 11, 0, 1, 1, 1, 1704876387, 1, 1705316287, 0, 0, 0, 1704876387, 1, '', 0, 0, 0, 0, 1, 1),
-	(25, 'document', 'text/html', 'Подключили где-то', '', '', 'podklyuchili-gde-to', '', 1, 0, 0, 23, 0, '', '', 1, 11, 1, 1, 1, 1, 1704876403, 1, 1704876468, 0, 0, 0, 1704876403, 1, '', 0, 0, 0, 0, 1, 1),
-	(26, 'document', 'text/html', 'Гайка М10', '', '', 'gajka-m10', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 1, 1, 1, 1, 1704878211, 1, 1704974152, 0, 0, 0, 1704878225, 1, '', 0, 0, 0, 0, 1, 1),
-	(27, 'document', 'text/html', 'Болт М10', '', '', 'bolt-m10', '', 1, 0, 0, 14, 0, '', '<p>Болт М10 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров. Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 2, 1, 1, 1, 1704878256, 1, 1704973596, 0, 0, 0, 1704878256, 1, '', 0, 0, 0, 0, 1, 1),
-	(28, 'document', 'text/xml', 'sitemap.xml', '', '', 'sitemap.xml', '', 1, 0, 0, 0, 0, '', '', 0, 13, 6, 1, 1, 1, 1705584590, 0, 1705584590, 0, 0, 0, 1705584589, 1, '', 0, 0, 0, 0, 1, 1);
+--
+-- Дамп данных таблицы `jdz6_site_content`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_content_closure` (
-  `closure_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ancestor` int(10) unsigned NOT NULL,
-  `descendant` int(10) unsigned NOT NULL,
-  `depth` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`closure_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4;
+INSERT INTO `jdz6_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longtitle`, `description`, `alias`, `link_attributes`, `published`, `pub_date`, `unpub_date`, `parent`, `isfolder`, `introtext`, `content`, `richtext`, `template`, `menuindex`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `menutitle`, `hide_from_tree`, `privateweb`, `privatemgr`, `content_dispo`, `hidemenu`, `alias_visible`) VALUES
+(1, 'document', 'text/html', 'Главная', '', '', 'index', '', 1, 0, 0, 0, 0, '', '<h3>Install Successful!</h3>\r\n<p>You have successfully installed Evolution CMS.</p>\r\n<h3>Getting Help</h3>\r\n<p>The <a href=\"http://evo.im/\" target=\"_blank\" rel=\"noopener\">Evolution CMS Community</a> provides a great starting point to learn all things Evolution CMS, or you can also <a href=\"http://evo.im/\">see some great learning resources</a> (books, tutorials, blogs and screencasts).</p>\r\n<p>Welcome to Evolution CMS!</p>', 1, 2, 0, 1, 1, 0, 1130304721, 1, 1705401836, 0, 0, 0, 1130304721, 1, '', 0, 0, 0, 0, 0, 1),
+(2, 'document', 'text/html', 'Каталог', '', '', 'catalog', '', 1, 0, 0, 0, 1, '', '', 1, 3, 1, 1, 1, 1, 1686833672, 0, 1704876355, 0, 0, 0, 1686833672, 1, '', 0, 0, 0, 0, 0, 1),
+(3, 'document', 'text/html', 'Новости', '', '', 'news', '', 1, 0, 0, 0, 1, '', '', 1, 6, 2, 1, 1, 1, 1686833696, 0, 1704876355, 0, 0, 0, 1686833696, 1, '', 0, 0, 0, 0, 0, 1),
+(4, 'document', 'text/html', 'О компании', '', '', 'about', '', 1, 0, 0, 0, 0, '', '<p>Наша компания предлагает вам предложения, которые вам понравятся и смогут решить вот такие вот проблемы быстро и качественно.</p>\r\n<p>Ведь не может быть, чтобы тот, кто прочитал это, не вдохновился покупкой нашего уникального предложения. Оно настолько уникально, что его предлагают из каждого утюга. Значит, есть спрос.&nbsp;</p>\r\n<p>Покупайте сейчас. А то скоро опять страна начнёт клеить танчики и закручивать гайки, и всё будет как всегда дороже.</p>\r\n<p>А мы пока держим цены, вот такие мы хорошие и не обманываем ни разу.</p>', 1, 12, 4, 1, 1, 1, 1686833716, 1, 1705583185, 0, 0, 0, 1686833716, 1, '', 0, 0, 0, 0, 0, 1),
+(5, 'document', 'text/html', 'Контакты', '', '', 'contacts', '', 1, 0, 0, 0, 0, '', '<h1 class=\"h1\">Контактная информация</h1>\r\n<p>Сайт сделан в рамках уроков по системе управления Evoluiton CMS. Компания выдумана, весь контент сгенерировала Алиса в соавторстве с Чатжпт. Картинки взяты первые попавшиеся.</p>\r\n<p>Уроки, в которых используется этот шаблон находятся на&nbsp;<a href=\"https://github.com/0test/lessons-evolution-company\">моём гитхабе</a>&nbsp;, сам я нахожусь&nbsp;<a href=\"https://kazunin.ru/\">тут</a>&nbsp;.</p>', 1, 9, 5, 1, 1, 1, 1686833733, 1, 1705409460, 0, 0, 0, 1686833732, 1, '', 0, 0, 0, 0, 0, 1),
+(6, 'document', 'text/html', 'Мы открылись', '', '', 'my-otkrylis', '', 1, 0, 0, 3, 0, 'Обеспечим население доступными и качественными болтиками и гаечками', '<p>Мы рады сообщить о нашем открытии и начале нашей миссии по обеспечению доступности качественных болтиков и гаечек для всех, кто в них нуждается.</p>\r\n<p>С момента нашей идеи, мы стремились предложить нашим клиентам самый широкий ассортимент крепежных изделий и инструментов, который бы отвечал высоким стандартам качества и предпочтениям различных потребителей. Мы гордимся тем, что уже завоевали доверие среди наших клиентов благодаря нашим конкурентоспособным ценам и внимательному обслуживанию.</p>\r\n<p>Мы с нетерпением ждем продолжения нашего роста и развития на благо нашего сообщества и в поддержку местной экономики.</p>', 1, 7, 0, 1, 1, 1, 1686833938, 1, 1704967116, 0, 0, 0, 1686833938, 1, '', 0, 0, 0, 0, 1, 1),
+(7, 'document', 'text/html', 'Мы немного поработали', '', '', 'my-nemnogo-porabotali', '', 1, 0, 0, 3, 0, 'Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики', '<p>С момента своего открытия, компания по продаже болтиков и гаечек активно работает над расширением своего ассортимента и клиентской базы. Всё больше местных предприятий и частных лиц обращаются к нам за качественными крепежными изделиями.</p>\r\n<p>Фирма также активно сотрудничает с другими поставщиками, чтобы предложить своим клиентам самый широкий выбор товаров. Это включает в себя не только обычные болтики и гаечки, но и специализированные крепежи для различных отраслей промышленности.</p>\r\n<p>Успешная работа этой компании уже оказала положительное влияние на местную экономику, создавая новые рабочие места и увеличивая налоговые поступления. Мы с нетерпением ждем дальнейшего роста и успеха нашей молодой, но перспективной компании.</p>', 1, 7, 1, 1, 1, 1, 1686833956, 1, 1704967192, 0, 0, 0, 1686833956, 1, '', 0, 0, 0, 0, 1, 1),
+(8, 'document', 'text/html', 'У директора был день рождения', '', '', 'u-direktora-byl-den-rozhdeniya', '', 1, 0, 0, 3, 0, 'Празднование Дня Рождения основателя компании по продаже болтиков и гаечек', '<p>Недавно основатель и директор компании, занимающейся продажей болтиков и гаечек, отпраздновал свой день рождения. В честь этого события компания организовала специальное мероприятие, на котором присутствовали многие клиенты и партнеры компании.</p>\r\n<p>На празднике директор получил множество поздравлений и благодарностей за свою работу. Гости также отметили, что компания внесла значительный вклад в развитие местной экономики и улучшение качества жизни людей.</p>\r\n<p>Директор компании выразил свою благодарность всем присутствующим и отметил, что успех его предприятия был бы невозможен без поддержки клиентов и партнеров. Он также пообещал продолжать работать на благо общества и развивать свою компанию.</p>', 1, 7, 2, 1, 1, 1, 1686833974, 1, 1704967309, 0, 0, 0, 1686833974, 1, '', 0, 0, 0, 0, 1, 1),
+(9, 'document', 'text/html', 'У нас выходной', '', '', 'u-nas-vyhodnoj', '', 1, 0, 0, 3, 0, 'Новогодние праздники в компании по продаже болтиков и гаечек', '<p>С 31 декабря по 10 января включительно, компания не будет работать.</p>\r\n<p>Сотрудники компании благодарят своих клиентов за поддержку и желают им счастливых праздников. Они также обещают вернуться к работе 11 января и быть готовыми к новым заказам.</p>', 1, 7, 3, 1, 1, 1, 1686833998, 1, 1704967362, 0, 0, 0, 1686833998, 1, '', 0, 0, 0, 0, 1, 1),
+(11, 'document', 'text/html', 'Мы закрылись', '', '', 'my-zakrylis', '', 1, 0, 0, 3, 0, 'Гудит, как улей, родной завод.', '<p>С сожалением сообщаем, что наша компания закрывается.&nbsp;</p>\r\n<p>Последний день работы - 31 нулебря 2024 года. До этого дня у вас есть возможность сделать последние покупки по выгодным ценам.</p>\r\n<p>Если вы ищете альтернативные варианты для покупок, рекомендуем обратить внимание на наших партнеров: магазины &laquo;Компания 2&raquo; и &laquo;Компания 3&raquo;. Они предлагают широкий ассортимент болтиков и гаечек.</p>\r\n<p>Спасибо всем клиентам за лояльность и поддержку нашего магазина. Ваши покупки были для нас очень важны, и мы ценим ваше доверие.</p>', 1, 7, 5, 1, 1, 1, 1686834022, 1, 1704968983, 0, 0, 0, 1686834021, 1, '', 0, 0, 0, 0, 1, 1),
+(12, 'document', 'text/html', 'Разное', '', '', 'any', '', 1, 0, 0, 2, 1, '', '', 1, 4, 2, 1, 1, 1, 1686834484, 0, 1686906317, 0, 0, 0, 1686834483, 1, '', 0, 0, 0, 0, 0, 1),
+(13, 'document', 'text/html', 'Гайки', '', '', 'screws', '', 1, 0, 0, 2, 1, '', '', 1, 4, 0, 1, 1, 1, 1686905865, 1, 1704878159, 0, 0, 0, 1686905865, 1, '', 0, 0, 0, 0, 0, 1),
+(14, 'document', 'text/html', 'Болты', '', '', 'bolt', '', 1, 0, 0, 2, 1, '', '', 1, 4, 1, 1, 1, 1, 1686905903, 1, 1704878256, 0, 0, 0, 1686905903, 1, '', 0, 0, 0, 0, 0, 1),
+(15, 'document', 'text/html', 'Гайка М6', '', '', 'gajka-m6', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 0, 1, 1, 1, 1686905970, 1, 1704974169, 0, 0, 0, 1686905970, 1, '', 0, 0, 0, 0, 1, 1),
+(16, 'document', 'text/html', 'Болт М6', '', '', 'bolt-m6', '', 1, 0, 0, 14, 0, '', '<p>Болт М6 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров. Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 0, 1, 1, 1, 1686906192, 1, 1704973581, 0, 0, 0, 1686906191, 1, '', 0, 0, 0, 0, 1, 1),
+(17, 'document', 'text/html', 'Коробка для гаек', '', '', 'korobka-dlya-gaek', '', 1, 0, 0, 12, 0, '', '', 1, 5, 0, 1, 1, 1, 1686906217, 1, 1704878430, 0, 0, 0, 1686906216, 1, '', 0, 0, 0, 0, 1, 1),
+(18, 'document', 'text/html', 'Гайка М8', '', '', 'gajka-m8', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 1, 1, 1, 1, 1686906252, 1, 1704974185, 0, 0, 0, 1686906252, 1, '', 0, 0, 0, 0, 1, 1),
+(19, 'document', 'text/html', 'Болт М8', '', '', 'bolt-m8', '', 1, 0, 0, 14, 0, '', '<p>Болт М8 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров.</p>\r\n<p>Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 1, 1, 1, 1, 1686906274, 1, 1704973610, 0, 0, 0, 1686906274, 1, '', 0, 0, 0, 0, 1, 1),
+(20, 'document', 'text/html', 'Коробка для болтов', '', '', 'korobka-dlya-boltov', '', 1, 0, 0, 12, 0, '', '', 1, 5, 1, 1, 1, 1, 1686906289, 1, 1704878285, 0, 0, 0, 1686906289, 1, '', 0, 0, 0, 0, 1, 1),
+(21, 'document', 'text/html', 'Ключ М8-М10', '', '', 'klyuch-m8-m10', '', 1, 0, 0, 12, 0, '', '', 1, 5, 2, 1, 1, 1, 1686906303, 1, 1704878309, 0, 0, 0, 1686906302, 1, '', 0, 0, 0, 0, 1, 1),
+(22, 'document', 'text/html', 'Ключ М6-М8', '', '', 'klyuch-m6-m8', '', 1, 0, 0, 12, 0, '', '', 1, 5, 3, 1, 1, 1, 1686906317, 1, 1704878327, 0, 0, 0, 1686906317, 1, '', 0, 0, 0, 0, 1, 1),
+(23, 'document', 'text/html', 'Наши работы', '', 'portfolio_all', 'portfolio_all', '', 1, 0, 0, 0, 1, '', '', 1, 10, 3, 1, 1, 1, 1704876348, 1, 1705061762, 0, 0, 0, 1704876348, 1, '', 0, 0, 0, 0, 0, 1),
+(24, 'document', 'text/html', 'Установили что-то', '', '', 'ustanovili-chto-to', '', 1, 0, 0, 23, 0, 'Мы очень круто установили какое-то сложное оборудование, прикрутив его гайками и болтиками из нашего ассортимента', '<p>Мы рады сообщить о недавнем успешном проекте, в котором мы приняли активное участие. Наш клиент, крупная международная компания, столкнулся с необходимостью установки сложного высокотехнологичного оборудования.</p>\r\n<p>В рамках проекта мы не только предоставили высококачественные гайки и болты из нашего ассортимента, но и приняли непосредственное участие в процессе установки оборудования. Наша команда специалистов провела тщательное планирование и подготовительные работы, что позволило нам установить оборудование быстро, аккуратно и без ошибок.</p>\r\n<p>Оборудование, которое мы устанавливали, имеет важное значение для клиента и его деятельности. Благодаря использованию наших гаек и болтов, установка оборудования прошла без каких-либо проблем и затруднений. Мы были особенно горды тем, что смогли внести свой вклад в этот проект и обеспечить надежное крепление оборудования.</p>\r\n<p>Сотрудничество с клиентом началось с обсуждения его требований и пожеланий, а также уточнения всех деталей и особенностей проекта. На основе полученных данных, мы разработали план установки оборудования, который учитывал все аспекты и обеспечивал наилучший результат.</p>', 1, 11, 0, 1, 1, 1, 1704876387, 1, 1705316287, 0, 0, 0, 1704876387, 1, '', 0, 0, 0, 0, 1, 1),
+(25, 'document', 'text/html', 'Подключили где-то', '', '', 'podklyuchili-gde-to', '', 1, 0, 0, 23, 0, '', '', 1, 11, 1, 1, 1, 1, 1704876403, 1, 1704876468, 0, 0, 0, 1704876403, 1, '', 0, 0, 0, 0, 1, 1),
+(26, 'document', 'text/html', 'Гайка М10', '', '', 'gajka-m10', '', 1, 0, 0, 13, 0, '', '<p>Тип гайка</p>\r\n<p>Материал сталь</p>\r\n<p>Тип гайки обыкновенная</p>\r\n<p>Шаг резьбы 2</p>\r\n<p>DIN стандарт 934</p>\r\n<p>Количество штук в упаковке 20 шт.</p>', 1, 5, 1, 1, 1, 1, 1704878211, 1, 1704974152, 0, 0, 0, 1704878225, 1, '', 0, 0, 0, 0, 1, 1),
+(27, 'document', 'text/html', 'Болт М10', '', '', 'bolt-m10', '', 1, 0, 0, 14, 0, '', '<p>Болт М10 с внутренним шестигранником и цилиндрической головкой. Применяется для соединения элементов конструкций в машиностроении, приборостроении и прочих промышленно-производственных и строительных отраслях совместно с гайками, шайбами соответствующих размеров. Класс прочности 8.8. Винты изготовлены из оцинкованной стали.</p>', 1, 5, 2, 1, 1, 1, 1704878256, 1, 1704973596, 0, 0, 0, 1704878256, 1, '', 0, 0, 0, 0, 1, 1),
+(28, 'document', 'text/xml', 'sitemap.xml', '', '', 'sitemap.xml', '', 1, 0, 0, 0, 0, '', '', 0, 13, 6, 1, 1, 1, 1705584590, 0, 1705584590, 0, 0, 0, 1705584589, 1, '', 0, 0, 0, 0, 1, 1);
 
-REPLACE INTO `jdz6_site_content_closure` (`closure_id`, `ancestor`, `descendant`, `depth`) VALUES
-	(1, 1, 1, 0),
-	(2, 2, 2, 0),
-	(3, 3, 3, 0),
-	(4, 4, 4, 0),
-	(5, 5, 5, 0),
-	(7, 6, 6, 0),
-	(8, 3, 6, 1),
-	(10, 7, 7, 0),
-	(11, 3, 7, 1),
-	(13, 8, 8, 0),
-	(14, 3, 8, 1),
-	(16, 9, 9, 0),
-	(17, 3, 9, 1),
-	(19, 10, 10, 0),
-	(20, 3, 10, 1),
-	(22, 11, 11, 0),
-	(23, 3, 11, 1),
-	(25, 12, 12, 0),
-	(26, 2, 12, 1),
-	(28, 13, 13, 0),
-	(29, 2, 13, 1),
-	(31, 14, 14, 0),
-	(32, 2, 14, 1),
-	(35, 15, 15, 0),
-	(36, 13, 15, 1),
-	(37, 2, 15, 2),
-	(41, 16, 16, 0),
-	(42, 14, 16, 1),
-	(43, 2, 16, 2),
-	(47, 17, 17, 0),
-	(48, 12, 17, 1),
-	(49, 2, 17, 2),
-	(53, 18, 18, 0),
-	(54, 13, 18, 1),
-	(55, 2, 18, 2),
-	(59, 19, 19, 0),
-	(60, 14, 19, 1),
-	(61, 2, 19, 2),
-	(65, 20, 20, 0),
-	(66, 12, 20, 1),
-	(67, 2, 20, 2),
-	(71, 21, 21, 0),
-	(72, 12, 21, 1),
-	(73, 2, 21, 2),
-	(77, 22, 22, 0),
-	(78, 12, 22, 1),
-	(79, 2, 22, 2),
-	(80, 23, 23, 0),
-	(81, 23, 24, 1),
-	(82, 24, 24, 0),
-	(83, 23, 25, 1),
-	(84, 25, 25, 0),
-	(85, 13, 26, 1),
-	(86, 2, 26, 2),
-	(87, 26, 26, 0),
-	(88, 14, 27, 1),
-	(89, 2, 27, 2),
-	(90, 27, 27, 0),
-	(91, 28, 28, 0);
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_htmlsnippets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_site_content_closure`
+--
+
+CREATE TABLE `jdz6_site_content_closure` (
+  `closure_id` int(10) UNSIGNED NOT NULL,
+  `ancestor` int(10) UNSIGNED NOT NULL,
+  `descendant` int(10) UNSIGNED NOT NULL,
+  `depth` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `jdz6_site_content_closure`
+--
+
+INSERT INTO `jdz6_site_content_closure` (`closure_id`, `ancestor`, `descendant`, `depth`) VALUES
+(1, 1, 1, 0),
+(2, 2, 2, 0),
+(3, 3, 3, 0),
+(4, 4, 4, 0),
+(5, 5, 5, 0),
+(7, 6, 6, 0),
+(8, 3, 6, 1),
+(10, 7, 7, 0),
+(11, 3, 7, 1),
+(13, 8, 8, 0),
+(14, 3, 8, 1),
+(16, 9, 9, 0),
+(17, 3, 9, 1),
+(19, 10, 10, 0),
+(20, 3, 10, 1),
+(22, 11, 11, 0),
+(23, 3, 11, 1),
+(25, 12, 12, 0),
+(26, 2, 12, 1),
+(28, 13, 13, 0),
+(29, 2, 13, 1),
+(31, 14, 14, 0),
+(32, 2, 14, 1),
+(35, 15, 15, 0),
+(36, 13, 15, 1),
+(37, 2, 15, 2),
+(41, 16, 16, 0),
+(42, 14, 16, 1),
+(43, 2, 16, 2),
+(47, 17, 17, 0),
+(48, 12, 17, 1),
+(49, 2, 17, 2),
+(53, 18, 18, 0),
+(54, 13, 18, 1),
+(55, 2, 18, 2),
+(59, 19, 19, 0),
+(60, 14, 19, 1),
+(61, 2, 19, 2),
+(65, 20, 20, 0),
+(66, 12, 20, 1),
+(67, 2, 20, 2),
+(71, 21, 21, 0),
+(72, 12, 21, 1),
+(73, 2, 21, 2),
+(77, 22, 22, 0),
+(78, 12, 22, 1),
+(79, 2, 22, 2),
+(80, 23, 23, 0),
+(81, 23, 24, 1),
+(82, 24, 24, 0),
+(83, 23, 25, 1),
+(84, 25, 25, 0),
+(85, 13, 26, 1),
+(86, 2, 26, 2),
+(87, 26, 26, 0),
+(88, 14, 27, 1),
+(89, 2, 27, 2),
+(90, 27, 27, 0),
+(91, 28, 28, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_htmlsnippets`
+--
+
+CREATE TABLE `jdz6_site_htmlsnippets` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Chunk',
   `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
@@ -1436,13 +771,17 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_htmlsnippets` (
   `locked` tinyint(1) NOT NULL DEFAULT 0,
   `createdon` int(11) NOT NULL DEFAULT 0,
   `editedon` int(11) NOT NULL DEFAULT 0,
-  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the snippet',
-  PRIMARY KEY (`id`)
+  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the snippet'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_modules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_site_modules`
+--
+
+CREATE TABLE `jdz6_site_modules` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '0',
   `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
@@ -1458,35 +797,57 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_modules` (
   `guid` varchar(32) DEFAULT '' COMMENT 'globally unique identifier',
   `enable_sharedparams` tinyint(1) NOT NULL DEFAULT 0,
   `properties` text DEFAULT NULL,
-  `modulecode` mediumtext DEFAULT NULL COMMENT 'module boot up code',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
-REPLACE INTO `jdz6_site_modules` (`id`, `name`, `description`, `editor_type`, `disabled`, `category`, `wrap`, `locked`, `icon`, `enable_resource`, `resourcefile`, `createdon`, `editedon`, `guid`, `enable_sharedparams`, `properties`, `modulecode`) VALUES
-	(1, 'Extras', '<strong>0.1.3</strong> first repository for Evolution CMS', 0, 0, 1, 0, 0, '', 0, '', 1686310760, 1686310760, 'store435243542tf542t5t', 1, '', ' \r\n/**\r\n * Extras\r\n * \r\n * first repository for Evolution CMS\r\n * \r\n * @category	module\r\n * @version 	0.1.3\r\n * @internal	@properties\r\n * @internal	@guid store435243542tf542t5t	\r\n * @internal	@shareparams 1\r\n * @internal	@dependencies requires files located at /assets/modules/store/\r\n * @internal	@modx_category Manager and Admin\r\n * @internal    @installset base, sample\r\n * @lastupdate  25/11/2016\r\n */\r\n\r\n//AUTHORS: Bumkaka & Dmi3yy \r\ninclude_once(\'../assets/modules/store/core.php\');'),
-	(2, 'ClientSettings', '<strong>2.2.0</strong> Customizable set of fields for user settings', 0, 0, 1, 0, 0, '', 0, '', 1686312458, 1686312458, 'clsee234523g354f542t5t', 1, '{"prefix":[{"label":"Prefix for settings","type":"text","value":"client_","default":"client_","desc":""}],"config_path":[{"label":"Path to configuration files","type":"text","value":"","default":"","desc":""}]}', '\n\nrequire_once MODX_BASE_PATH . \'assets/modules/clientsettings/core/src/ClientSettings.php\';\n\nif (!$modx->hasPermission(\'exec_module\')) {\n    $modx->sendRedirect(\'index.php?a=106\');\n}\n\nif (!is_array($modx->event->params)) {\n    $modx->event->params = [];\n}\n\nif (!function_exists(\'renderFormElement\')) {\n    include_once MODX_MANAGER_PATH . \'includes/tmplvars.commands.inc.php\';\n    include_once MODX_MANAGER_PATH . \'includes/tmplvars.inc.php\';\n}\n\nif (isset($_REQUEST[\'stay\'])) {\n    $_SESSION[\'stay\'] = $_REQUEST[\'stay\'];\n} else if (isset($_SESSION[\'stay\'])) {\n    $_REQUEST[\'stay\'] = $_SESSION[\'stay\'];\n}\n\n(new ClientSettings($params))->processRequest();\n');
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_module_access` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `module` int(11) NOT NULL DEFAULT 0,
-  `usergroup` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
+  `modulecode` mediumtext DEFAULT NULL COMMENT 'module boot up code'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Дамп данных таблицы `jdz6_site_modules`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_module_depobj` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_modules` (`id`, `name`, `description`, `editor_type`, `disabled`, `category`, `wrap`, `locked`, `icon`, `enable_resource`, `resourcefile`, `createdon`, `editedon`, `guid`, `enable_sharedparams`, `properties`, `modulecode`) VALUES
+(1, 'Extras', '<strong>0.1.3</strong> first repository for Evolution CMS', 0, 0, 1, 0, 0, '', 0, '', 1686310760, 1686310760, 'store435243542tf542t5t', 1, '', ' \r\n/**\r\n * Extras\r\n * \r\n * first repository for Evolution CMS\r\n * \r\n * @category	module\r\n * @version 	0.1.3\r\n * @internal	@properties\r\n * @internal	@guid store435243542tf542t5t	\r\n * @internal	@shareparams 1\r\n * @internal	@dependencies requires files located at /assets/modules/store/\r\n * @internal	@modx_category Manager and Admin\r\n * @internal    @installset base, sample\r\n * @lastupdate  25/11/2016\r\n */\r\n\r\n//AUTHORS: Bumkaka & Dmi3yy \r\ninclude_once(\'../assets/modules/store/core.php\');'),
+(2, 'ClientSettings', '<strong>2.2.0</strong> Customizable set of fields for user settings', 0, 0, 1, 0, 0, '', 0, '', 1686312458, 1686312458, 'clsee234523g354f542t5t', 1, '{\"prefix\":[{\"label\":\"Prefix for settings\",\"type\":\"text\",\"value\":\"client_\",\"default\":\"client_\",\"desc\":\"\"}],\"config_path\":[{\"label\":\"Path to configuration files\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}]}', '\n\nrequire_once MODX_BASE_PATH . \'assets/modules/clientsettings/core/src/ClientSettings.php\';\n\nif (!$modx->hasPermission(\'exec_module\')) {\n    $modx->sendRedirect(\'index.php?a=106\');\n}\n\nif (!is_array($modx->event->params)) {\n    $modx->event->params = [];\n}\n\nif (!function_exists(\'renderFormElement\')) {\n    include_once MODX_MANAGER_PATH . \'includes/tmplvars.commands.inc.php\';\n    include_once MODX_MANAGER_PATH . \'includes/tmplvars.inc.php\';\n}\n\nif (isset($_REQUEST[\'stay\'])) {\n    $_SESSION[\'stay\'] = $_REQUEST[\'stay\'];\n} else if (isset($_SESSION[\'stay\'])) {\n    $_REQUEST[\'stay\'] = $_SESSION[\'stay\'];\n}\n\n(new ClientSettings($params))->processRequest();\n');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_module_access`
+--
+
+CREATE TABLE `jdz6_site_module_access` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `module` int(11) NOT NULL DEFAULT 0,
+  `usergroup` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_module_depobj`
+--
+
+CREATE TABLE `jdz6_site_module_depobj` (
+  `id` int(11) NOT NULL,
   `module` int(11) NOT NULL DEFAULT 0,
   `resource` int(11) NOT NULL DEFAULT 0,
-  `type` int(11) NOT NULL DEFAULT 0 COMMENT '10-chunks, 20-docs, 30-plugins, 40-snips, 50-tpls, 60-tvs',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `type` int(11) NOT NULL DEFAULT 0 COMMENT '10-chunks, 20-docs, 30-plugins, 40-snips, 50-tpls, 60-tvs'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_module_depobj` (`id`, `module`, `resource`, `type`) VALUES
-	(1, 2, 8, 30);
+--
+-- Дамп данных таблицы `jdz6_site_module_depobj`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_plugins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_module_depobj` (`id`, `module`, `resource`, `type`) VALUES
+(1, 2, 8, 30);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_plugins`
+--
+
+CREATE TABLE `jdz6_site_plugins` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Plugin',
   `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
@@ -1498,70 +859,88 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_plugins` (
   `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the plugin',
   `moduleguid` varchar(32) DEFAULT '' COMMENT 'GUID of module from which to import shared parameters',
   `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
-
-REPLACE INTO `jdz6_site_plugins` (`id`, `name`, `description`, `editor_type`, `category`, `cache_type`, `plugincode`, `locked`, `properties`, `disabled`, `moduleguid`, `createdon`, `editedon`) VALUES
-	(1, 'AboutEvoWidget', '<strong>1.0.0</strong> displays useful links at the dashboardn', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/aboutevo/plugin.aboutevo.php\';\r\n', 0, '', 0, '', 1686310760, 1686310760),
-	(2, 'CodeMirror', '<strong>1.7</strong> JavaScript library that can be used to create a relatively pleasant editor interface based on CodeMirror 5.33 (released on 21-12-2017)', 0, 1, 0, '\r\n/**\r\n * CodeMirror\r\n *\r\n * JavaScript library that can be used to create a relatively pleasant editor interface based on CodeMirror 5.33 (released on 21-12-2017)\r\n *\r\n * @category    plugin\r\n * @version     1.7\r\n * @license     http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)\r\n * @package     evo\r\n * @internal    @events OnDocFormRender,OnChunkFormRender,OnModFormRender,OnPluginFormRender,OnSnipFormRender,OnTempFormRender,OnRichTextEditorInit,OnTVFormRender\r\n * @internal    @modx_category Manager and Admin\r\n * @internal    @properties &theme=Theme;list;default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light;default &darktheme=Dark Theme;list;default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light;one-dark &fontSize=Font-size;list;10,11,12,13,14,15,16,17,18;14 &lineHeight=Line-height;list;1,1.1,1.2,1.3,1.4,1.5;1.3 &indentUnit=Indent unit;int;4 &tabSize=The width of a tab character;int;4 &lineWrapping=lineWrapping;list;true,false;true &matchBrackets=matchBrackets;list;true,false;true &activeLine=activeLine;list;true,false;false &emmet=emmet;list;true,false;true &search=search;list;true,false;true &indentWithTabs=indentWithTabs;list;true,false;true &undoDepth=undoDepth;int;200 &historyEventDelay=historyEventDelay;int;1250\r\n * @internal    @installset base\r\n * @reportissues https://github.com/evolution-cms/evolution/issues/\r\n * @documentation Official docs https://codemirror.net/doc/manual.html\r\n * @author      hansek from http://www.modxcms.cz\r\n * @author      update Mihanik71\r\n * @author      update Deesen\r\n * @author      update 64j\r\n * @lastupdate  08-01-2018\r\n */\r\n\r\n$_CM_BASE = \'assets/plugins/codemirror/\';\r\n\r\n$_CM_URL = MODX_SITE_URL . $_CM_BASE;\r\n\r\nrequire(MODX_BASE_PATH. $_CM_BASE .\'codemirror.plugin.php\');\r\n', 0, '{"theme":[{"label":"Theme","type":"list","value":"default","options":"default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light","default":"default","desc":""}],"darktheme":[{"label":"Dark Theme","type":"list","value":"one-dark","options":"default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light","default":"one-dark","desc":""}],"fontSize":[{"label":"Font-size","type":"list","value":"14","options":"10,11,12,13,14,15,16,17,18","default":"14","desc":""}],"lineHeight":[{"label":"Line-height","type":"list","value":"1.3","options":"1,1.1,1.2,1.3,1.4,1.5","default":"1.3","desc":""}],"indentUnit":[{"label":"Indent unit","type":"int","value":"4","default":"4","desc":""}],"tabSize":[{"label":"The width of a tab character","type":"int","value":"4","default":"4","desc":""}],"lineWrapping":[{"label":"lineWrapping","type":"list","value":"true","options":"true,false","default":"true","desc":""}],"matchBrackets":[{"label":"matchBrackets","type":"list","value":"true","options":"true,false","default":"true","desc":""}],"activeLine":[{"label":"activeLine","type":"list","value":"false","options":"true,false","default":"false","desc":""}],"emmet":[{"label":"emmet","type":"list","value":"true","options":"true,false","default":"true","desc":""}],"search":[{"label":"search","type":"list","value":"true","options":"true,false","default":"true","desc":""}],"indentWithTabs":[{"label":"indentWithTabs","type":"list","value":"true","options":"true,false","default":"true","desc":""}],"undoDepth":[{"label":"undoDepth","type":"int","value":"200","default":"200","desc":""}],"historyEventDelay":[{"label":"historyEventDelay","type":"int","value":"1250","default":"1250","desc":""}]}', 0, '', 1686310760, 1686310760),
-	(3, 'OutdatedExtrasCheck', '<strong>1.4.6</strong> Check for Outdated critical extras not compatible with EVO 1.4.6', 0, 1, 0, '/**\r\n * OutdatedExtrasCheck\r\n *\r\n * Check for Outdated critical extras not compatible with EVO 1.4.6\r\n *\r\n * @category	plugin\r\n * @version     1.4.6\r\n * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)\r\n * @package     evo\r\n * @author      Author: Nicola Lambathakis\r\n * @internal    @events OnManagerWelcomeHome\r\n * @internal    @properties &wdgVisibility=Show widget for:;menu;All,AdminOnly,AdminExcluded,ThisRoleOnly,ThisUserOnly;AdminOnly &ThisRole=Run only for this role:;string;;;(role id) &ThisUser=Run only for this user:;string;;;(username)\r\n * @internal    @modx_category Manager and Admin\r\n * @internal    @installset base\r\n * @internal    @disabled 0\r\n */\r\n\r\nrequire MODX_BASE_PATH . \'assets/plugins/extrascheck/OutdatedExtrasCheck.plugin.php\';\r\n', 0, '{"wdgVisibility":[{"label":"Show widget for:","type":"menu","value":"AdminOnly","options":"All,AdminOnly,AdminExcluded,ThisRoleOnly,ThisUserOnly","default":"AdminOnly","desc":""}],"ThisRole":[{"label":"Run only for this role:","type":"string","value":"","default":"","desc":""}],"ThisUser":[{"label":"Run only for this user:","type":"string","value":"","default":"","desc":""}]}', 0, '', 1686310761, 1686310761),
-	(4, 'TransAlias', '<strong>1.0.4</strong> Human readible URL translation supporting multiple languages and overrides', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/transalias/plugin.transalias.php\';', 0, '{"table_name":[{"label":"Trans table","type":"list","value":"russian","options":"common,russian,dutch,german,czech,utf8,utf8lowercase","default":"russian","desc":""}],"char_restrict":[{"label":"Restrict alias to","type":"list","value":"lowercase alphanumeric","options":"lowercase alphanumeric,alphanumeric,legal characters","default":"lowercase alphanumeric","desc":""}],"remove_periods":[{"label":"Remove Periods","type":"list","value":"No","options":"Yes,No","default":"No","desc":""}],"word_separator":[{"label":"Word Separator","type":"list","value":"dash","options":"dash,underscore,none","default":"dash","desc":""}],"override_tv":[{"label":"Override TV name","type":"string","value":"","default":"","desc":""}]}', 0, '', 1686310761, 1686310761),
-	(5, 'Updater', '<strong>0.8.8</strong> show message about outdated CMS version', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/updater/plugin.updater.php\';\r\n', 0, '{"version":[{"label":"Version:","type":"text","value":"evocms-community\\/evolution","default":"evocms-community\\/evolution","desc":""}],"wdgVisibility":[{"label":"Show widget for:","type":"menu","value":"All","options":"All,AdminOnly,AdminExcluded,ThisRoleOnly,ThisUserOnly","default":"All","desc":""}],"ThisRole":[{"label":"Show only to this role id:","type":"string","value":"","default":"","desc":""}],"ThisUser":[{"label":"Show only to this username:","type":"string","value":"","default":"","desc":""}],"showButton":[{"label":"Show Update Button:","type":"menu","value":"AdminOnly","options":"show,hide,AdminOnly","default":"AdminOnly","desc":""}],"type":[{"label":"Type:","type":"menu","value":"tags","options":"tags,releases,commits","default":"tags","desc":""}],"branch":[{"label":"Commit branch:","type":"text","value":"develop","default":"develop","desc":""}],"stableOnly":[{"label":"Offer upgrade to stable version only:","type":"list","value":"true","options":"true,false","default":"true","desc":""}]}', 0, '', 1686310761, 1686310761),
-	(6, 'userHelper', '<strong>1.19.10</strong> addition to FormLister', 0, 2, 0, 'require MODX_BASE_PATH.\'assets/snippets/FormLister/plugin.userHelper.php\';\n', 0, '{"model":[{"label":"Model","type":"text","value":"","default":"","desc":""}],"logoutKey":[{"label":"Request key","type":"text","value":"logout","default":"logout","desc":""}],"cookieName":[{"label":"Cookie Name","type":"text","value":"WebLoginPE","default":"WebLoginPE","desc":""}],"cookieLifetime":[{"label":"Cookie Lifetime, seconds","type":"text","value":"157680000","default":"157680000","desc":""}],"maxFails":[{"label":"Max failed logins","type":"text","value":"3","default":"3","desc":""}],"blockTime":[{"label":"Block for, seconds","type":"text","value":"3600","default":"3600","desc":""}],"trackWebUserActivity":[{"label":"Track web user activity","type":"list","value":"No","options":"No,Yes","default":"No","desc":""}]}', 1, '', 1686312437, 1686312437),
-	(7, 'TinyMCE4', '<strong>4.9.11</strong> Javascript rich text editor', 0, 1, 0, 'if (!defined(\'MODX_BASE_PATH\')) { die(\'What are you doing? Get out of here!\'); }\n\nrequire(MODX_BASE_PATH."assets/plugins/tinymce4/plugin.tinymce.inc.php");', 0, '{"styleFormats":[{"label":"Custom Style Formats <b>RAW<\\/b><br\\/><br\\/><ul><li>leave empty to use below block\\/inline formats<\\/li><li>allows simple-format: <i>Title,cssClass|Title2,cssClass2<\\/i><\\/li><li>Also accepts full JSON-config as per TinyMCE4 docs \\/ configure \\/ content-formating \\/ style_formats<\\/li><\\/ul>","type":"textarea","value":"","default":"","desc":""}],"styleFormats_inline":[{"label":"Custom Style Formats <b>INLINE<\\/b><br\\/><br\\/><ul><li>will wrap selected text with span-tag + css-class<\\/li><li>simple-format only<\\/li><\\/ul>","type":"textarea","value":"InlineTitle,cssClass1|InlineTitle2,cssClass2","default":"InlineTitle,cssClass1|InlineTitle2,cssClass2","desc":""}],"styleFormats_block":[{"label":"Custom Style Formats <b>BLOCK<\\/b><br\\/><br\\/><ul><li>will add css-class to selected block-element<\\/li><li>simple-format only<\\/li><\\/ul>","type":"textarea","value":"BlockTitle,cssClass3|BlockTitle2,cssClass4","default":"BlockTitle,cssClass3|BlockTitle2,cssClass4","desc":""}],"customParams":[{"label":"Custom Parameters<br\\/><b>(Be careful or leave empty!)<\\/b>","type":"textarea","value":"","default":"","desc":""}],"entityEncoding":[{"label":"Entity Encoding","type":"list","value":"named","options":"named,numeric,raw","default":"named","desc":""}],"entities":[{"label":"Entities","type":"text","value":"","default":"","desc":""}],"pathOptions":[{"label":"Path Options","type":"list","value":"Site config","options":"Site config,Absolute path,Root relative,URL,No convert","default":"Site config","desc":""}],"resizing":[{"label":"Advanced Resizing","type":"list","value":"false","options":"true,false","default":"false","desc":""}],"disabledButtons":[{"label":"Disabled Buttons","type":"text","value":"","default":"","desc":""}],"webTheme":[{"label":"Web Theme","type":"test","value":"webuser","default":"webuser","desc":""}],"webPlugins":[{"label":"Web Plugins","type":"text","value":"","default":"","desc":""}],"webButtons1":[{"label":"Web Buttons 1","type":"text","value":"bold italic underline strikethrough removeformat alignleft aligncenter alignright","default":"bold italic underline strikethrough removeformat alignleft aligncenter alignright","desc":""}],"webButtons2":[{"label":"Web Buttons 2","type":"text","value":"link unlink image undo redo","default":"link unlink image undo redo","desc":""}],"webButtons3":[{"label":"Web Buttons 3","type":"text","value":"","default":"","desc":""}],"webButtons4":[{"label":"Web Buttons 4","type":"text","value":"","default":"","desc":""}],"webAlign":[{"label":"Web Toolbar Alignment","type":"list","value":"ltr","options":"ltr,rtl","default":"ltr","desc":""}],"width":[{"label":"Width","type":"text","value":"100%","default":"100%","desc":""}],"height":[{"label":"Height","type":"text","value":"400px","default":"400px","desc":""}],"introtextRte":[{"label":"<b>Introtext RTE<\\/b><br\\/>add richtext-features to \\"introtext\\"","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}],"inlineMode":[{"label":"<b>Inline-Mode<\\/b>","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}],"inlineTheme":[{"label":"<b>Inline-Mode<\\/b><br\\/>Theme","type":"text","value":"inline","default":"inline","desc":""}],"browser_spellcheck":[{"label":"<b>Browser Spellcheck<\\/b><br\\/>At least one dictionary must be installed inside your browser","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}],"paste_as_text":[{"label":"<b>Force Paste as Text<\\/b>","type":"list","value":"disabled","options":"enabled,disabled","default":"disabled","desc":""}]}', 0, '', 1686312453, 1686312453),
-	(8, 'ClientSettings', '<strong>2.2.0</strong> Creates menu item for user module ClientSettings', 0, 1, 0, '\n\nif ($modx->event->name == \'OnManagerMenuPrerender\') {\n    require_once MODX_BASE_PATH . \'assets/modules/clientsettings/core/src/ClientSettings.php\';\n\n    $cs   = new ClientSettings($params);\n    $mid  = $cs->getModuleId();\n    $lang = $cs->loadLang();\n    $tabs = $cs->loadStructure();\n\n    if (!empty($tabs)) {\n        $menuparams = [\'client_settings\', \'main\', \'<i class="fa fa-cog"></i>\' . $lang[\'cs.module_title\'], \'index.php?a=112&id=\' . $mid . \'&type=default\', $lang[\'cs.module_title\'], \'\', \'\', \'main\', 0, 100, \'\'];\n\n        if (count($tabs) > 1) {\n            $menuparams[3] = \'javscript:;\';\n            $menuparams[5] = \'return false;\';\n            $sort = 0;\n\n            $params[\'menu\'][\'client_settings_main\'] = [\'client_settings_main\', \'client_settings\', \'<i class="fa fa-cog"></i>\' . $lang[\'cs.module_title\'], \'index.php?a=112&id=\' . $mid . \'&type=default\', $lang[\'cs.module_title\'], \'\', \'\', \'main\', 0, $sort, \'\'];\n\n            foreach ($tabs as $alias => $item) {\n                if ($alias != \'default\') {\n                    $params[\'menu\'][\'client_settings_\' . $alias] = [\'client_settings_\' . $alias, \'client_settings\', \'<i class="fa \' . (isset($item[\'menu\'][\'icon\']) ? $item[\'menu\'][\'icon\'] : \'fa-cog\') . \'"></i>\' . $item[\'menu\'][\'caption\'], \'index.php?a=112&id=\' . $mid . \'&type=\' . $alias, $item[\'menu\'][\'caption\'], \'\', \'\', \'main\', 0, $sort += 10, \'\'];\n                }\n            }\n        }\n\n        $params[\'menu\'][\'client_settings\'] = $menuparams;\n        $modx->event->output(serialize($params[\'menu\']));\n    }\n\n    return;\n}\n\n', 0, '', 0, 'clsee234523g354f542t5t', 1686312458, 1686312458),
-	(10, 'PageBuilder', '<strong>1.3.16</strong> Creates form for manage content sections', 0, 1, 0, 'include_once MODX_BASE_PATH . \'assets/plugins/pagebuilder/pagebuilder.php\';\r\n\r\n$e = &$modx->event;\r\n\r\nswitch ($e->name) {\r\n    case \'OnWebPageInit\':\r\n    case \'OnManagerPageInit\': {\r\n        $modx->db->query("DELETE FROM " . $modx->getFullTableName(\'site_plugin_events\') . "\r\n            WHERE pluginid IN (\r\n               SELECT id\r\n               FROM " . $modx->getFullTableName(\'site_plugins\') . "\r\n               WHERE name = \'" . $e->activePlugin . "\'\r\n               AND disabled = 0\r\n            )\r\n            AND evtid IN (\r\n               SELECT id\r\n               FROM " . $modx->getFullTableName(\'system_eventnames\') . "\r\n               WHERE name IN (\'OnWebPageInit\', \'OnManagerPageInit\')\r\n            )");\r\n\r\n        $modx->clearCache(\'full\');\r\n\r\n        (new PageBuilder($modx))->install();\r\n\r\n        return;\r\n    }\r\n\r\n    case \'OnDocFormRender\': {\r\n        $e->output((new PageBuilder($modx))->renderForm());\r\n        return;\r\n    }\r\n\r\n    case \'OnDocFormSave\': {\r\n        (new PageBuilder($modx))->save();\r\n        return;\r\n    }\r\n\r\n    case \'OnBeforeEmptyTrash\': {\r\n        (new PageBuilder($modx))->delete();\r\n        return;\r\n    }\r\n\r\n    case \'OnDocDuplicate\': {\r\n        (new PageBuilder($modx))->duplicate();\r\n        return;\r\n    }\r\n}\r\n\r\n\r\n', 0, '{\r\n  "tabName": [\r\n    {\r\n      "label": "Tab name",\r\n      "type": "text",\r\n      "value": "Конструктор страниц",\r\n      "default": "Page Builder",\r\n      "desc": ""\r\n    }\r\n  ],\r\n  "addType": [\r\n    {\r\n      "label": "Add type",\r\n      "type": "menu",\r\n      "value": "images",\r\n      "options": "dropdown,icons,images",\r\n      "default": "dropdown",\r\n      "desc": ""\r\n    }\r\n  ],\r\n  "placement": [\r\n    {\r\n      "label": "Placement",\r\n      "type": "menu",\r\n      "value": "content",\r\n      "options": "content,tab",\r\n      "default": "tab",\r\n      "desc": ""\r\n    }\r\n  ],\r\n  "order": [\r\n    {\r\n      "label": "Default container ordering",\r\n      "type": "text",\r\n      "value": "0",\r\n      "default": "0",\r\n      "desc": ""\r\n    }\r\n  ]\r\n}', 0, '', 1705491637, 1705492543),
-	(11, 'templatesEdit 3', '<strong>3.1.10</strong> Кастомизация полей при редактировании документов', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/templatesedit/plugin.templatesedit.php\';\n', 0, '{"showTvImage":[{"label":"Show TV thumbnail","type":"list","value":"no","options":"yes,no","default":"no","desc":""}],"showTvName":[{"label":"Show TV titles","type":"list","value":"no","options":"yes,no","default":"no","desc":""}],"excludeTvCategory":[{"label":"Exclude TV from categories","type":"text","value":"","default":"","desc":""}]}', 0, '', 1705585947, 1705585947);
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_plugin_events` (
-  `pluginid` int(11) NOT NULL,
-  `evtid` int(11) NOT NULL DEFAULT 0,
-  `priority` int(11) NOT NULL DEFAULT 0 COMMENT 'determines plugin run order',
-  PRIMARY KEY (`pluginid`,`evtid`)
+  `editedon` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_plugin_events` (`pluginid`, `evtid`, `priority`) VALUES
-	(1, 83, 0),
-	(2, 39, 0),
-	(2, 45, 0),
-	(2, 89, 0),
-	(2, 97, 0),
-	(2, 99, 0),
-	(2, 106, 0),
-	(2, 111, 0),
-	(2, 115, 0),
-	(3, 83, 1),
-	(4, 108, 0),
-	(5, 83, 2),
-	(5, 91, 0),
-	(5, 102, 0),
-	(6, 91, 1),
-	(6, 117, 0),
-	(6, 123, 0),
-	(6, 125, 0),
-	(6, 128, 0),
-	(7, 61, 0),
-	(7, 64, 0),
-	(7, 65, 0),
-	(7, 93, 0),
-	(7, 99, 1),
-	(7, 100, 0),
-	(7, 129, 0),
-	(8, 74, 0),
-	(10, 9, 0),
-	(10, 42, 0),
-	(10, 45, 1),
-	(10, 46, 0),
-	(11, 45, 2),
-	(11, 46, 1),
-	(11, 47, 0),
-	(11, 109, 0),
-	(11, 111, 1),
-	(11, 112, 0);
+--
+-- Дамп данных таблицы `jdz6_site_plugins`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_snippets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_plugins` (`id`, `name`, `description`, `editor_type`, `category`, `cache_type`, `plugincode`, `locked`, `properties`, `disabled`, `moduleguid`, `createdon`, `editedon`) VALUES
+(1, 'AboutEvoWidget', '<strong>1.0.0</strong> displays useful links at the dashboardn', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/aboutevo/plugin.aboutevo.php\';\r\n', 0, '', 0, '', 1686310760, 1686310760),
+(2, 'CodeMirror', '<strong>1.7</strong> JavaScript library that can be used to create a relatively pleasant editor interface based on CodeMirror 5.33 (released on 21-12-2017)', 0, 1, 0, '\r\n/**\r\n * CodeMirror\r\n *\r\n * JavaScript library that can be used to create a relatively pleasant editor interface based on CodeMirror 5.33 (released on 21-12-2017)\r\n *\r\n * @category    plugin\r\n * @version     1.7\r\n * @license     http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)\r\n * @package     evo\r\n * @internal    @events OnDocFormRender,OnChunkFormRender,OnModFormRender,OnPluginFormRender,OnSnipFormRender,OnTempFormRender,OnRichTextEditorInit,OnTVFormRender\r\n * @internal    @modx_category Manager and Admin\r\n * @internal    @properties &theme=Theme;list;default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light;default &darktheme=Dark Theme;list;default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light;one-dark &fontSize=Font-size;list;10,11,12,13,14,15,16,17,18;14 &lineHeight=Line-height;list;1,1.1,1.2,1.3,1.4,1.5;1.3 &indentUnit=Indent unit;int;4 &tabSize=The width of a tab character;int;4 &lineWrapping=lineWrapping;list;true,false;true &matchBrackets=matchBrackets;list;true,false;true &activeLine=activeLine;list;true,false;false &emmet=emmet;list;true,false;true &search=search;list;true,false;true &indentWithTabs=indentWithTabs;list;true,false;true &undoDepth=undoDepth;int;200 &historyEventDelay=historyEventDelay;int;1250\r\n * @internal    @installset base\r\n * @reportissues https://github.com/evolution-cms/evolution/issues/\r\n * @documentation Official docs https://codemirror.net/doc/manual.html\r\n * @author      hansek from http://www.modxcms.cz\r\n * @author      update Mihanik71\r\n * @author      update Deesen\r\n * @author      update 64j\r\n * @lastupdate  08-01-2018\r\n */\r\n\r\n$_CM_BASE = \'assets/plugins/codemirror/\';\r\n\r\n$_CM_URL = MODX_SITE_URL . $_CM_BASE;\r\n\r\nrequire(MODX_BASE_PATH. $_CM_BASE .\'codemirror.plugin.php\');\r\n', 0, '{\"theme\":[{\"label\":\"Theme\",\"type\":\"list\",\"value\":\"default\",\"options\":\"default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light\",\"default\":\"default\",\"desc\":\"\"}],\"darktheme\":[{\"label\":\"Dark Theme\",\"type\":\"list\",\"value\":\"one-dark\",\"options\":\"default,ambiance,blackboard,cobalt,eclipse,elegant,erlang-dark,lesser-dark,midnight,monokai,neat,night,one-dark,rubyblue,solarized,twilight,vibrant-ink,xq-dark,xq-light\",\"default\":\"one-dark\",\"desc\":\"\"}],\"fontSize\":[{\"label\":\"Font-size\",\"type\":\"list\",\"value\":\"14\",\"options\":\"10,11,12,13,14,15,16,17,18\",\"default\":\"14\",\"desc\":\"\"}],\"lineHeight\":[{\"label\":\"Line-height\",\"type\":\"list\",\"value\":\"1.3\",\"options\":\"1,1.1,1.2,1.3,1.4,1.5\",\"default\":\"1.3\",\"desc\":\"\"}],\"indentUnit\":[{\"label\":\"Indent unit\",\"type\":\"int\",\"value\":\"4\",\"default\":\"4\",\"desc\":\"\"}],\"tabSize\":[{\"label\":\"The width of a tab character\",\"type\":\"int\",\"value\":\"4\",\"default\":\"4\",\"desc\":\"\"}],\"lineWrapping\":[{\"label\":\"lineWrapping\",\"type\":\"list\",\"value\":\"true\",\"options\":\"true,false\",\"default\":\"true\",\"desc\":\"\"}],\"matchBrackets\":[{\"label\":\"matchBrackets\",\"type\":\"list\",\"value\":\"true\",\"options\":\"true,false\",\"default\":\"true\",\"desc\":\"\"}],\"activeLine\":[{\"label\":\"activeLine\",\"type\":\"list\",\"value\":\"false\",\"options\":\"true,false\",\"default\":\"false\",\"desc\":\"\"}],\"emmet\":[{\"label\":\"emmet\",\"type\":\"list\",\"value\":\"true\",\"options\":\"true,false\",\"default\":\"true\",\"desc\":\"\"}],\"search\":[{\"label\":\"search\",\"type\":\"list\",\"value\":\"true\",\"options\":\"true,false\",\"default\":\"true\",\"desc\":\"\"}],\"indentWithTabs\":[{\"label\":\"indentWithTabs\",\"type\":\"list\",\"value\":\"true\",\"options\":\"true,false\",\"default\":\"true\",\"desc\":\"\"}],\"undoDepth\":[{\"label\":\"undoDepth\",\"type\":\"int\",\"value\":\"200\",\"default\":\"200\",\"desc\":\"\"}],\"historyEventDelay\":[{\"label\":\"historyEventDelay\",\"type\":\"int\",\"value\":\"1250\",\"default\":\"1250\",\"desc\":\"\"}]}', 0, '', 1686310760, 1686310760),
+(3, 'OutdatedExtrasCheck', '<strong>1.4.6</strong> Check for Outdated critical extras not compatible with EVO 1.4.6', 0, 1, 0, '/**\r\n * OutdatedExtrasCheck\r\n *\r\n * Check for Outdated critical extras not compatible with EVO 1.4.6\r\n *\r\n * @category	plugin\r\n * @version     1.4.6\r\n * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)\r\n * @package     evo\r\n * @author      Author: Nicola Lambathakis\r\n * @internal    @events OnManagerWelcomeHome\r\n * @internal    @properties &wdgVisibility=Show widget for:;menu;All,AdminOnly,AdminExcluded,ThisRoleOnly,ThisUserOnly;AdminOnly &ThisRole=Run only for this role:;string;;;(role id) &ThisUser=Run only for this user:;string;;;(username)\r\n * @internal    @modx_category Manager and Admin\r\n * @internal    @installset base\r\n * @internal    @disabled 0\r\n */\r\n\r\nrequire MODX_BASE_PATH . \'assets/plugins/extrascheck/OutdatedExtrasCheck.plugin.php\';\r\n', 0, '{\"wdgVisibility\":[{\"label\":\"Show widget for:\",\"type\":\"menu\",\"value\":\"AdminOnly\",\"options\":\"All,AdminOnly,AdminExcluded,ThisRoleOnly,ThisUserOnly\",\"default\":\"AdminOnly\",\"desc\":\"\"}],\"ThisRole\":[{\"label\":\"Run only for this role:\",\"type\":\"string\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"ThisUser\":[{\"label\":\"Run only for this user:\",\"type\":\"string\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}]}', 0, '', 1686310761, 1686310761),
+(4, 'TransAlias', '<strong>1.0.4</strong> Human readible URL translation supporting multiple languages and overrides', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/transalias/plugin.transalias.php\';', 0, '{\"table_name\":[{\"label\":\"Trans table\",\"type\":\"list\",\"value\":\"russian\",\"options\":\"common,russian,dutch,german,czech,utf8,utf8lowercase\",\"default\":\"russian\",\"desc\":\"\"}],\"char_restrict\":[{\"label\":\"Restrict alias to\",\"type\":\"list\",\"value\":\"lowercase alphanumeric\",\"options\":\"lowercase alphanumeric,alphanumeric,legal characters\",\"default\":\"lowercase alphanumeric\",\"desc\":\"\"}],\"remove_periods\":[{\"label\":\"Remove Periods\",\"type\":\"list\",\"value\":\"No\",\"options\":\"Yes,No\",\"default\":\"No\",\"desc\":\"\"}],\"word_separator\":[{\"label\":\"Word Separator\",\"type\":\"list\",\"value\":\"dash\",\"options\":\"dash,underscore,none\",\"default\":\"dash\",\"desc\":\"\"}],\"override_tv\":[{\"label\":\"Override TV name\",\"type\":\"string\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}]}', 0, '', 1686310761, 1686310761),
+(5, 'Updater', '<strong>0.8.8</strong> show message about outdated CMS version', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/updater/plugin.updater.php\';\r\n', 0, '{\"version\":[{\"label\":\"Version:\",\"type\":\"text\",\"value\":\"evocms-community\\/evolution\",\"default\":\"evocms-community\\/evolution\",\"desc\":\"\"}],\"wdgVisibility\":[{\"label\":\"Show widget for:\",\"type\":\"menu\",\"value\":\"All\",\"options\":\"All,AdminOnly,AdminExcluded,ThisRoleOnly,ThisUserOnly\",\"default\":\"All\",\"desc\":\"\"}],\"ThisRole\":[{\"label\":\"Show only to this role id:\",\"type\":\"string\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"ThisUser\":[{\"label\":\"Show only to this username:\",\"type\":\"string\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"showButton\":[{\"label\":\"Show Update Button:\",\"type\":\"menu\",\"value\":\"AdminOnly\",\"options\":\"show,hide,AdminOnly\",\"default\":\"AdminOnly\",\"desc\":\"\"}],\"type\":[{\"label\":\"Type:\",\"type\":\"menu\",\"value\":\"tags\",\"options\":\"tags,releases,commits\",\"default\":\"tags\",\"desc\":\"\"}],\"branch\":[{\"label\":\"Commit branch:\",\"type\":\"text\",\"value\":\"develop\",\"default\":\"develop\",\"desc\":\"\"}],\"stableOnly\":[{\"label\":\"Offer upgrade to stable version only:\",\"type\":\"list\",\"value\":\"true\",\"options\":\"true,false\",\"default\":\"true\",\"desc\":\"\"}]}', 0, '', 1686310761, 1686310761),
+(6, 'userHelper', '<strong>1.19.10</strong> addition to FormLister', 0, 2, 0, 'require MODX_BASE_PATH.\'assets/snippets/FormLister/plugin.userHelper.php\';\n', 0, '{\"model\":[{\"label\":\"Model\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"logoutKey\":[{\"label\":\"Request key\",\"type\":\"text\",\"value\":\"logout\",\"default\":\"logout\",\"desc\":\"\"}],\"cookieName\":[{\"label\":\"Cookie Name\",\"type\":\"text\",\"value\":\"WebLoginPE\",\"default\":\"WebLoginPE\",\"desc\":\"\"}],\"cookieLifetime\":[{\"label\":\"Cookie Lifetime, seconds\",\"type\":\"text\",\"value\":\"157680000\",\"default\":\"157680000\",\"desc\":\"\"}],\"maxFails\":[{\"label\":\"Max failed logins\",\"type\":\"text\",\"value\":\"3\",\"default\":\"3\",\"desc\":\"\"}],\"blockTime\":[{\"label\":\"Block for, seconds\",\"type\":\"text\",\"value\":\"3600\",\"default\":\"3600\",\"desc\":\"\"}],\"trackWebUserActivity\":[{\"label\":\"Track web user activity\",\"type\":\"list\",\"value\":\"No\",\"options\":\"No,Yes\",\"default\":\"No\",\"desc\":\"\"}]}', 1, '', 1686312437, 1686312437),
+(7, 'TinyMCE4', '<strong>4.9.11</strong> Javascript rich text editor', 0, 1, 0, 'if (!defined(\'MODX_BASE_PATH\')) { die(\'What are you doing? Get out of here!\'); }\n\nrequire(MODX_BASE_PATH.\"assets/plugins/tinymce4/plugin.tinymce.inc.php\");', 0, '{\"styleFormats\":[{\"label\":\"Custom Style Formats <b>RAW<\\/b><br\\/><br\\/><ul><li>leave empty to use below block\\/inline formats<\\/li><li>allows simple-format: <i>Title,cssClass|Title2,cssClass2<\\/i><\\/li><li>Also accepts full JSON-config as per TinyMCE4 docs \\/ configure \\/ content-formating \\/ style_formats<\\/li><\\/ul>\",\"type\":\"textarea\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"styleFormats_inline\":[{\"label\":\"Custom Style Formats <b>INLINE<\\/b><br\\/><br\\/><ul><li>will wrap selected text with span-tag + css-class<\\/li><li>simple-format only<\\/li><\\/ul>\",\"type\":\"textarea\",\"value\":\"InlineTitle,cssClass1|InlineTitle2,cssClass2\",\"default\":\"InlineTitle,cssClass1|InlineTitle2,cssClass2\",\"desc\":\"\"}],\"styleFormats_block\":[{\"label\":\"Custom Style Formats <b>BLOCK<\\/b><br\\/><br\\/><ul><li>will add css-class to selected block-element<\\/li><li>simple-format only<\\/li><\\/ul>\",\"type\":\"textarea\",\"value\":\"BlockTitle,cssClass3|BlockTitle2,cssClass4\",\"default\":\"BlockTitle,cssClass3|BlockTitle2,cssClass4\",\"desc\":\"\"}],\"customParams\":[{\"label\":\"Custom Parameters<br\\/><b>(Be careful or leave empty!)<\\/b>\",\"type\":\"textarea\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"entityEncoding\":[{\"label\":\"Entity Encoding\",\"type\":\"list\",\"value\":\"named\",\"options\":\"named,numeric,raw\",\"default\":\"named\",\"desc\":\"\"}],\"entities\":[{\"label\":\"Entities\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"pathOptions\":[{\"label\":\"Path Options\",\"type\":\"list\",\"value\":\"Site config\",\"options\":\"Site config,Absolute path,Root relative,URL,No convert\",\"default\":\"Site config\",\"desc\":\"\"}],\"resizing\":[{\"label\":\"Advanced Resizing\",\"type\":\"list\",\"value\":\"false\",\"options\":\"true,false\",\"default\":\"false\",\"desc\":\"\"}],\"disabledButtons\":[{\"label\":\"Disabled Buttons\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"webTheme\":[{\"label\":\"Web Theme\",\"type\":\"test\",\"value\":\"webuser\",\"default\":\"webuser\",\"desc\":\"\"}],\"webPlugins\":[{\"label\":\"Web Plugins\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"webButtons1\":[{\"label\":\"Web Buttons 1\",\"type\":\"text\",\"value\":\"bold italic underline strikethrough removeformat alignleft aligncenter alignright\",\"default\":\"bold italic underline strikethrough removeformat alignleft aligncenter alignright\",\"desc\":\"\"}],\"webButtons2\":[{\"label\":\"Web Buttons 2\",\"type\":\"text\",\"value\":\"link unlink image undo redo\",\"default\":\"link unlink image undo redo\",\"desc\":\"\"}],\"webButtons3\":[{\"label\":\"Web Buttons 3\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"webButtons4\":[{\"label\":\"Web Buttons 4\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}],\"webAlign\":[{\"label\":\"Web Toolbar Alignment\",\"type\":\"list\",\"value\":\"ltr\",\"options\":\"ltr,rtl\",\"default\":\"ltr\",\"desc\":\"\"}],\"width\":[{\"label\":\"Width\",\"type\":\"text\",\"value\":\"100%\",\"default\":\"100%\",\"desc\":\"\"}],\"height\":[{\"label\":\"Height\",\"type\":\"text\",\"value\":\"400px\",\"default\":\"400px\",\"desc\":\"\"}],\"introtextRte\":[{\"label\":\"<b>Introtext RTE<\\/b><br\\/>add richtext-features to \\\"introtext\\\"\",\"type\":\"list\",\"value\":\"disabled\",\"options\":\"enabled,disabled\",\"default\":\"disabled\",\"desc\":\"\"}],\"inlineMode\":[{\"label\":\"<b>Inline-Mode<\\/b>\",\"type\":\"list\",\"value\":\"disabled\",\"options\":\"enabled,disabled\",\"default\":\"disabled\",\"desc\":\"\"}],\"inlineTheme\":[{\"label\":\"<b>Inline-Mode<\\/b><br\\/>Theme\",\"type\":\"text\",\"value\":\"inline\",\"default\":\"inline\",\"desc\":\"\"}],\"browser_spellcheck\":[{\"label\":\"<b>Browser Spellcheck<\\/b><br\\/>At least one dictionary must be installed inside your browser\",\"type\":\"list\",\"value\":\"disabled\",\"options\":\"enabled,disabled\",\"default\":\"disabled\",\"desc\":\"\"}],\"paste_as_text\":[{\"label\":\"<b>Force Paste as Text<\\/b>\",\"type\":\"list\",\"value\":\"disabled\",\"options\":\"enabled,disabled\",\"default\":\"disabled\",\"desc\":\"\"}]}', 0, '', 1686312453, 1686312453),
+(8, 'ClientSettings', '<strong>2.2.0</strong> Creates menu item for user module ClientSettings', 0, 1, 0, '\n\nif ($modx->event->name == \'OnManagerMenuPrerender\') {\n    require_once MODX_BASE_PATH . \'assets/modules/clientsettings/core/src/ClientSettings.php\';\n\n    $cs   = new ClientSettings($params);\n    $mid  = $cs->getModuleId();\n    $lang = $cs->loadLang();\n    $tabs = $cs->loadStructure();\n\n    if (!empty($tabs)) {\n        $menuparams = [\'client_settings\', \'main\', \'<i class=\"fa fa-cog\"></i>\' . $lang[\'cs.module_title\'], \'index.php?a=112&id=\' . $mid . \'&type=default\', $lang[\'cs.module_title\'], \'\', \'\', \'main\', 0, 100, \'\'];\n\n        if (count($tabs) > 1) {\n            $menuparams[3] = \'javscript:;\';\n            $menuparams[5] = \'return false;\';\n            $sort = 0;\n\n            $params[\'menu\'][\'client_settings_main\'] = [\'client_settings_main\', \'client_settings\', \'<i class=\"fa fa-cog\"></i>\' . $lang[\'cs.module_title\'], \'index.php?a=112&id=\' . $mid . \'&type=default\', $lang[\'cs.module_title\'], \'\', \'\', \'main\', 0, $sort, \'\'];\n\n            foreach ($tabs as $alias => $item) {\n                if ($alias != \'default\') {\n                    $params[\'menu\'][\'client_settings_\' . $alias] = [\'client_settings_\' . $alias, \'client_settings\', \'<i class=\"fa \' . (isset($item[\'menu\'][\'icon\']) ? $item[\'menu\'][\'icon\'] : \'fa-cog\') . \'\"></i>\' . $item[\'menu\'][\'caption\'], \'index.php?a=112&id=\' . $mid . \'&type=\' . $alias, $item[\'menu\'][\'caption\'], \'\', \'\', \'main\', 0, $sort += 10, \'\'];\n                }\n            }\n        }\n\n        $params[\'menu\'][\'client_settings\'] = $menuparams;\n        $modx->event->output(serialize($params[\'menu\']));\n    }\n\n    return;\n}\n\n', 0, '', 0, 'clsee234523g354f542t5t', 1686312458, 1686312458),
+(10, 'PageBuilder', '<strong>1.3.16</strong> Creates form for manage content sections', 0, 1, 0, 'include_once MODX_BASE_PATH . \'assets/plugins/pagebuilder/pagebuilder.php\';\r\n\r\n$e = &$modx->event;\r\n\r\nswitch ($e->name) {\r\n    case \'OnWebPageInit\':\r\n    case \'OnManagerPageInit\': {\r\n        $modx->db->query(\"DELETE FROM \" . $modx->getFullTableName(\'site_plugin_events\') . \"\r\n            WHERE pluginid IN (\r\n               SELECT id\r\n               FROM \" . $modx->getFullTableName(\'site_plugins\') . \"\r\n               WHERE name = \'\" . $e->activePlugin . \"\'\r\n               AND disabled = 0\r\n            )\r\n            AND evtid IN (\r\n               SELECT id\r\n               FROM \" . $modx->getFullTableName(\'system_eventnames\') . \"\r\n               WHERE name IN (\'OnWebPageInit\', \'OnManagerPageInit\')\r\n            )\");\r\n\r\n        $modx->clearCache(\'full\');\r\n\r\n        (new PageBuilder($modx))->install();\r\n\r\n        return;\r\n    }\r\n\r\n    case \'OnDocFormRender\': {\r\n        $e->output((new PageBuilder($modx))->renderForm());\r\n        return;\r\n    }\r\n\r\n    case \'OnDocFormSave\': {\r\n        (new PageBuilder($modx))->save();\r\n        return;\r\n    }\r\n\r\n    case \'OnBeforeEmptyTrash\': {\r\n        (new PageBuilder($modx))->delete();\r\n        return;\r\n    }\r\n\r\n    case \'OnDocDuplicate\': {\r\n        (new PageBuilder($modx))->duplicate();\r\n        return;\r\n    }\r\n}\r\n\r\n\r\n', 0, '{\r\n  \"tabName\": [\r\n    {\r\n      \"label\": \"Tab name\",\r\n      \"type\": \"text\",\r\n      \"value\": \"Конструктор страниц\",\r\n      \"default\": \"Page Builder\",\r\n      \"desc\": \"\"\r\n    }\r\n  ],\r\n  \"addType\": [\r\n    {\r\n      \"label\": \"Add type\",\r\n      \"type\": \"menu\",\r\n      \"value\": \"images\",\r\n      \"options\": \"dropdown,icons,images\",\r\n      \"default\": \"dropdown\",\r\n      \"desc\": \"\"\r\n    }\r\n  ],\r\n  \"placement\": [\r\n    {\r\n      \"label\": \"Placement\",\r\n      \"type\": \"menu\",\r\n      \"value\": \"content\",\r\n      \"options\": \"content,tab\",\r\n      \"default\": \"tab\",\r\n      \"desc\": \"\"\r\n    }\r\n  ],\r\n  \"order\": [\r\n    {\r\n      \"label\": \"Default container ordering\",\r\n      \"type\": \"text\",\r\n      \"value\": \"0\",\r\n      \"default\": \"0\",\r\n      \"desc\": \"\"\r\n    }\r\n  ]\r\n}', 0, '', 1705491637, 1705492543),
+(11, 'templatesEdit 3', '<strong>3.1.10</strong> Кастомизация полей при редактировании документов', 0, 1, 0, 'require MODX_BASE_PATH.\'assets/plugins/templatesedit/plugin.templatesedit.php\';\n', 0, '{\"showTvImage\":[{\"label\":\"Show TV thumbnail\",\"type\":\"list\",\"value\":\"no\",\"options\":\"yes,no\",\"default\":\"no\",\"desc\":\"\"}],\"showTvName\":[{\"label\":\"Show TV titles\",\"type\":\"list\",\"value\":\"no\",\"options\":\"yes,no\",\"default\":\"no\",\"desc\":\"\"}],\"excludeTvCategory\":[{\"label\":\"Exclude TV from categories\",\"type\":\"text\",\"value\":\"\",\"default\":\"\",\"desc\":\"\"}]}', 0, '', 1705585947, 1705585947);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_plugin_events`
+--
+
+CREATE TABLE `jdz6_site_plugin_events` (
+  `pluginid` int(11) NOT NULL,
+  `evtid` int(11) NOT NULL DEFAULT 0,
+  `priority` int(11) NOT NULL DEFAULT 0 COMMENT 'determines plugin run order'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `jdz6_site_plugin_events`
+--
+
+INSERT INTO `jdz6_site_plugin_events` (`pluginid`, `evtid`, `priority`) VALUES
+(1, 83, 0),
+(2, 39, 0),
+(2, 45, 0),
+(2, 89, 0),
+(2, 97, 0),
+(2, 99, 0),
+(2, 106, 0),
+(2, 111, 0),
+(2, 115, 0),
+(3, 83, 1),
+(4, 108, 0),
+(5, 83, 2),
+(5, 91, 0),
+(5, 102, 0),
+(6, 91, 1),
+(6, 117, 0),
+(6, 123, 0),
+(6, 125, 0),
+(6, 128, 0),
+(7, 61, 0),
+(7, 64, 0),
+(7, 65, 0),
+(7, 93, 0),
+(7, 99, 1),
+(7, 100, 0),
+(7, 129, 0),
+(8, 74, 0),
+(10, 9, 0),
+(10, 42, 0),
+(10, 45, 1),
+(10, 46, 0),
+(11, 45, 2),
+(11, 46, 1),
+(11, 47, 0),
+(11, 109, 0),
+(11, 111, 1),
+(11, 112, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_snippets`
+--
+
+CREATE TABLE `jdz6_site_snippets` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Snippet',
   `editor_type` int(11) NOT NULL DEFAULT 0 COMMENT '0-plain text,1-rich text,2-code editor',
@@ -1573,31 +952,40 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_snippets` (
   `moduleguid` varchar(32) NOT NULL DEFAULT '' COMMENT 'GUID of module from which to import shared parameters',
   `createdon` int(11) NOT NULL DEFAULT 0,
   `editedon` int(11) NOT NULL DEFAULT 0,
-  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the snippet',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+  `disabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Disables the snippet'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_snippets` (`id`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `moduleguid`, `createdon`, `editedon`, `disabled`) VALUES
-	(1, 'DDocInfo', '<strong>1</strong> DDocInfo', 0, 2, 0, '$id = isset($id) ? (int)$id : $modx->documentObject[\'id\'];\n$field = isset($field) ? (string)$field : \'id\';\nif($field == \'id\'){\n    $out = $id;\n}else{\n    if($modx->documentObject[\'id\'] == $id){\n        $out = isset($modx->documentObject[$field]) ? $modx->documentObject[$field] : \'\';\n        if(is_array($out)){\n           $out = isset($out[1]) ? $out[1] : \'\';\n        }\n    }else{\n        $out = $modx->doc->edit($id)->get($field);\n    }\n}\nreturn (string)$out;', 0, '', '', 0, 0, 0),
-	(2, 'DLBeforeAfter', '<strong>1</strong> Navigation between post and upcoming events relative to the current date.', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLBeforeAfter.php\';', 0, '', '', 0, 0, 0),
-	(3, 'DLCrumbs', '<strong>1.2</strong> DLCrumbs', 0, 3, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLCrumbs.php\';\n', 0, '', '', 0, 0, 0),
-	(4, 'DLGlossary', '<strong>0.1</strong> Filtering documents by the first character', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLGlossary.php\';', 0, '', '', 0, 0, 0),
-	(5, 'DLMenu', '<strong>1.4.0</strong> Snippet to build menu with DocLister', 0, 3, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLMenu.php\';\n', 0, '', '', 0, 0, 0),
-	(6, 'DLPrevNext', '<strong>1.1</strong> DLPrevNext', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLPrevNext.php\';', 0, '', '', 0, 0, 0),
-	(7, 'DLReflect', '<strong>2</strong> Building a list of dates to filter documents', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLReflect.php\';', 0, '', '', 0, 0, 0),
-	(8, 'DLReflectFilter', '<strong>2</strong> Filtering documents by dates provided by DLReflect snippet', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLReflectFilter.php\';', 0, '', '', 0, 0, 0),
-	(9, 'DLSitemap', '<strong>1.0.2</strong> Snippet to build XML sitemap', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLSitemap.php\';\n', 0, '', '', 0, 0, 0),
-	(10, 'DLTemplate', '<strong>1</strong> DLTemplate', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLTemplate.php\';', 0, '', '', 0, 0, 0),
-	(11, 'DLValuelist', '<strong>1.1</strong> DLValuelist', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLValuelist.php\';', 0, '', '', 0, 0, 0),
-	(12, 'DocLister', '<strong>2.7.5</strong> Snippet to display the information of the tables by the description rules. The main goal - replacing Ditto and CatalogView', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DocLister.php\';\n', 0, '', '', 0, 0, 0),
-	(13, 'summary', '<strong>2.0.2</strong> Truncates the string to the specified length', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/summary/snippet.summary.php\';', 0, '', '', 0, 0, 0),
-	(14, 'FormLister', '<strong>1.19.10</strong> Form processor', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/FormLister/snippet.FormLister.php\';\n', 0, '', '', 0, 0, 0),
-	(15, 'multiTV', '<strong>2.0.16</strong> Custom Template Variabe containing a sortable multi item list or a datatable', 0, 2, 0, 'return require MODX_BASE_PATH . \'assets/tvs/multitv/multitv.snippet.php\';\n', 0, '', '', 0, 0, 0),
-	(16, 'phpthumb', '<strong>1.4.4</strong> PHPThumb creates thumbnails and altered images on the fly and caches them', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/phpthumb/snippet.phpthumb.php\';\r\n', 0, '', '', 0, 0, 0),
-	(17, 'PageBuilder', '<strong>1.3.16</strong> output content sections for current page', 0, 2, 0, 'include_once MODX_BASE_PATH . \'assets/plugins/pagebuilder/pagebuilder.php\';\nreturn (new PageBuilder($modx))->render($params);\n\n', 0, '', '', 0, 0, 0);
+--
+-- Дамп данных таблицы `jdz6_site_snippets`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_templates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_snippets` (`id`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `moduleguid`, `createdon`, `editedon`, `disabled`) VALUES
+(1, 'DDocInfo', '<strong>1</strong> DDocInfo', 0, 2, 0, '$id = isset($id) ? (int)$id : $modx->documentObject[\'id\'];\n$field = isset($field) ? (string)$field : \'id\';\nif($field == \'id\'){\n    $out = $id;\n}else{\n    if($modx->documentObject[\'id\'] == $id){\n        $out = isset($modx->documentObject[$field]) ? $modx->documentObject[$field] : \'\';\n        if(is_array($out)){\n           $out = isset($out[1]) ? $out[1] : \'\';\n        }\n    }else{\n        $out = $modx->doc->edit($id)->get($field);\n    }\n}\nreturn (string)$out;', 0, '', '', 0, 0, 0),
+(2, 'DLBeforeAfter', '<strong>1</strong> Navigation between post and upcoming events relative to the current date.', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLBeforeAfter.php\';', 0, '', '', 0, 0, 0),
+(3, 'DLCrumbs', '<strong>1.2</strong> DLCrumbs', 0, 3, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLCrumbs.php\';\n', 0, '', '', 0, 0, 0),
+(4, 'DLGlossary', '<strong>0.1</strong> Filtering documents by the first character', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLGlossary.php\';', 0, '', '', 0, 0, 0),
+(5, 'DLMenu', '<strong>1.4.0</strong> Snippet to build menu with DocLister', 0, 3, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLMenu.php\';\n', 0, '', '', 0, 0, 0),
+(6, 'DLPrevNext', '<strong>1.1</strong> DLPrevNext', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLPrevNext.php\';', 0, '', '', 0, 0, 0),
+(7, 'DLReflect', '<strong>2</strong> Building a list of dates to filter documents', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLReflect.php\';', 0, '', '', 0, 0, 0),
+(8, 'DLReflectFilter', '<strong>2</strong> Filtering documents by dates provided by DLReflect snippet', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLReflectFilter.php\';', 0, '', '', 0, 0, 0),
+(9, 'DLSitemap', '<strong>1.0.2</strong> Snippet to build XML sitemap', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLSitemap.php\';\n', 0, '', '', 0, 0, 0),
+(10, 'DLTemplate', '<strong>1</strong> DLTemplate', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLTemplate.php\';', 0, '', '', 0, 0, 0),
+(11, 'DLValuelist', '<strong>1.1</strong> DLValuelist', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DLValuelist.php\';', 0, '', '', 0, 0, 0),
+(12, 'DocLister', '<strong>2.7.5</strong> Snippet to display the information of the tables by the description rules. The main goal - replacing Ditto and CatalogView', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/DocLister/snippet.DocLister.php\';\n', 0, '', '', 0, 0, 0),
+(13, 'summary', '<strong>2.0.2</strong> Truncates the string to the specified length', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/summary/snippet.summary.php\';', 0, '', '', 0, 0, 0),
+(14, 'FormLister', '<strong>1.19.10</strong> Form processor', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/FormLister/snippet.FormLister.php\';\n', 0, '', '', 0, 0, 0),
+(15, 'multiTV', '<strong>2.0.16</strong> Custom Template Variabe containing a sortable multi item list or a datatable', 0, 2, 0, 'return require MODX_BASE_PATH . \'assets/tvs/multitv/multitv.snippet.php\';\n', 0, '', '', 0, 0, 0),
+(16, 'phpthumb', '<strong>1.4.4</strong> PHPThumb creates thumbnails and altered images on the fly and caches them', 0, 2, 0, 'return require MODX_BASE_PATH.\'assets/snippets/phpthumb/snippet.phpthumb.php\';\r\n', 0, '', '', 0, 0, 0),
+(17, 'PageBuilder', '<strong>1.3.16</strong> output content sections for current page', 0, 2, 0, 'include_once MODX_BASE_PATH . \'assets/plugins/pagebuilder/pagebuilder.php\';\nreturn (new PageBuilder($modx))->render($params);\n\n', 0, '', '', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_templates`
+--
+
+CREATE TABLE `jdz6_site_templates` (
+  `id` int(11) NOT NULL,
   `templatename` varchar(100) NOT NULL DEFAULT '',
   `templatealias` varchar(100) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Template',
@@ -1609,27 +997,36 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_templates` (
   `locked` tinyint(1) NOT NULL DEFAULT 0,
   `selectable` tinyint(1) NOT NULL DEFAULT 1,
   `createdon` int(11) NOT NULL DEFAULT 0,
-  `editedon` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+  `editedon` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_templates` (`id`, `templatename`, `templatealias`, `description`, `editor_type`, `category`, `icon`, `template_type`, `content`, `locked`, `selectable`, `createdon`, `editedon`) VALUES
-	(1, 'Minimal Template', '', 'Default minimal empty template (content returned only)', 0, 0, '', 0, '[*content*]', 0, 1, 0, 0),
-	(2, 'Главная страница', 'main', 'Стартовая', 0, 4, '', 0, '', 0, 1, 1686313693, 1686832870),
-	(3, 'Каталог товаров', 'catalog', 'Каталог', 0, 4, '', 0, '', 0, 1, 1686832891, 1686832891),
-	(4, 'Раздел каталога', 'catalog_group', 'Раздел в каталоге', 0, 4, '', 0, '', 0, 1, 1686832913, 1686832913),
-	(5, 'Товар', 'catalog_item', 'Один товар', 0, 4, '', 0, '', 0, 1, 1686832930, 1686832930),
-	(6, 'Новости', 'news_all', 'Все новости', 0, 4, '', 0, '', 0, 1, 1686832948, 1686832948),
-	(7, 'Новость', 'news_one', 'Одна новость', 0, 4, '', 0, '', 0, 1, 1686832965, 1686832965),
-	(8, 'Текст', 'textpage', 'Для текстовых страниц', 0, 4, '', 0, '', 0, 1, 1686832981, 1686832981),
-	(9, 'Контакты', 'contacts', 'Контакты', 0, 4, '', 0, '', 0, 1, 1686832996, 1686832996),
-	(10, 'Наши работы', 'portfolio_all', 'Всё портфолио', 0, 4, '', 0, '', 0, 1, 1704876097, 1704876185),
-	(11, 'Работа', 'portfolio_one', 'Одна работа в портфолио', 0, 4, '', 0, '', 0, 1, 1704876126, 1704876197),
-	(12, 'О компании', 'about', '', 0, 4, '', 0, '', 0, 1, 1705491731, 1705491731),
-	(13, 'xmlsitemap', 'xmlsitemap', '', 0, 5, '', 0, '', 0, 1, 1705584509, 1705584509);
+--
+-- Дамп данных таблицы `jdz6_site_templates`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_templates` (`id`, `templatename`, `templatealias`, `description`, `editor_type`, `category`, `icon`, `template_type`, `content`, `locked`, `selectable`, `createdon`, `editedon`) VALUES
+(1, 'Minimal Template', '', 'Default minimal empty template (content returned only)', 0, 0, '', 0, '[*content*]', 0, 1, 0, 0),
+(2, 'Главная страница', 'main', 'Стартовая', 0, 4, '', 0, '', 0, 1, 1686313693, 1686832870),
+(3, 'Каталог товаров', 'catalog', 'Каталог', 0, 4, '', 0, '', 0, 1, 1686832891, 1686832891),
+(4, 'Раздел каталога', 'catalog_group', 'Раздел в каталоге', 0, 4, '', 0, '', 0, 1, 1686832913, 1686832913),
+(5, 'Товар', 'catalog_item', 'Один товар', 0, 4, '', 0, '', 0, 1, 1686832930, 1686832930),
+(6, 'Новости', 'news_all', 'Все новости', 0, 4, '', 0, '', 0, 1, 1686832948, 1686832948),
+(7, 'Новость', 'news_one', 'Одна новость', 0, 4, '', 0, '', 0, 1, 1686832965, 1686832965),
+(8, 'Текст', 'textpage', 'Для текстовых страниц', 0, 4, '', 0, '', 0, 1, 1686832981, 1686832981),
+(9, 'Контакты', 'contacts', 'Контакты', 0, 4, '', 0, '', 0, 1, 1686832996, 1686832996),
+(10, 'Наши работы', 'portfolio_all', 'Всё портфолио', 0, 4, '', 0, '', 0, 1, 1704876097, 1704876185),
+(11, 'Работа', 'portfolio_one', 'Одна работа в портфолио', 0, 4, '', 0, '', 0, 1, 1704876126, 1704876197),
+(12, 'О компании', 'about', '', 0, 4, '', 0, '', 0, 1, 1705491731, 1705491731),
+(13, 'xmlsitemap', 'xmlsitemap', '', 0, 5, '', 0, '', 0, 1, 1705584509, 1705584509);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_tmplvars`
+--
+
+CREATE TABLE `jdz6_site_tmplvars` (
+  `id` int(11) NOT NULL,
   `type` varchar(50) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
   `caption` varchar(80) NOT NULL DEFAULT '',
@@ -1644,532 +1041,585 @@ CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvars` (
   `default_text` text DEFAULT NULL,
   `createdon` int(11) NOT NULL DEFAULT 0,
   `editedon` int(11) NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `indx_rank` (`rank`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
-
-REPLACE INTO `jdz6_site_tmplvars` (`id`, `type`, `name`, `caption`, `description`, `editor_type`, `category`, `locked`, `elements`, `rank`, `display`, `display_params`, `default_text`, `createdon`, `editedon`, `properties`) VALUES
-	(1, 'text', 'metatitle', 'Meta title	', 'Содержимое тега title', 0, 5, 0, '', 0, '', '', '', 1688388991, 1688388991, '[]'),
-	(2, 'text', 'metadescription', 'Meta description', 'Содержимое description', 0, 5, 0, '', 0, '', '', '', 1688388995, 1688389011, '[]'),
-	(3, 'image', 'news_photo', 'Главное фото', 'Главное фото к новости', 0, 6, 0, '', 0, '', '', '', 1688389051, 1688389051, '[]'),
-	(4, 'text', 'item_price', 'Цена', 'Цена товара', 0, 6, 0, '', 0, '', '', '', 1688389097, 1688389097, '[]'),
-	(5, 'image', 'item_photo', 'Фото товара', 'Фото товара', 0, 6, 0, '', 0, '', '', '', 1688389126, 1688389126, '[]'),
-	(6, 'text', 'item_article', 'Артикул', '', 0, 6, 0, '', 0, '', '', '', 1704973890, 1704973890, '[]'),
-	(7, 'image', 'portfolio_mainphoto', 'Главное фото', 'Фото работы', 0, 6, 0, '', 0, '', '', '', 1705061960, 1705061960, '[]'),
-	(8, 'custom_tv:multitv', 'portfolio_photos', 'Дополнительные фотографии', 'Выберите несколько лучших фото работы', 0, 6, 0, '', 0, '', '', '', 1705062013, 1705062013, '[]'),
-	(9, 'text', 'mainpage_header', 'Главный заголовок', 'Самый первый большой заголовок на главной странице', 0, 6, 0, '', 0, '', '', '', 1705400793, 1705400936, '[]'),
-	(10, 'textareamini', 'mainpage_intro', 'Подпись под главным заголовком', 'Текст под большим заголовком', 0, 6, 0, '', 0, '', '', '', 1705400847, 1705400917, '[]'),
-	(11, 'image', 'mainpage_topimage', 'Изображение сверху', 'Расположено на самом верху у большого заголовка', 0, 6, 0, '', 0, '', '', '', 1705400901, 1705400901, '[]'),
-	(12, 'custom_tv:multitv', 'mainpage_servicelist', 'Блок услуг на главной', 'Выберите фотографии и введите тексты для услуг', 0, 6, 0, '', 0, '', '', '', 1705405119, 1705405119, '[]'),
-	(13, 'text', 'contacts_address', 'Адрес', '', 0, 6, 0, '', 0, '', '', '', 1705409393, 1705409393, '[]'),
-	(14, 'textareamini', 'contacts_mapcode', 'Код карты', '', 0, 6, 0, '', 0, '', '', '', 1705409396, 1705409414, '[]'),
-	(15, 'custom_tv:pagebuilder', 'landing', 'Конструктор страницы', '', 0, 6, 0, '', 0, '', '', '', 1705493004, 1705493004, '[]'),
-	(16, 'dropdown', 'sitemap_changefreq', 'Период обновления', '', 0, 5, 0, 'always||hourly||daily||weekly||monthly||yearly||never', 0, '', '', 'weekly', 1705584237, 1705584237, '[]'),
-	(17, 'checkbox', 'sitemap_exclude', 'Отображение в sitemap', '', 0, 5, 0, 'Скрыть==1', 0, '', '', '0', 1705584240, 1705584262, '[]'),
-	(18, 'dropdown', 'sitemap_priority', 'Приоритет страницы', '', 0, 5, 0, '0.1||0.2||0.3||0.4||0.5||0.6||0.7||0.8||0.9||1', 0, '', '', '0.5', 1705584265, 1705584288, '[]');
-
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_access` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tmplvarid` int(11) NOT NULL DEFAULT 0,
-  `documentgroup` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
+  `properties` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Дамп данных таблицы `jdz6_site_tmplvars`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_contentvalues` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_tmplvars` (`id`, `type`, `name`, `caption`, `description`, `editor_type`, `category`, `locked`, `elements`, `rank`, `display`, `display_params`, `default_text`, `createdon`, `editedon`, `properties`) VALUES
+(1, 'text', 'metatitle', 'Meta title	', 'Содержимое тега title', 0, 5, 0, '', 0, '', '', '', 1688388991, 1688388991, '[]'),
+(2, 'text', 'metadescription', 'Meta description', 'Содержимое description', 0, 5, 0, '', 0, '', '', '', 1688388995, 1688389011, '[]'),
+(3, 'image', 'news_photo', 'Главное фото', 'Главное фото к новости', 0, 6, 0, '', 0, '', '', '', 1688389051, 1688389051, '[]'),
+(4, 'text', 'item_price', 'Цена', 'Цена товара', 0, 6, 0, '', 0, '', '', '', 1688389097, 1688389097, '[]'),
+(5, 'image', 'item_photo', 'Фото товара', 'Фото товара', 0, 6, 0, '', 0, '', '', '', 1688389126, 1688389126, '[]'),
+(6, 'text', 'item_article', 'Артикул', '', 0, 6, 0, '', 0, '', '', '', 1704973890, 1704973890, '[]'),
+(7, 'image', 'portfolio_mainphoto', 'Главное фото', 'Фото работы', 0, 6, 0, '', 0, '', '', '', 1705061960, 1705061960, '[]'),
+(8, 'custom_tv:multitv', 'portfolio_photos', 'Дополнительные фотографии', 'Выберите несколько лучших фото работы', 0, 6, 0, '', 0, '', '', '', 1705062013, 1705062013, '[]'),
+(9, 'text', 'mainpage_header', 'Главный заголовок', 'Самый первый большой заголовок на главной странице', 0, 6, 0, '', 0, '', '', '', 1705400793, 1705400936, '[]'),
+(10, 'textareamini', 'mainpage_intro', 'Подпись под главным заголовком', 'Текст под большим заголовком', 0, 6, 0, '', 0, '', '', '', 1705400847, 1705400917, '[]'),
+(11, 'image', 'mainpage_topimage', 'Изображение сверху', 'Расположено на самом верху у большого заголовка', 0, 6, 0, '', 0, '', '', '', 1705400901, 1705400901, '[]'),
+(12, 'custom_tv:multitv', 'mainpage_servicelist', 'Блок услуг на главной', 'Выберите фотографии и введите тексты для услуг', 0, 6, 0, '', 0, '', '', '', 1705405119, 1705405119, '[]'),
+(13, 'text', 'contacts_address', 'Адрес', '', 0, 6, 0, '', 0, '', '', '', 1705409393, 1705409393, '[]'),
+(14, 'textareamini', 'contacts_mapcode', 'Код карты', '', 0, 6, 0, '', 0, '', '', '', 1705409396, 1705409414, '[]'),
+(15, 'custom_tv:pagebuilder', 'landing', 'Конструктор страницы', '', 0, 6, 0, '', 0, '', '', '', 1705493004, 1705493004, '[]'),
+(16, 'dropdown', 'sitemap_changefreq', 'Период обновления', '', 0, 5, 0, 'always||hourly||daily||weekly||monthly||yearly||never', 0, '', '', 'weekly', 1705584237, 1705584237, '[]'),
+(17, 'checkbox', 'sitemap_exclude', 'Отображение в sitemap', '', 0, 5, 0, 'Скрыть==1', 0, '', '', '0', 1705584240, 1705584262, '[]'),
+(18, 'dropdown', 'sitemap_priority', 'Приоритет страницы', '', 0, 5, 0, '0.1||0.2||0.3||0.4||0.5||0.6||0.7||0.8||0.9||1', 0, '', '', '0.5', 1705584265, 1705584288, '[]');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_tmplvar_access`
+--
+
+CREATE TABLE `jdz6_site_tmplvar_access` (
+  `id` int(11) NOT NULL,
+  `tmplvarid` int(11) NOT NULL DEFAULT 0,
+  `documentgroup` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_tmplvar_contentvalues`
+--
+
+CREATE TABLE `jdz6_site_tmplvar_contentvalues` (
+  `id` int(11) NOT NULL,
   `tmplvarid` int(11) NOT NULL DEFAULT 0 COMMENT 'Template Variable id',
   `contentid` int(11) NOT NULL DEFAULT 0 COMMENT 'Site Content Id',
-  `value` mediumtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_tvid_contentid` (`tmplvarid`,`contentid`),
-  KEY `idx_tmplvarid` (`tmplvarid`),
-  KEY `idx_id` (`contentid`),
-  FULLTEXT KEY `content_ft_idx` (`value`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4;
+  `value` mediumtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `value`) VALUES
-	(1, 3, 6, 'assets/images/100-34.jpg'),
-	(6, 1, 15, 'Купить гайку М6 в городе'),
-	(7, 2, 15, 'Гайки М6 в наличии и на заказ, оптовые цены и скидки'),
-	(8, 4, 15, '500'),
-	(9, 5, 15, 'assets/images/d3a3faeb_a39e_46a0_ab36_e7265d918d8b_22eba30d_4dc2_11ed_908e_000c299773cc.png'),
-	(10, 1, 18, 'Купить гайку М8 в городе'),
-	(11, 2, 18, 'Гайки М8 в наличии и на заказ, оптовые цены и скидки'),
-	(12, 4, 18, '800'),
-	(13, 5, 18, 'assets/images/d3a3faeb_a39e_46a0_ab36_e7265d918d8b_22eba30d_4dc2_11ed_908e_000c299773cc.png'),
-	(14, 1, 26, 'Купить гайку М10 в городе'),
-	(15, 2, 26, 'Гайки М10 в наличии и на заказ, оптовые цены и скидки'),
-	(16, 4, 26, '1000'),
-	(17, 5, 26, 'assets/images/d3a3faeb_a39e_46a0_ab36_e7265d918d8b_22eba30d_4dc2_11ed_908e_000c299773cc.png'),
-	(18, 1, 16, 'Купить болт М6 в городе'),
-	(19, 2, 16, 'Болты М6 в наличии и на заказ, оптовые цены и скидки'),
-	(20, 4, 16, '300'),
-	(21, 5, 16, 'assets/images/snimok_138.jpg'),
-	(22, 1, 19, 'Купить болт М8 в городе'),
-	(23, 2, 19, 'Болты М8 в наличии и на заказ, оптовые цены и скидки'),
-	(24, 4, 19, '400'),
-	(25, 5, 19, 'assets/images/snimok_138.jpg'),
-	(26, 1, 27, 'Купить болт М10 в городе'),
-	(27, 2, 27, 'Болты М10 в наличии и на заказ, оптовые цены и скидки'),
-	(28, 4, 27, '700'),
-	(29, 5, 27, 'assets/images/snimok_138.jpg'),
-	(30, 1, 7, 'Мы немного поработали'),
-	(31, 2, 7, 'Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики'),
-	(32, 1, 6, 'Мы открылись'),
-	(33, 2, 6, 'Обеспечим население доступными и качественными болтиками и гаечками'),
-	(34, 1, 8, 'У директора был день рождения'),
-	(35, 2, 8, 'Директор компании выразил свою благодарность всем присутствующим и отметил, что успех его предприятия был бы невозможен без поддержки клиентов и партнеров'),
-	(36, 1, 9, 'У нас выходной'),
-	(37, 2, 9, 'С 31 декабря по 10 января включительно, компания не будет работать.'),
-	(38, 3, 8, 'assets/images/65856_original-1.jpg'),
-	(39, 3, 7, 'assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg'),
-	(40, 3, 9, 'assets/images/1a14ab889878010be3390e9fa667abcb_xl.jpg'),
-	(41, 1, 11, 'Мы закрылись'),
-	(42, 2, 11, 'Компания решила закрыться'),
-	(43, 3, 11, 'assets/images/doc76ncd3jiwpfmb0x3jd6.jpg'),
-	(44, 6, 27, 'Б-10-0001'),
-	(45, 6, 19, 'Б-08-0001'),
-	(46, 6, 16, 'Б-06-0001'),
-	(47, 6, 15, 'Г-06-0001'),
-	(48, 6, 18, 'Г-08-0001'),
-	(49, 6, 26, 'Г-10-0001'),
-	(50, 1, 17, 'Коробка для гаек'),
-	(51, 2, 17, 'Коробка для гаек'),
-	(52, 4, 17, '230'),
-	(53, 5, 17, 'assets/images/ice_screenshot_20191014-140427.jpeg.jpg'),
-	(54, 5, 20, 'assets/images/ice_screenshot_20191014-140427.jpeg.jpg'),
-	(55, 4, 20, '300'),
-	(56, 4, 22, '1000'),
-	(57, 5, 22, 'assets/images/6158809007.jpg'),
-	(58, 4, 21, '998'),
-	(59, 5, 21, 'assets/images/6158809007.jpg'),
-	(60, 7, 24, 'assets/images/doc76ncd3jiwpfmb0x3jd6.jpg'),
-	(61, 8, 24, '{"fieldValue":[{"image":"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg","thumb":""},{"image":"assets/images/65856_original-1.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}'),
-	(62, 7, 25, 'assets/images/1a14ab889878010be3390e9fa667abcb_xl.jpg'),
-	(63, 8, 25, '{"fieldValue":[{"image":"assets/images/ice_screenshot_20191014-140427.jpeg.jpg","thumb":""},{"image":"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg","thumb":""}],"fieldSettings":{"autoincrement":1}}'),
-	(64, 9, 1, 'Сайт компании по продаже болтиков'),
-	(65, 10, 1, 'Продадим вам нужные болтики и гаечки. А если надо, то приедем и прикрутим их куда там надо'),
-	(66, 11, 1, 'assets/images/pinup_girls_057.png'),
-	(67, 12, 1, '{"fieldValue":[{"image":"assets/images/bez-imeni-1.png","thumb":"","title":"Выточим гайки и болтики"},{"image":"assets/images/3549391_640_640.png","thumb":"","title":"Привезем куда скажете"},{"image":"assets/images/b88c0864818c7d2ae28687a0efbedf07-640x857.jpg","thumb":"","title":"Поможем с монтажом"}],"fieldSettings":{"autoincrement":1}}'),
-	(68, 13, 5, 'Адрес: город Вологда, улица Добрых Строителей, строение 5'),
-	(69, 14, 5, '<script type="text/javascript" charset="utf-8" async\r\n                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A65946ea648b913e9a26631d832814832839608dfd97f0d84960c17b4dbf88085&amp;width=100%25&amp;height=300&amp;lang=ru_RU&amp;scroll=true">\r\n </script>'),
-	(70, 15, 4, NULL),
-	(71, 17, 28, '1');
+--
+-- Дамп данных таблицы `jdz6_site_tmplvar_contentvalues`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_site_tmplvar_templates` (
+INSERT INTO `jdz6_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `value`) VALUES
+(1, 3, 6, 'assets/images/100-34.jpg'),
+(6, 1, 15, 'Купить гайку М6 в городе'),
+(7, 2, 15, 'Гайки М6 в наличии и на заказ, оптовые цены и скидки'),
+(8, 4, 15, '500'),
+(9, 5, 15, 'assets/images/d3a3faeb_a39e_46a0_ab36_e7265d918d8b_22eba30d_4dc2_11ed_908e_000c299773cc.png'),
+(10, 1, 18, 'Купить гайку М8 в городе'),
+(11, 2, 18, 'Гайки М8 в наличии и на заказ, оптовые цены и скидки'),
+(12, 4, 18, '800'),
+(13, 5, 18, 'assets/images/d3a3faeb_a39e_46a0_ab36_e7265d918d8b_22eba30d_4dc2_11ed_908e_000c299773cc.png'),
+(14, 1, 26, 'Купить гайку М10 в городе'),
+(15, 2, 26, 'Гайки М10 в наличии и на заказ, оптовые цены и скидки'),
+(16, 4, 26, '1000'),
+(17, 5, 26, 'assets/images/d3a3faeb_a39e_46a0_ab36_e7265d918d8b_22eba30d_4dc2_11ed_908e_000c299773cc.png'),
+(18, 1, 16, 'Купить болт М6 в городе'),
+(19, 2, 16, 'Болты М6 в наличии и на заказ, оптовые цены и скидки'),
+(20, 4, 16, '300'),
+(21, 5, 16, 'assets/images/snimok_138.jpg'),
+(22, 1, 19, 'Купить болт М8 в городе'),
+(23, 2, 19, 'Болты М8 в наличии и на заказ, оптовые цены и скидки'),
+(24, 4, 19, '400'),
+(25, 5, 19, 'assets/images/snimok_138.jpg'),
+(26, 1, 27, 'Купить болт М10 в городе'),
+(27, 2, 27, 'Болты М10 в наличии и на заказ, оптовые цены и скидки'),
+(28, 4, 27, '700'),
+(29, 5, 27, 'assets/images/snimok_138.jpg'),
+(30, 1, 7, 'Мы немного поработали'),
+(31, 2, 7, 'Успешная работа компании по продаже болтиков и гаечек способствует развитию местной экономики'),
+(32, 1, 6, 'Мы открылись'),
+(33, 2, 6, 'Обеспечим население доступными и качественными болтиками и гаечками'),
+(34, 1, 8, 'У директора был день рождения'),
+(35, 2, 8, 'Директор компании выразил свою благодарность всем присутствующим и отметил, что успех его предприятия был бы невозможен без поддержки клиентов и партнеров'),
+(36, 1, 9, 'У нас выходной'),
+(37, 2, 9, 'С 31 декабря по 10 января включительно, компания не будет работать.'),
+(38, 3, 8, 'assets/images/65856_original-1.jpg'),
+(39, 3, 7, 'assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg'),
+(40, 3, 9, 'assets/images/1a14ab889878010be3390e9fa667abcb_xl.jpg'),
+(41, 1, 11, 'Мы закрылись'),
+(42, 2, 11, 'Компания решила закрыться'),
+(43, 3, 11, 'assets/images/doc76ncd3jiwpfmb0x3jd6.jpg'),
+(44, 6, 27, 'Б-10-0001'),
+(45, 6, 19, 'Б-08-0001'),
+(46, 6, 16, 'Б-06-0001'),
+(47, 6, 15, 'Г-06-0001'),
+(48, 6, 18, 'Г-08-0001'),
+(49, 6, 26, 'Г-10-0001'),
+(50, 1, 17, 'Коробка для гаек'),
+(51, 2, 17, 'Коробка для гаек'),
+(52, 4, 17, '230'),
+(53, 5, 17, 'assets/images/ice_screenshot_20191014-140427.jpeg.jpg'),
+(54, 5, 20, 'assets/images/ice_screenshot_20191014-140427.jpeg.jpg'),
+(55, 4, 20, '300'),
+(56, 4, 22, '1000'),
+(57, 5, 22, 'assets/images/6158809007.jpg'),
+(58, 4, 21, '998'),
+(59, 5, 21, 'assets/images/6158809007.jpg'),
+(60, 7, 24, 'assets/images/doc76ncd3jiwpfmb0x3jd6.jpg'),
+(61, 8, 24, '{\"fieldValue\":[{\"image\":\"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg\",\"thumb\":\"\"},{\"image\":\"assets/images/65856_original-1.jpg\",\"thumb\":\"\"}],\"fieldSettings\":{\"autoincrement\":1}}'),
+(62, 7, 25, 'assets/images/1a14ab889878010be3390e9fa667abcb_xl.jpg'),
+(63, 8, 25, '{\"fieldValue\":[{\"image\":\"assets/images/ice_screenshot_20191014-140427.jpeg.jpg\",\"thumb\":\"\"},{\"image\":\"assets/images/cropped_a_nu-ka_vzyali__1925._serebryannyj_i._bumaga__tirazhnaya_grafika._59_5h87_5.jpg\",\"thumb\":\"\"}],\"fieldSettings\":{\"autoincrement\":1}}'),
+(64, 9, 1, 'Сайт компании по продаже болтиков'),
+(65, 10, 1, 'Продадим вам нужные болтики и гаечки. А если надо, то приедем и прикрутим их куда там надо'),
+(66, 11, 1, 'assets/images/pinup_girls_057.png'),
+(67, 12, 1, '{\"fieldValue\":[{\"image\":\"assets/images/bez-imeni-1.png\",\"thumb\":\"\",\"title\":\"Выточим гайки и болтики\"},{\"image\":\"assets/images/3549391_640_640.png\",\"thumb\":\"\",\"title\":\"Привезем куда скажете\"},{\"image\":\"assets/images/b88c0864818c7d2ae28687a0efbedf07-640x857.jpg\",\"thumb\":\"\",\"title\":\"Поможем с монтажом\"}],\"fieldSettings\":{\"autoincrement\":1}}'),
+(68, 13, 5, 'Адрес: город Вологда, улица Добрых Строителей, строение 5'),
+(69, 14, 5, '<script type=\"text/javascript\" charset=\"utf-8\" async\r\n                                src=\"https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A65946ea648b913e9a26631d832814832839608dfd97f0d84960c17b4dbf88085&amp;width=100%25&amp;height=300&amp;lang=ru_RU&amp;scroll=true\">\r\n </script>'),
+(70, 15, 4, NULL),
+(71, 17, 28, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_site_tmplvar_templates`
+--
+
+CREATE TABLE `jdz6_site_tmplvar_templates` (
   `tmplvarid` int(11) NOT NULL DEFAULT 0 COMMENT 'Template Variable id',
   `templateid` int(11) NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`tmplvarid`,`templateid`)
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VALUES
-	(1, 1, 0),
-	(1, 2, 0),
-	(1, 3, 0),
-	(1, 4, 0),
-	(1, 5, 0),
-	(1, 6, 0),
-	(1, 7, 0),
-	(1, 8, 0),
-	(1, 9, 0),
-	(1, 10, 2),
-	(1, 11, 2),
-	(1, 12, 2),
-	(2, 1, 0),
-	(2, 2, 0),
-	(2, 3, 0),
-	(2, 4, 0),
-	(2, 5, 0),
-	(2, 6, 0),
-	(2, 7, 0),
-	(2, 8, 0),
-	(2, 9, 0),
-	(2, 10, 1),
-	(2, 11, 1),
-	(2, 12, 1),
-	(3, 7, 0),
-	(4, 5, 0),
-	(5, 5, 0),
-	(6, 5, 0),
-	(7, 11, 0),
-	(8, 11, 0),
-	(9, 2, 0),
-	(10, 2, 0),
-	(11, 2, 0),
-	(12, 2, 0),
-	(13, 9, 0),
-	(14, 9, 0),
-	(15, 12, 0),
-	(16, 1, 0),
-	(16, 2, 0),
-	(16, 3, 0),
-	(16, 4, 0),
-	(16, 5, 0),
-	(16, 6, 0),
-	(16, 7, 0),
-	(16, 8, 0),
-	(16, 9, 0),
-	(16, 10, 0),
-	(16, 11, 0),
-	(16, 12, 0),
-	(17, 1, 0),
-	(17, 2, 0),
-	(17, 3, 0),
-	(17, 4, 0),
-	(17, 5, 0),
-	(17, 6, 0),
-	(17, 7, 0),
-	(17, 8, 0),
-	(17, 9, 0),
-	(17, 10, 0),
-	(17, 11, 0),
-	(17, 12, 0),
-	(17, 13, 1),
-	(18, 1, 0),
-	(18, 2, 0),
-	(18, 3, 0),
-	(18, 4, 0),
-	(18, 5, 0),
-	(18, 6, 0),
-	(18, 7, 0),
-	(18, 8, 0),
-	(18, 9, 0),
-	(18, 10, 0),
-	(18, 11, 0),
-	(18, 12, 0);
+--
+-- Дамп данных таблицы `jdz6_site_tmplvar_templates`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_system_eventnames` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VALUES
+(1, 1, 0),
+(1, 2, 0),
+(1, 3, 0),
+(1, 4, 0),
+(1, 5, 0),
+(1, 6, 0),
+(1, 7, 0),
+(1, 8, 0),
+(1, 9, 0),
+(1, 10, 2),
+(1, 11, 2),
+(1, 12, 2),
+(2, 1, 0),
+(2, 2, 0),
+(2, 3, 0),
+(2, 4, 0),
+(2, 5, 0),
+(2, 6, 0),
+(2, 7, 0),
+(2, 8, 0),
+(2, 9, 0),
+(2, 10, 1),
+(2, 11, 1),
+(2, 12, 1),
+(3, 7, 0),
+(4, 5, 0),
+(5, 5, 0),
+(6, 5, 0),
+(7, 11, 0),
+(8, 11, 0),
+(9, 2, 0),
+(10, 2, 0),
+(11, 2, 0),
+(12, 2, 0),
+(13, 9, 0),
+(14, 9, 0),
+(15, 12, 0),
+(16, 1, 0),
+(16, 2, 0),
+(16, 3, 0),
+(16, 4, 0),
+(16, 5, 0),
+(16, 6, 0),
+(16, 7, 0),
+(16, 8, 0),
+(16, 9, 0),
+(16, 10, 0),
+(16, 11, 0),
+(16, 12, 0),
+(17, 1, 0),
+(17, 2, 0),
+(17, 3, 0),
+(17, 4, 0),
+(17, 5, 0),
+(17, 6, 0),
+(17, 7, 0),
+(17, 8, 0),
+(17, 9, 0),
+(17, 10, 0),
+(17, 11, 0),
+(17, 12, 0),
+(17, 13, 1),
+(18, 1, 0),
+(18, 2, 0),
+(18, 3, 0),
+(18, 4, 0),
+(18, 5, 0),
+(18, 6, 0),
+(18, 7, 0),
+(18, 8, 0),
+(18, 9, 0),
+(18, 10, 0),
+(18, 11, 0),
+(18, 12, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_system_eventnames`
+--
+
+CREATE TABLE `jdz6_system_eventnames` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `service` int(11) NOT NULL DEFAULT 0 COMMENT 'System Service number',
-  `groupname` varchar(20) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `system_eventnames_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8mb4;
-
-REPLACE INTO `jdz6_system_eventnames` (`id`, `name`, `service`, `groupname`) VALUES
-	(1, 'OnAfterLoadDocumentObject', 5, ''),
-	(2, 'OnAfterMoveDocument', 1, 'Documents'),
-	(3, 'OnBeforeCacheUpdate', 4, ''),
-	(4, 'OnBeforeChunkFormDelete', 1, 'Chunks'),
-	(5, 'OnBeforeChunkFormSave', 1, 'Chunks'),
-	(6, 'OnBeforeDocDuplicate', 1, 'Documents'),
-	(7, 'OnBeforeDocFormDelete', 1, 'Documents'),
-	(8, 'OnBeforeDocFormSave', 1, 'Documents'),
-	(9, 'OnBeforeEmptyTrash', 1, 'Documents'),
-	(10, 'OnBeforeFileBrowserCopy', 1, 'File Browser Events'),
-	(11, 'OnBeforeFileBrowserDelete', 1, 'File Browser Events'),
-	(12, 'OnBeforeFileBrowserMove', 1, 'File Browser Events'),
-	(13, 'OnBeforeFileBrowserRename', 1, 'File Browser Events'),
-	(14, 'OnBeforeFileBrowserUpload', 1, 'File Browser Events'),
-	(15, 'OnBeforeLoadDocumentObject', 5, ''),
-	(16, 'OnBeforeLoadExtension', 5, ''),
-	(17, 'OnBeforeManagerPageInit', 2, ''),
-	(18, 'OnBeforeMinifyCss', 1, ''),
-	(19, 'OnBeforeModFormDelete', 1, 'Modules'),
-	(20, 'OnBeforeModFormSave', 1, 'Modules'),
-	(21, 'OnBeforeMoveDocument', 1, 'Documents'),
-	(22, 'OnBeforeParseParams', 5, ''),
-	(23, 'OnBeforePluginFormDelete', 1, 'Plugins'),
-	(24, 'OnBeforePluginFormSave', 1, 'Plugins'),
-	(25, 'OnBeforeSaveWebPageCache', 4, ''),
-	(26, 'OnBeforeSnipFormDelete', 1, 'Snippets'),
-	(27, 'OnBeforeSnipFormSave', 1, 'Snippets'),
-	(28, 'OnBeforeTempFormDelete', 1, 'Templates'),
-	(29, 'OnBeforeTempFormSave', 1, 'Templates'),
-	(30, 'OnBeforeTVFormDelete', 1, 'Template Variables'),
-	(31, 'OnBeforeTVFormSave', 1, 'Template Variables'),
-	(32, 'OnBeforeUserDelete', 1, 'Users'),
-	(33, 'OnBeforeUserLogin', 1, 'Users'),
-	(34, 'OnBeforeUserLogout', 1, 'Users'),
-	(35, 'OnBeforeUserSave', 1, 'Users'),
-	(36, 'OnCacheUpdate', 4, ''),
-	(37, 'OnChunkFormDelete', 1, 'Chunks'),
-	(38, 'OnChunkFormPrerender', 1, 'Chunks'),
-	(39, 'OnChunkFormRender', 1, 'Chunks'),
-	(40, 'OnChunkFormSave', 1, 'Chunks'),
-	(41, 'OnCreateDocGroup', 1, 'Documents'),
-	(42, 'OnDocDuplicate', 1, 'Documents'),
-	(43, 'OnDocFormDelete', 1, 'Documents'),
-	(44, 'OnDocFormPrerender', 1, 'Documents'),
-	(45, 'OnDocFormRender', 1, 'Documents'),
-	(46, 'OnDocFormSave', 1, 'Documents'),
-	(47, 'OnDocFormTemplateRender', 1, 'Documents'),
-	(48, 'OnDocFormUnDelete', 1, 'Documents'),
-	(49, 'OnDocPublished', 5, ''),
-	(50, 'OnDocUnPublished', 5, ''),
-	(51, 'OnEmptyTrash', 1, 'Documents'),
-	(52, 'OnFileBrowserCopy', 1, 'File Browser Events'),
-	(53, 'OnFileBrowserDelete', 1, 'File Browser Events'),
-	(54, 'OnFileBrowserInit', 1, 'File Browser Events'),
-	(55, 'OnFileBrowserMove', 1, 'File Browser Events'),
-	(56, 'OnFileBrowserRename', 1, 'File Browser Events'),
-	(57, 'OnFileBrowserUpload', 1, 'File Browser Events'),
-	(58, 'OnFileManagerSettingsRender', 1, 'System Settings'),
-	(59, 'OnFileManagerUpload', 1, ''),
-	(60, 'OnFriendlyURLSettingsRender', 1, 'System Settings'),
-	(61, 'OnInterfaceSettingsRender', 1, 'System Settings'),
-	(62, 'OnLoadDocumentObject', 5, ''),
-	(63, 'OnLoadSettings', 1, 'System Settings'),
-	(64, 'OnLoadWebDocument', 5, ''),
-	(65, 'OnLoadWebPageCache', 4, ''),
-	(66, 'OnLogEvent', 1, 'Log Event'),
-	(67, 'OnLogPageHit', 5, ''),
-	(68, 'OnMakeDocUrl', 5, ''),
-	(69, 'OnMakePageCacheKey', 4, ''),
-	(70, 'OnManagerFrameLoader', 2, ''),
-	(71, 'OnManagerLoginFormPrerender', 2, ''),
-	(72, 'OnManagerLoginFormRender', 2, ''),
-	(73, 'OnManagerMainFrameHeaderHTMLBlock', 2, ''),
-	(74, 'OnManagerMenuPrerender', 2, ''),
-	(75, 'OnManagerNodePrerender', 2, ''),
-	(76, 'OnManagerNodeRender', 2, ''),
-	(77, 'OnManagerPageInit', 2, ''),
-	(78, 'OnManagerPreFrameLoader', 2, ''),
-	(79, 'OnManagerTopPrerender', 2, ''),
-	(80, 'OnManagerTreeInit', 2, ''),
-	(81, 'OnManagerTreePrerender', 2, ''),
-	(82, 'OnManagerTreeRender', 2, ''),
-	(83, 'OnManagerWelcomeHome', 2, ''),
-	(84, 'OnManagerWelcomePrerender', 2, ''),
-	(85, 'OnManagerWelcomeRender', 2, ''),
-	(86, 'OnMiscSettingsRender', 1, 'System Settings'),
-	(87, 'OnModFormDelete', 1, 'Modules'),
-	(88, 'OnModFormPrerender', 1, 'Modules'),
-	(89, 'OnModFormRender', 1, 'Modules'),
-	(90, 'OnModFormSave', 1, 'Modules'),
-	(91, 'OnPageNotFound', 1, ''),
-	(92, 'OnPageUnauthorized', 1, ''),
-	(93, 'OnParseDocument', 5, ''),
-	(94, 'OnParseProperties', 5, ''),
-	(95, 'OnPluginFormDelete', 1, 'Plugins'),
-	(96, 'OnPluginFormPrerender', 1, 'Plugins'),
-	(97, 'OnPluginFormRender', 1, 'Plugins'),
-	(98, 'OnPluginFormSave', 1, 'Plugins'),
-	(99, 'OnRichTextEditorInit', 1, 'RichText Editor'),
-	(100, 'OnRichTextEditorRegister', 1, 'RichText Editor'),
-	(101, 'OnSecuritySettingsRender', 1, 'System Settings'),
-	(102, 'OnSiteRefresh', 1, ''),
-	(103, 'OnSiteSettingsRender', 1, 'System Settings'),
-	(104, 'OnSnipFormDelete', 1, 'Snippets'),
-	(105, 'OnSnipFormPrerender', 1, 'Snippets'),
-	(106, 'OnSnipFormRender', 1, 'Snippets'),
-	(107, 'OnSnipFormSave', 1, 'Snippets'),
-	(108, 'OnStripAlias', 1, 'Documents'),
-	(109, 'OnTempFormDelete', 1, 'Templates'),
-	(110, 'OnTempFormPrerender', 1, 'Templates'),
-	(111, 'OnTempFormRender', 1, 'Templates'),
-	(112, 'OnTempFormSave', 1, 'Templates'),
-	(113, 'OnTVFormDelete', 1, 'Template Variables'),
-	(114, 'OnTVFormPrerender', 1, 'Template Variables'),
-	(115, 'OnTVFormRender', 1, 'Template Variables'),
-	(116, 'OnTVFormSave', 1, 'Template Variables'),
-	(117, 'OnUserAuthentication', 1, 'Users'),
-	(118, 'OnUserChangePassword', 1, 'Users'),
-	(119, 'OnUserCreateGroup', 1, 'Users'),
-	(120, 'OnUserDelete', 1, 'Users'),
-	(121, 'OnUserFormPrerender', 1, 'Users'),
-	(122, 'OnUserFormRender', 1, 'Users'),
-	(123, 'OnUserLogin', 1, 'Users'),
-	(124, 'OnUserLogout', 1, 'Users'),
-	(125, 'OnUserSave', 1, 'Users'),
-	(126, 'OnUserSettingsRender', 1, 'System Settings'),
-	(127, 'OnWebPageComplete', 5, ''),
-	(128, 'OnWebPageInit', 5, ''),
-	(129, 'OnWebPagePrerender', 5, ''),
-	(130, 'OnBeforeMailSend', 1, ''),
-	(131, 'OnBeforeClientSettingsSave', 6, 'ClientSettings'),
-	(132, 'OnClientSettingsSave', 6, 'ClientSettings'),
-	(134, 'OnPBContainerRender', 6, 'PageBuilder'),
-	(135, 'OnPBFieldRender', 6, 'PageBuilder');
-
-CREATE TABLE IF NOT EXISTS `jdz6_system_settings` (
-  `setting_name` varchar(50) NOT NULL DEFAULT '',
-  `setting_value` text DEFAULT NULL,
-  PRIMARY KEY (`setting_name`)
+  `groupname` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_system_settings` (`setting_name`, `setting_value`) VALUES
-	('a', '30'),
-	('alias_listing', '1'),
-	('allow_duplicate_alias', '0'),
-	('allow_eval', 'with_scan'),
-	('allow_multiple_emails', '0'),
-	('automatic_alias', '1'),
-	('auto_menuindex', '1'),
-	('auto_template_logic', 'sibling'),
-	('blocked_minutes', '60'),
-	('cache_default', '1'),
-	('cache_type', '2'),
-	('captcha_words', 'EVO,Access,Better,BitCode,Chunk,Cache,Desc,Design,Excell,Enjoy,URLs,TechView,Gerald,Griff,Humphrey,Holiday,Intel,Integration,Joystick,Join(),Oscope,Genetic,Light,Likeness,Marit,Maaike,Niche,Netherlands,Ordinance,Oscillo,Parser,Phusion,Query,Question,Regalia,Righteous,Snippet,Sentinel,Template,Thespian,Unity,Enterprise,Verily,Tattoo,Veri,Website,WideWeb,Yap,Yellow,Zebra,Zygote'),
-	('captcha_words_default', 'EVO,Access,Better,BitCode,Chunk,Cache,Desc,Design,Excell,Enjoy,URLs,TechView,Gerald,Griff,Humphrey,Holiday,Intel,Integration,Joystick,Join(),Oscope,Genetic,Light,Likeness,Marit,Maaike,Niche,Netherlands,Ordinance,Oscillo,Parser,Phusion,Query,Question,Regalia,Righteous,Snippet,Sentinel,Template,Thespian,Unity,Enterprise,Verily,Tattoo,Veri,Website,WideWeb,Yap,Yellow,Zebra,Zygote'),
-	('check_files_onlogin', 'index.php\r\n.htaccess\r\nmanager/index.php\r\n/core/config/database/connections/default.php'),
-	('chunk_processor', 'DLTemplate'),
-	('clean_uploaded_filename', '1'),
-	('clientResize', '0'),
-	('ControllerNamespace', ''),
-	('custom_contenttype', 'application/rss+xml,application/pdf,application/vnd.ms-word,application/vnd.ms-excel,text/html,text/css,text/xml,text/javascript,text/plain,application/json'),
-	('datepicker_offset', '-10'),
-	('datetime_format', 'dd-mm-YYYY'),
-	('default_template', '1'),
-	('denyExtensionRename', '0'),
-	('denyZipDownload', '0'),
-	('disable_chunk_cache', '0'),
-	('disable_plugins_cache', '0'),
-	('disable_snippet_cache', '0'),
-	('editor_css_path', ''),
-	('editor_css_selectors', ''),
-	('emailsender', 'admin@evocompany.localhost'),
-	('emailsubject', 'Данные для авторизации'),
-	('emailsubject_default', 'Данные для авторизации'),
-	('email_method', 'mail'),
-	('email_sender_method', '1'),
-	('enable_bindings', '1'),
-	('enable_cache', '2'),
-	('error_page', '1'),
-	('error_reporting', '1'),
-	('failed_login_attempts', '3'),
-	('fck_editor_autolang', '0'),
-	('fck_editor_toolbar', 'standard'),
-	('fe_editor_lang', 'ru'),
-	('filemanager_path', 'D:/OSP/domains/evocompany.localhost/'),
-	('friendly_alias_urls', '1'),
-	('friendly_urls', '1'),
-	('friendly_url_prefix', ''),
-	('friendly_url_suffix', ''),
-	('global_tabs', '1'),
-	('group_tvs', '1'),
-	('jpegQuality', '90'),
-	('lang_code', 'ru'),
-	('login_bg', ''),
-	('login_form_position', 'left'),
-	('login_form_style', 'dark'),
-	('login_logo', ''),
-	('make_folders', '1'),
-	('manager_direction', 'ltr'),
-	('manager_language', 'ru'),
-	('manager_layout', '4'),
-	('manager_menu_position', 'top'),
-	('manager_theme', 'default'),
-	('manager_theme_mode', '3'),
-	('maxImageHeight', '2200'),
-	('maxImageWidth', '2600'),
-	('minifyphp_incache', '0'),
-	('modx_charset', 'UTF-8'),
-	('new_file_permissions', '0644'),
-	('new_folder_permissions', '0755'),
-	('noThumbnailsRecreation', '0'),
-	('number_of_logs', '100'),
-	('number_of_results', '30'),
-	('old_template', '1'),
-	('publish_default', '1'),
-	('rb_base_dir', 'D:/OSP/domains/evocompany.localhost/assets/'),
-	('rb_base_url', 'assets/'),
-	('rb_webuser', '0'),
-	('reload_captcha_words', ''),
-	('reload_emailsubject', ''),
-	('reload_site_unavailable', ''),
-	('reload_system_email_webreminder_message', ''),
-	('reload_websignupemail_message', ''),
-	('remember_last_tab', '1'),
-	('resource_tree_node_name', 'pagetitle'),
-	('rss_url_news', 'https://github.com/evocms-community/evolution/releases.atom'),
-	('rss_url_security', 'https://github.com/extras-evolution/security-fix/releases.atom'),
-	('safe_functions_at_eval', 'time,date,strtotime,strftime'),
-	('search_default', '1'),
-	('send_errormail', '0'),
-	('seostrict', '1'),
-	('server_offset_time', '0'),
-	('server_protocol', 'http'),
-	('session.cookie.lifetime', '604800'),
-	('session_timeout', '15'),
-	('settings_version', '3.1.24'),
-	('showHiddenFiles', '0'),
-	('show_fullscreen_btn', '0'),
-	('show_newresource_btn', '0'),
-	('show_picker', '0'),
-	('siteunavailable_message_default', 'ru'),
-	('site_id', '64830f68bf649'),
-	('site_name', 'ООО "Компания"'),
-	('site_start', '1'),
-	('site_status', '1'),
-	('site_unavailable_message', 'В настоящее время сайт недоступен.'),
-	('site_unavailable_page', ''),
-	('smtp_auth', '0'),
-	('smtp_autotls', '0'),
-	('smtp_host', 'smtp.example.com'),
-	('smtp_port', '25'),
-	('smtp_secure', 'none'),
-	('smtp_username', 'emailsender'),
-	('strip_image_paths', '1'),
-	('system_email_webreminder_default', 'Здравствуйте, [+uid+]!\r\n\r\nЧтобы активировать ваш новый пароль, перейдите по следующей ссылке:\r\n\r\n[+surl+]\r\n\r\nПозже вы сможете использовать следующий пароль для авторизации: [+pwd+]\r\n\r\nЕсли это письмо пришло к вам по ошибке, пожалуйста, проигнорируйте его.\r\n\r\nС уважением, Администрация'),
-	('system_email_websignup_default', 'Здравствуйте, [+uid+]!\r\n\r\nВаши данные для авторизации на [+sname+]:\r\n\r\nИмя пользователя: [+uid+]\r\nПароль: [+pwd+]\r\n\r\nПосле успешной авторизации на [+sname+] ([+surl+]), вы сможете изменить свой пароль.\r\n\r\nС уважением, Администрация'),
-	('sys_files_checksum', 'a:4:{s:45:"D:/OSP/domains/evocompany.localhost/index.php";s:32:"599511a98673763d066ea76b9e50fbb0";s:45:"D:/OSP/domains/evocompany.localhost/.htaccess";s:32:"4d525766cb6232034562a1732ec06a9c";s:53:"D:/OSP/domains/evocompany.localhost/manager/index.php";s:32:"19c60de055d5efeb3fdd9debde124cb7";s:81:"D:/OSP/domains/evocompany.localhost//core/config/database/connections/default.php";s:32:"894fd730c8f36ce176bce7ed6b4f0c7c";}'),
-	('theme_refresher', ''),
-	('thumbHeight', '150'),
-	('thumbsDir', '.thumbs'),
-	('thumbWidth', '150'),
-	('tinymce4_blockFormats', 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3'),
-	('tinymce4_custom_buttons1', 'undo redo | cut copy paste | searchreplace | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent blockquote | styleselect'),
-	('tinymce4_custom_buttons2', 'link unlink anchor image media codesample table | hr removeformat | subscript superscript charmap | nonbreaking | visualchars visualblocks print preview fullscreen code formatselect'),
-	('tinymce4_custom_buttons3', ''),
-	('tinymce4_custom_buttons4', ''),
-	('tinymce4_custom_plugins', 'advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen spellchecker insertdatetime media nonbreaking save table contextmenu directionality emoticons template paste textcolor codesample colorpicker textpattern imagetools paste modxlink youtube'),
-	('tinymce4_element_format', 'xhtml'),
-	('tinymce4_entermode', 'p'),
-	('tinymce4_schema', 'html5'),
-	('tinymce4_skin', 'lightgray'),
-	('tinymce4_skintheme', 'inlite'),
-	('tinymce4_template_chunks', ''),
-	('tinymce4_template_docs', ''),
-	('tinymce4_theme', 'custom'),
-	('tinymce5_theme', 'custom'),
-	('track_visitors', '0'),
-	('tree_page_click', '27'),
-	('tree_show_protected', '0'),
-	('udperms_allowroot', '0'),
-	('unauthorized_page', '1'),
-	('UpgradeRepository', ''),
-	('upload_files', 'bmp,ico,gif,jpeg,jpg,png,psd,tif,tiff,fla,flv,swf,aac,au,avi,css,cache,doc,docx,gz,gzip,htaccess,htm,html,js,mp3,mp4,mpeg,mpg,ods,odp,odt,pdf,ppt,pptx,rar,tar,tgz,txt,wav,wmv,xls,xlsx,xml,z,zip,JPG,JPEG,PNG,GIF,svg,webp,tpl'),
-	('upload_images', 'bmp,ico,gif,jpeg,jpg,png,psd,tif,tiff,svg,webp'),
-	('upload_maxsize', '10485760'),
-	('upload_media', 'au,avi,mp3,mp4,mpeg,mpg,wav,wmv'),
-	('use_alias_path', '1'),
-	('use_breadcrumbs', '1'),
-	('use_browser', '1'),
-	('use_captcha', '0'),
-	('use_editor', '1'),
-	('use_udperms', '1'),
-	('validate_referer', '1'),
-	('warning_visibility', '0'),
-	('webpwdreminder_message', 'Здравствуйте, [+uid+]!\r\n\r\nЧтобы активировать ваш новый пароль, перейдите по следующей ссылке:\r\n\r\n[+surl+]\r\n\r\nПозже вы сможете использовать следующий пароль для авторизации: [+pwd+]\r\n\r\nЕсли это письмо пришло к вам по ошибке, пожалуйста, проигнорируйте его.\r\n\r\nС уважением, Администрация'),
-	('websignupemail_message', 'Здравствуйте, [+uid+]!\r\n\r\nВаши данные для авторизации на [+sname+]:\r\n\r\nИмя пользователя: [+uid+]\r\nПароль: [+pwd+]\r\n\r\nПосле успешной авторизации на [+sname+] ([+surl+]), вы сможете изменить свой пароль.\r\n\r\nС уважением, Администрация'),
-	('which_browser', 'mcpuk'),
-	('which_editor', 'none'),
-	('xhtml_urls', '0'),
-	('_token', 'CvCWJpsD6G0raKQbgHR6UWCawIFEqL4WPMxCWirb');
+--
+-- Дамп данных таблицы `jdz6_system_eventnames`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_system_eventnames` (`id`, `name`, `service`, `groupname`) VALUES
+(1, 'OnAfterLoadDocumentObject', 5, ''),
+(2, 'OnAfterMoveDocument', 1, 'Documents'),
+(3, 'OnBeforeCacheUpdate', 4, ''),
+(4, 'OnBeforeChunkFormDelete', 1, 'Chunks'),
+(5, 'OnBeforeChunkFormSave', 1, 'Chunks'),
+(6, 'OnBeforeDocDuplicate', 1, 'Documents'),
+(7, 'OnBeforeDocFormDelete', 1, 'Documents'),
+(8, 'OnBeforeDocFormSave', 1, 'Documents'),
+(9, 'OnBeforeEmptyTrash', 1, 'Documents'),
+(10, 'OnBeforeFileBrowserCopy', 1, 'File Browser Events'),
+(11, 'OnBeforeFileBrowserDelete', 1, 'File Browser Events'),
+(12, 'OnBeforeFileBrowserMove', 1, 'File Browser Events'),
+(13, 'OnBeforeFileBrowserRename', 1, 'File Browser Events'),
+(14, 'OnBeforeFileBrowserUpload', 1, 'File Browser Events'),
+(15, 'OnBeforeLoadDocumentObject', 5, ''),
+(16, 'OnBeforeLoadExtension', 5, ''),
+(17, 'OnBeforeManagerPageInit', 2, ''),
+(18, 'OnBeforeMinifyCss', 1, ''),
+(19, 'OnBeforeModFormDelete', 1, 'Modules'),
+(20, 'OnBeforeModFormSave', 1, 'Modules'),
+(21, 'OnBeforeMoveDocument', 1, 'Documents'),
+(22, 'OnBeforeParseParams', 5, ''),
+(23, 'OnBeforePluginFormDelete', 1, 'Plugins'),
+(24, 'OnBeforePluginFormSave', 1, 'Plugins'),
+(25, 'OnBeforeSaveWebPageCache', 4, ''),
+(26, 'OnBeforeSnipFormDelete', 1, 'Snippets'),
+(27, 'OnBeforeSnipFormSave', 1, 'Snippets'),
+(28, 'OnBeforeTempFormDelete', 1, 'Templates'),
+(29, 'OnBeforeTempFormSave', 1, 'Templates'),
+(30, 'OnBeforeTVFormDelete', 1, 'Template Variables'),
+(31, 'OnBeforeTVFormSave', 1, 'Template Variables'),
+(32, 'OnBeforeUserDelete', 1, 'Users'),
+(33, 'OnBeforeUserLogin', 1, 'Users'),
+(34, 'OnBeforeUserLogout', 1, 'Users'),
+(35, 'OnBeforeUserSave', 1, 'Users'),
+(36, 'OnCacheUpdate', 4, ''),
+(37, 'OnChunkFormDelete', 1, 'Chunks'),
+(38, 'OnChunkFormPrerender', 1, 'Chunks'),
+(39, 'OnChunkFormRender', 1, 'Chunks'),
+(40, 'OnChunkFormSave', 1, 'Chunks'),
+(41, 'OnCreateDocGroup', 1, 'Documents'),
+(42, 'OnDocDuplicate', 1, 'Documents'),
+(43, 'OnDocFormDelete', 1, 'Documents'),
+(44, 'OnDocFormPrerender', 1, 'Documents'),
+(45, 'OnDocFormRender', 1, 'Documents'),
+(46, 'OnDocFormSave', 1, 'Documents'),
+(47, 'OnDocFormTemplateRender', 1, 'Documents'),
+(48, 'OnDocFormUnDelete', 1, 'Documents'),
+(49, 'OnDocPublished', 5, ''),
+(50, 'OnDocUnPublished', 5, ''),
+(51, 'OnEmptyTrash', 1, 'Documents'),
+(52, 'OnFileBrowserCopy', 1, 'File Browser Events'),
+(53, 'OnFileBrowserDelete', 1, 'File Browser Events'),
+(54, 'OnFileBrowserInit', 1, 'File Browser Events'),
+(55, 'OnFileBrowserMove', 1, 'File Browser Events'),
+(56, 'OnFileBrowserRename', 1, 'File Browser Events'),
+(57, 'OnFileBrowserUpload', 1, 'File Browser Events'),
+(58, 'OnFileManagerSettingsRender', 1, 'System Settings'),
+(59, 'OnFileManagerUpload', 1, ''),
+(60, 'OnFriendlyURLSettingsRender', 1, 'System Settings'),
+(61, 'OnInterfaceSettingsRender', 1, 'System Settings'),
+(62, 'OnLoadDocumentObject', 5, ''),
+(63, 'OnLoadSettings', 1, 'System Settings'),
+(64, 'OnLoadWebDocument', 5, ''),
+(65, 'OnLoadWebPageCache', 4, ''),
+(66, 'OnLogEvent', 1, 'Log Event'),
+(67, 'OnLogPageHit', 5, ''),
+(68, 'OnMakeDocUrl', 5, ''),
+(69, 'OnMakePageCacheKey', 4, ''),
+(70, 'OnManagerFrameLoader', 2, ''),
+(71, 'OnManagerLoginFormPrerender', 2, ''),
+(72, 'OnManagerLoginFormRender', 2, ''),
+(73, 'OnManagerMainFrameHeaderHTMLBlock', 2, ''),
+(74, 'OnManagerMenuPrerender', 2, ''),
+(75, 'OnManagerNodePrerender', 2, ''),
+(76, 'OnManagerNodeRender', 2, ''),
+(77, 'OnManagerPageInit', 2, ''),
+(78, 'OnManagerPreFrameLoader', 2, ''),
+(79, 'OnManagerTopPrerender', 2, ''),
+(80, 'OnManagerTreeInit', 2, ''),
+(81, 'OnManagerTreePrerender', 2, ''),
+(82, 'OnManagerTreeRender', 2, ''),
+(83, 'OnManagerWelcomeHome', 2, ''),
+(84, 'OnManagerWelcomePrerender', 2, ''),
+(85, 'OnManagerWelcomeRender', 2, ''),
+(86, 'OnMiscSettingsRender', 1, 'System Settings'),
+(87, 'OnModFormDelete', 1, 'Modules'),
+(88, 'OnModFormPrerender', 1, 'Modules'),
+(89, 'OnModFormRender', 1, 'Modules'),
+(90, 'OnModFormSave', 1, 'Modules'),
+(91, 'OnPageNotFound', 1, ''),
+(92, 'OnPageUnauthorized', 1, ''),
+(93, 'OnParseDocument', 5, ''),
+(94, 'OnParseProperties', 5, ''),
+(95, 'OnPluginFormDelete', 1, 'Plugins'),
+(96, 'OnPluginFormPrerender', 1, 'Plugins'),
+(97, 'OnPluginFormRender', 1, 'Plugins'),
+(98, 'OnPluginFormSave', 1, 'Plugins'),
+(99, 'OnRichTextEditorInit', 1, 'RichText Editor'),
+(100, 'OnRichTextEditorRegister', 1, 'RichText Editor'),
+(101, 'OnSecuritySettingsRender', 1, 'System Settings'),
+(102, 'OnSiteRefresh', 1, ''),
+(103, 'OnSiteSettingsRender', 1, 'System Settings'),
+(104, 'OnSnipFormDelete', 1, 'Snippets'),
+(105, 'OnSnipFormPrerender', 1, 'Snippets'),
+(106, 'OnSnipFormRender', 1, 'Snippets'),
+(107, 'OnSnipFormSave', 1, 'Snippets'),
+(108, 'OnStripAlias', 1, 'Documents'),
+(109, 'OnTempFormDelete', 1, 'Templates'),
+(110, 'OnTempFormPrerender', 1, 'Templates'),
+(111, 'OnTempFormRender', 1, 'Templates'),
+(112, 'OnTempFormSave', 1, 'Templates'),
+(113, 'OnTVFormDelete', 1, 'Template Variables'),
+(114, 'OnTVFormPrerender', 1, 'Template Variables'),
+(115, 'OnTVFormRender', 1, 'Template Variables'),
+(116, 'OnTVFormSave', 1, 'Template Variables'),
+(117, 'OnUserAuthentication', 1, 'Users'),
+(118, 'OnUserChangePassword', 1, 'Users'),
+(119, 'OnUserCreateGroup', 1, 'Users'),
+(120, 'OnUserDelete', 1, 'Users'),
+(121, 'OnUserFormPrerender', 1, 'Users'),
+(122, 'OnUserFormRender', 1, 'Users'),
+(123, 'OnUserLogin', 1, 'Users'),
+(124, 'OnUserLogout', 1, 'Users'),
+(125, 'OnUserSave', 1, 'Users'),
+(126, 'OnUserSettingsRender', 1, 'System Settings'),
+(127, 'OnWebPageComplete', 5, ''),
+(128, 'OnWebPageInit', 5, ''),
+(129, 'OnWebPagePrerender', 5, ''),
+(130, 'OnBeforeMailSend', 1, ''),
+(131, 'OnBeforeClientSettingsSave', 6, 'ClientSettings'),
+(132, 'OnClientSettingsSave', 6, 'ClientSettings'),
+(134, 'OnPBContainerRender', 6, 'PageBuilder'),
+(135, 'OnPBFieldRender', 6, 'PageBuilder');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_system_settings`
+--
+
+CREATE TABLE `jdz6_system_settings` (
+  `setting_name` varchar(50) NOT NULL DEFAULT '',
+  `setting_value` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `jdz6_system_settings`
+--
+
+INSERT INTO `jdz6_system_settings` (`setting_name`, `setting_value`) VALUES
+('a', '30'),
+('alias_listing', '1'),
+('allow_duplicate_alias', '0'),
+('allow_eval', 'with_scan'),
+('allow_multiple_emails', '0'),
+('automatic_alias', '1'),
+('auto_menuindex', '1'),
+('auto_template_logic', 'sibling'),
+('blocked_minutes', '60'),
+('cache_default', '1'),
+('cache_type', '2'),
+('captcha_words', 'EVO,Access,Better,BitCode,Chunk,Cache,Desc,Design,Excell,Enjoy,URLs,TechView,Gerald,Griff,Humphrey,Holiday,Intel,Integration,Joystick,Join(),Oscope,Genetic,Light,Likeness,Marit,Maaike,Niche,Netherlands,Ordinance,Oscillo,Parser,Phusion,Query,Question,Regalia,Righteous,Snippet,Sentinel,Template,Thespian,Unity,Enterprise,Verily,Tattoo,Veri,Website,WideWeb,Yap,Yellow,Zebra,Zygote'),
+('captcha_words_default', 'EVO,Access,Better,BitCode,Chunk,Cache,Desc,Design,Excell,Enjoy,URLs,TechView,Gerald,Griff,Humphrey,Holiday,Intel,Integration,Joystick,Join(),Oscope,Genetic,Light,Likeness,Marit,Maaike,Niche,Netherlands,Ordinance,Oscillo,Parser,Phusion,Query,Question,Regalia,Righteous,Snippet,Sentinel,Template,Thespian,Unity,Enterprise,Verily,Tattoo,Veri,Website,WideWeb,Yap,Yellow,Zebra,Zygote'),
+('check_files_onlogin', 'index.php\r\n.htaccess\r\nmanager/index.php\r\n/core/config/database/connections/default.php'),
+('chunk_processor', 'DLTemplate'),
+('clean_uploaded_filename', '1'),
+('clientResize', '0'),
+('client_footer_codes', '<!-- my custom code 2 -->\r\n'),
+('client_header_codes', '<!-- my custom code 1 -->\r\n'),
+('ControllerNamespace', ''),
+('custom_contenttype', 'application/rss+xml,application/pdf,application/vnd.ms-word,application/vnd.ms-excel,text/html,text/css,text/xml,text/javascript,text/plain,application/json'),
+('datepicker_offset', '-10'),
+('datetime_format', 'dd-mm-YYYY'),
+('default_template', '1'),
+('denyExtensionRename', '0'),
+('denyZipDownload', '0'),
+('disable_chunk_cache', '0'),
+('disable_plugins_cache', '0'),
+('disable_snippet_cache', '0'),
+('editor_css_path', ''),
+('editor_css_selectors', ''),
+('emailsender', 'admin@evocompany.localhost'),
+('emailsubject', 'Данные для авторизации'),
+('emailsubject_default', 'Данные для авторизации'),
+('email_method', 'mail'),
+('email_sender_method', '1'),
+('enable_bindings', '1'),
+('enable_cache', '2'),
+('error_page', '1'),
+('error_reporting', '1'),
+('failed_login_attempts', '3'),
+('fck_editor_autolang', '0'),
+('fck_editor_toolbar', 'standard'),
+('fe_editor_lang', 'ru'),
+('filemanager_path', 'D:/OSP/domains/evocompany.localhost/'),
+('friendly_alias_urls', '1'),
+('friendly_urls', '1'),
+('friendly_url_prefix', ''),
+('friendly_url_suffix', ''),
+('global_tabs', '1'),
+('group_tvs', '1'),
+('jpegQuality', '90'),
+('lang_code', 'ru'),
+('login_bg', ''),
+('login_form_position', 'left'),
+('login_form_style', 'dark'),
+('login_logo', ''),
+('make_folders', '1'),
+('manager_direction', 'ltr'),
+('manager_language', 'ru'),
+('manager_layout', '4'),
+('manager_menu_position', 'top'),
+('manager_theme', 'default'),
+('manager_theme_mode', '3'),
+('maxImageHeight', '2200'),
+('maxImageWidth', '2600'),
+('minifyphp_incache', '0'),
+('modx_charset', 'UTF-8'),
+('new_file_permissions', '0644'),
+('new_folder_permissions', '0755'),
+('noThumbnailsRecreation', '0'),
+('number_of_logs', '100'),
+('number_of_results', '30'),
+('old_template', '1'),
+('publish_default', '1'),
+('rb_base_dir', 'D:/OSP/domains/evocompany.localhost/assets/'),
+('rb_base_url', 'assets/'),
+('rb_webuser', '0'),
+('reload_captcha_words', ''),
+('reload_emailsubject', ''),
+('reload_site_unavailable', ''),
+('reload_system_email_webreminder_message', ''),
+('reload_websignupemail_message', ''),
+('remember_last_tab', '1'),
+('resource_tree_node_name', 'pagetitle'),
+('rss_url_news', 'https://github.com/evocms-community/evolution/releases.atom'),
+('rss_url_security', 'https://github.com/extras-evolution/security-fix/releases.atom'),
+('safe_functions_at_eval', 'time,date,strtotime,strftime'),
+('search_default', '1'),
+('send_errormail', '0'),
+('seostrict', '1'),
+('server_offset_time', '0'),
+('server_protocol', 'http'),
+('session.cookie.lifetime', '604800'),
+('session_timeout', '15'),
+('settings_version', '3.1.24'),
+('showHiddenFiles', '0'),
+('show_fullscreen_btn', '0'),
+('show_newresource_btn', '0'),
+('show_picker', '0'),
+('siteunavailable_message_default', 'ru'),
+('site_id', '64830f68bf649'),
+('site_name', 'ООО \"Компания\"'),
+('site_start', '1'),
+('site_status', '1'),
+('site_unavailable_message', 'В настоящее время сайт недоступен.'),
+('site_unavailable_page', ''),
+('smtp_auth', '0'),
+('smtp_autotls', '0'),
+('smtp_host', 'smtp.example.com'),
+('smtp_port', '25'),
+('smtp_secure', 'none'),
+('smtp_username', 'emailsender'),
+('strip_image_paths', '1'),
+('system_email_webreminder_default', 'Здравствуйте, [+uid+]!\r\n\r\nЧтобы активировать ваш новый пароль, перейдите по следующей ссылке:\r\n\r\n[+surl+]\r\n\r\nПозже вы сможете использовать следующий пароль для авторизации: [+pwd+]\r\n\r\nЕсли это письмо пришло к вам по ошибке, пожалуйста, проигнорируйте его.\r\n\r\nС уважением, Администрация'),
+('system_email_websignup_default', 'Здравствуйте, [+uid+]!\r\n\r\nВаши данные для авторизации на [+sname+]:\r\n\r\nИмя пользователя: [+uid+]\r\nПароль: [+pwd+]\r\n\r\nПосле успешной авторизации на [+sname+] ([+surl+]), вы сможете изменить свой пароль.\r\n\r\nС уважением, Администрация'),
+('sys_files_checksum', 'a:4:{s:45:\"C:/OSP/domains/evocompany.localhost/index.php\";s:32:\"50d517851587d6e6cc08436daeeb32ca\";s:45:\"C:/OSP/domains/evocompany.localhost/.htaccess\";s:32:\"1e5b1b3aece48a59068d544e9142d61e\";s:53:\"C:/OSP/domains/evocompany.localhost/manager/index.php\";s:32:\"2a9f68da5b69c7236c2987e97e7eabc5\";s:81:\"C:/OSP/domains/evocompany.localhost//core/config/database/connections/default.php\";s:32:\"d20a2440deaa2c454640222af9943a82\";}'),
+('theme_refresher', ''),
+('thumbHeight', '150'),
+('thumbsDir', '.thumbs'),
+('thumbWidth', '150'),
+('tinymce4_blockFormats', 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3'),
+('tinymce4_custom_buttons1', 'undo redo | cut copy paste | searchreplace | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent blockquote | styleselect'),
+('tinymce4_custom_buttons2', 'link unlink anchor image media codesample table | hr removeformat | subscript superscript charmap | nonbreaking | visualchars visualblocks print preview fullscreen code formatselect'),
+('tinymce4_custom_buttons3', ''),
+('tinymce4_custom_buttons4', ''),
+('tinymce4_custom_plugins', 'advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen spellchecker insertdatetime media nonbreaking save table contextmenu directionality emoticons template paste textcolor codesample colorpicker textpattern imagetools paste modxlink youtube'),
+('tinymce4_element_format', 'xhtml'),
+('tinymce4_entermode', 'p'),
+('tinymce4_schema', 'html5'),
+('tinymce4_skin', 'lightgray'),
+('tinymce4_skintheme', 'inlite'),
+('tinymce4_template_chunks', ''),
+('tinymce4_template_docs', ''),
+('tinymce4_theme', 'custom'),
+('tinymce5_theme', 'custom'),
+('track_visitors', '0'),
+('tree_page_click', '27'),
+('tree_show_protected', '0'),
+('udperms_allowroot', '0'),
+('unauthorized_page', '1'),
+('UpgradeRepository', ''),
+('upload_files', 'bmp,ico,gif,jpeg,jpg,png,psd,tif,tiff,fla,flv,swf,aac,au,avi,css,cache,doc,docx,gz,gzip,htaccess,htm,html,js,mp3,mp4,mpeg,mpg,ods,odp,odt,pdf,ppt,pptx,rar,tar,tgz,txt,wav,wmv,xls,xlsx,xml,z,zip,JPG,JPEG,PNG,GIF,svg,webp,tpl'),
+('upload_images', 'bmp,ico,gif,jpeg,jpg,png,psd,tif,tiff,svg,webp'),
+('upload_maxsize', '10485760'),
+('upload_media', 'au,avi,mp3,mp4,mpeg,mpg,wav,wmv'),
+('use_alias_path', '1'),
+('use_breadcrumbs', '1'),
+('use_browser', '1'),
+('use_captcha', '0'),
+('use_editor', '1'),
+('use_udperms', '1'),
+('validate_referer', '1'),
+('warning_visibility', '0'),
+('webpwdreminder_message', 'Здравствуйте, [+uid+]!\r\n\r\nЧтобы активировать ваш новый пароль, перейдите по следующей ссылке:\r\n\r\n[+surl+]\r\n\r\nПозже вы сможете использовать следующий пароль для авторизации: [+pwd+]\r\n\r\nЕсли это письмо пришло к вам по ошибке, пожалуйста, проигнорируйте его.\r\n\r\nС уважением, Администрация'),
+('websignupemail_message', 'Здравствуйте, [+uid+]!\r\n\r\nВаши данные для авторизации на [+sname+]:\r\n\r\nИмя пользователя: [+uid+]\r\nПароль: [+pwd+]\r\n\r\nПосле успешной авторизации на [+sname+] ([+surl+]), вы сможете изменить свой пароль.\r\n\r\nС уважением, Администрация'),
+('which_browser', 'mcpuk'),
+('which_editor', 'none'),
+('xhtml_urls', '0'),
+('_token', 'CvCWJpsD6G0raKQbgHR6UWCawIFEqL4WPMxCWirb');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_users`
+--
+
+CREATE TABLE `jdz6_users` (
+  `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL DEFAULT '',
   `password` varchar(100) NOT NULL DEFAULT '',
   `cachepwd` varchar(100) NOT NULL DEFAULT '' COMMENT 'Store new unconfirmed password',
   `refresh_token` varchar(255) DEFAULT NULL,
   `access_token` varchar(255) DEFAULT NULL,
   `valid_to` timestamp NULL DEFAULT NULL,
-  `verified_key` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `web_users_username_unique` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `verified_key` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_users` (`id`, `username`, `password`, `cachepwd`, `refresh_token`, `access_token`, `valid_to`, `verified_key`) VALUES
-	(1, 'admin', '$P$BCgPVS7w5bvdtXVvhRpqOa26WzZYWR1', '', 'a170b51aa5309869e09934b9fbc13e655692d685f4f7dd2bcc5e1d0f35954621', 'ad2657e7b4c30f0eb4e135798058f51823feb833051b77aa62e036523d8fbdcd', '2024-01-09 21:43:02', NULL);
+--
+-- Дамп данных таблицы `jdz6_users`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_attributes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_users` (`id`, `username`, `password`, `cachepwd`, `refresh_token`, `access_token`, `valid_to`, `verified_key`) VALUES
+(1, 'admin', '$P$BavT70dVjMsClHETgRnau2gb8yZ.jE/', '', 'cd0913a4b90f52966c16565dde8722ca5b37d4b7396ad0e67e7f7ed7140cc710', '519701d4fe7dbf02d3336e42f209501efae7d6942627ba633ed01e91c0c6bdc6', '2024-01-19 03:24:33', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_user_attributes`
+--
+
+CREATE TABLE `jdz6_user_attributes` (
+  `id` int(11) NOT NULL,
   `internalKey` int(11) NOT NULL DEFAULT 0,
   `fullname` varchar(100) NOT NULL DEFAULT '1',
   `first_name` varchar(255) DEFAULT NULL,
@@ -2199,58 +1649,533 @@ CREATE TABLE IF NOT EXISTS `jdz6_user_attributes` (
   `comment` text DEFAULT NULL,
   `createdon` int(11) NOT NULL DEFAULT 0,
   `editedon` int(11) NOT NULL DEFAULT 0,
-  `verified` tinyint(4) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `web_user_attributes_internalkey_index` (`internalKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `verified` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_user_attributes` (`id`, `internalKey`, `fullname`, `first_name`, `last_name`, `middle_name`, `role`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `country`, `street`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `createdon`, `editedon`, `verified`) VALUES
-	(1, 1, '1', NULL, NULL, NULL, 1, 'admin@evocompany.localhost', '', '', 0, 0, 0, 4, 1704796982, 1704796982, 0, '1', 0, 0, '', '', '', '', '', '', '', NULL, 1686310760, 1704796982, 1);
+--
+-- Дамп данных таблицы `jdz6_user_attributes`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+INSERT INTO `jdz6_user_attributes` (`id`, `internalKey`, `fullname`, `first_name`, `last_name`, `middle_name`, `role`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `country`, `street`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `createdon`, `editedon`, `verified`) VALUES
+(1, 1, '1', NULL, NULL, NULL, 1, 'admin@evocompany.localhost', '', '', 0, 1705595002, 0, 7, 1705595073, 1705595073, 0, '1', 0, 0, '', '', '', '', '', '', '', NULL, 1686310760, 1705595073, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_user_roles`
+--
+
+CREATE TABLE `jdz6_user_roles` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `description` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-REPLACE INTO `jdz6_user_roles` (`id`, `name`, `description`) VALUES
-	(1, 'Administrator', 'Site administrators have full access to all functions'),
-	(2, 'Editor', 'Limited to managing content'),
-	(3, 'Publisher', 'Editor with expanded permissions including manage users, update Elements and site settings');
+--
+-- Дамп данных таблицы `jdz6_user_roles`
+--
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_role_vars` (
+INSERT INTO `jdz6_user_roles` (`id`, `name`, `description`) VALUES
+(1, 'Administrator', 'Site administrators have full access to all functions'),
+(2, 'Editor', 'Limited to managing content'),
+(3, 'Publisher', 'Editor with expanded permissions including manage users, update Elements and site settings');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `jdz6_user_role_vars`
+--
+
+CREATE TABLE `jdz6_user_role_vars` (
   `tmplvarid` int(11) NOT NULL DEFAULT 0,
   `roleid` int(11) NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`tmplvarid`,`roleid`)
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_settings` (
+--
+-- Структура таблицы `jdz6_user_settings`
+--
+
+CREATE TABLE `jdz6_user_settings` (
   `user` int(11) NOT NULL,
   `setting_name` varchar(50) NOT NULL DEFAULT '',
-  `setting_value` text DEFAULT NULL,
-  PRIMARY KEY (`user`,`setting_name`),
-  KEY `user_settings_user_index` (`user`),
-  KEY `setting_name` (`setting_name`)
+  `setting_value` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `jdz6_user_values` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--
+-- Структура таблицы `jdz6_user_values`
+--
+
+CREATE TABLE `jdz6_user_values` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `tmplvarid` int(11) NOT NULL DEFAULT 0,
   `userid` int(11) NOT NULL DEFAULT 0,
-  `value` mediumtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_values_tmplvarid_userid_unique` (`tmplvarid`,`userid`),
-  KEY `user_values_tmplvarid_index` (`tmplvarid`),
-  KEY `user_values_userid_index` (`userid`)
+  `value` mediumtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Индексы сохранённых таблиц
+--
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+--
+-- Индексы таблицы `jdz6_active_users`
+--
+ALTER TABLE `jdz6_active_users`
+  ADD PRIMARY KEY (`sid`);
+
+--
+-- Индексы таблицы `jdz6_active_user_locks`
+--
+ALTER TABLE `jdz6_active_user_locks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ix_element_id` (`elementType`,`elementId`,`sid`);
+
+--
+-- Индексы таблицы `jdz6_active_user_sessions`
+--
+ALTER TABLE `jdz6_active_user_sessions`
+  ADD PRIMARY KEY (`sid`);
+
+--
+-- Индексы таблицы `jdz6_categories`
+--
+ALTER TABLE `jdz6_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_documentgroup_names`
+--
+ALTER TABLE `jdz6_documentgroup_names`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Индексы таблицы `jdz6_document_groups`
+--
+ALTER TABLE `jdz6_document_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ix_dg_id` (`document_group`,`document`),
+  ADD KEY `document_group` (`document_group`),
+  ADD KEY `document` (`document`);
+
+--
+-- Индексы таблицы `jdz6_event_log`
+--
+ALTER TABLE `jdz6_event_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_log_user_index` (`user`);
+
+--
+-- Индексы таблицы `jdz6_manager_log`
+--
+ALTER TABLE `jdz6_manager_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `manager_log_internalkey_index` (`internalKey`),
+  ADD KEY `manager_log_action_index` (`action`),
+  ADD KEY `manager_log_itemid_index` (`itemid`),
+  ADD KEY `manager_log_itemname_index` (`itemname`),
+  ADD KEY `manager_log_message_index` (`message`),
+  ADD KEY `manager_log_timestamp_index` (`timestamp`);
+
+--
+-- Индексы таблицы `jdz6_membergroup_access`
+--
+ALTER TABLE `jdz6_membergroup_access`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_membergroup_names`
+--
+ALTER TABLE `jdz6_membergroup_names`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `membergroup_names_name_unique` (`name`);
+
+--
+-- Индексы таблицы `jdz6_member_groups`
+--
+ALTER TABLE `jdz6_member_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ix_group_member` (`user_group`,`member`);
+
+--
+-- Индексы таблицы `jdz6_migrations_install`
+--
+ALTER TABLE `jdz6_migrations_install`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_pagebuilder`
+--
+ALTER TABLE `jdz6_pagebuilder`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `document_id` (`document_id`,`container`);
+
+--
+-- Индексы таблицы `jdz6_permissions`
+--
+ALTER TABLE `jdz6_permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_permissions_groups`
+--
+ALTER TABLE `jdz6_permissions_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_role_permissions`
+--
+ALTER TABLE `jdz6_role_permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_content`
+--
+ALTER TABLE `jdz6_site_content`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `typeidx` (`type`),
+  ADD KEY `aliasidx` (`alias`),
+  ADD KEY `parent` (`parent`),
+  ADD KEY `pub_unpub_published` (`pub_date`,`unpub_date`,`published`),
+  ADD KEY `pub_unpub` (`pub_date`,`unpub_date`),
+  ADD KEY `unpub` (`unpub_date`),
+  ADD KEY `pub` (`pub_date`);
+ALTER TABLE `jdz6_site_content` ADD FULLTEXT KEY `content_ft_idx` (`pagetitle`,`description`,`content`);
+
+--
+-- Индексы таблицы `jdz6_site_content_closure`
+--
+ALTER TABLE `jdz6_site_content_closure`
+  ADD PRIMARY KEY (`closure_id`);
+
+--
+-- Индексы таблицы `jdz6_site_htmlsnippets`
+--
+ALTER TABLE `jdz6_site_htmlsnippets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_modules`
+--
+ALTER TABLE `jdz6_site_modules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_module_access`
+--
+ALTER TABLE `jdz6_site_module_access`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_module_depobj`
+--
+ALTER TABLE `jdz6_site_module_depobj`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_plugins`
+--
+ALTER TABLE `jdz6_site_plugins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_plugin_events`
+--
+ALTER TABLE `jdz6_site_plugin_events`
+  ADD PRIMARY KEY (`pluginid`,`evtid`);
+
+--
+-- Индексы таблицы `jdz6_site_snippets`
+--
+ALTER TABLE `jdz6_site_snippets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_templates`
+--
+ALTER TABLE `jdz6_site_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_tmplvars`
+--
+ALTER TABLE `jdz6_site_tmplvars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `indx_rank` (`rank`);
+
+--
+-- Индексы таблицы `jdz6_site_tmplvar_access`
+--
+ALTER TABLE `jdz6_site_tmplvar_access`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_site_tmplvar_contentvalues`
+--
+ALTER TABLE `jdz6_site_tmplvar_contentvalues`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ix_tvid_contentid` (`tmplvarid`,`contentid`),
+  ADD KEY `idx_tmplvarid` (`tmplvarid`),
+  ADD KEY `idx_id` (`contentid`);
+ALTER TABLE `jdz6_site_tmplvar_contentvalues` ADD FULLTEXT KEY `content_ft_idx` (`value`);
+
+--
+-- Индексы таблицы `jdz6_site_tmplvar_templates`
+--
+ALTER TABLE `jdz6_site_tmplvar_templates`
+  ADD PRIMARY KEY (`tmplvarid`,`templateid`);
+
+--
+-- Индексы таблицы `jdz6_system_eventnames`
+--
+ALTER TABLE `jdz6_system_eventnames`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `system_eventnames_name_unique` (`name`);
+
+--
+-- Индексы таблицы `jdz6_system_settings`
+--
+ALTER TABLE `jdz6_system_settings`
+  ADD PRIMARY KEY (`setting_name`);
+
+--
+-- Индексы таблицы `jdz6_users`
+--
+ALTER TABLE `jdz6_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `web_users_username_unique` (`username`);
+
+--
+-- Индексы таблицы `jdz6_user_attributes`
+--
+ALTER TABLE `jdz6_user_attributes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `web_user_attributes_internalkey_index` (`internalKey`);
+
+--
+-- Индексы таблицы `jdz6_user_roles`
+--
+ALTER TABLE `jdz6_user_roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jdz6_user_role_vars`
+--
+ALTER TABLE `jdz6_user_role_vars`
+  ADD PRIMARY KEY (`tmplvarid`,`roleid`);
+
+--
+-- Индексы таблицы `jdz6_user_settings`
+--
+ALTER TABLE `jdz6_user_settings`
+  ADD PRIMARY KEY (`user`,`setting_name`),
+  ADD KEY `user_settings_user_index` (`user`),
+  ADD KEY `setting_name` (`setting_name`);
+
+--
+-- Индексы таблицы `jdz6_user_values`
+--
+ALTER TABLE `jdz6_user_values`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_values_tmplvarid_userid_unique` (`tmplvarid`,`userid`),
+  ADD KEY `user_values_tmplvarid_index` (`tmplvarid`),
+  ADD KEY `user_values_userid_index` (`userid`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_active_user_locks`
+--
+ALTER TABLE `jdz6_active_user_locks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_categories`
+--
+ALTER TABLE `jdz6_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_documentgroup_names`
+--
+ALTER TABLE `jdz6_documentgroup_names`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_document_groups`
+--
+ALTER TABLE `jdz6_document_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_event_log`
+--
+ALTER TABLE `jdz6_event_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_manager_log`
+--
+ALTER TABLE `jdz6_manager_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_membergroup_access`
+--
+ALTER TABLE `jdz6_membergroup_access`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_membergroup_names`
+--
+ALTER TABLE `jdz6_membergroup_names`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_member_groups`
+--
+ALTER TABLE `jdz6_member_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_migrations_install`
+--
+ALTER TABLE `jdz6_migrations_install`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_pagebuilder`
+--
+ALTER TABLE `jdz6_pagebuilder`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_permissions`
+--
+ALTER TABLE `jdz6_permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_permissions_groups`
+--
+ALTER TABLE `jdz6_permissions_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_role_permissions`
+--
+ALTER TABLE `jdz6_role_permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_content`
+--
+ALTER TABLE `jdz6_site_content`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_content_closure`
+--
+ALTER TABLE `jdz6_site_content_closure`
+  MODIFY `closure_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_htmlsnippets`
+--
+ALTER TABLE `jdz6_site_htmlsnippets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_modules`
+--
+ALTER TABLE `jdz6_site_modules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_module_access`
+--
+ALTER TABLE `jdz6_site_module_access`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_module_depobj`
+--
+ALTER TABLE `jdz6_site_module_depobj`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_plugins`
+--
+ALTER TABLE `jdz6_site_plugins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_snippets`
+--
+ALTER TABLE `jdz6_site_snippets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_templates`
+--
+ALTER TABLE `jdz6_site_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_tmplvars`
+--
+ALTER TABLE `jdz6_site_tmplvars`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_tmplvar_access`
+--
+ALTER TABLE `jdz6_site_tmplvar_access`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_site_tmplvar_contentvalues`
+--
+ALTER TABLE `jdz6_site_tmplvar_contentvalues`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_system_eventnames`
+--
+ALTER TABLE `jdz6_system_eventnames`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_users`
+--
+ALTER TABLE `jdz6_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_user_attributes`
+--
+ALTER TABLE `jdz6_user_attributes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_user_roles`
+--
+ALTER TABLE `jdz6_user_roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `jdz6_user_values`
+--
+ALTER TABLE `jdz6_user_values`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
