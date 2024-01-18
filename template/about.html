@@ -6,7 +6,6 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>О компании</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -15,7 +14,6 @@
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
-            <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
                     <a class="navbar-brand" href="index.html">ООО "Компания"</a>
@@ -32,40 +30,60 @@
                     </div>
                 </div>
             </nav>
-            <!-- Header-->
-            <header class="py-5">
-                <div class="container px-5">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 col-xxl-6">
-                            <div class="text-center my-5">
-                                <h1 class="fw-bolder mb-3">Что-то пафосное про миссию компании</h1>
-                                <p class="lead fw-normal text-muted mb-4">А здесь можно уже размазать верхний тезис и попытаться доказать читателю, что вот ну правда хорошая компания. Вдруг он поверит и</p>
-                                <a class="btn btn-primary btn-sm" href="#scroll-target">...почитает дальше</a>
-                            </div>
+            <section class="container py-5">
+                <div class="carousel slide" id="carouselExample">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="https://dummyimage.com/1320x500/343a40/6c757d" />
+                            <div class="carousel-caption d-none d-md-block"><p>Слайд с подписью</p></div>
                         </div>
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Влево</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Вправо</span>
+                    </button>
                 </div>
-            </header>
-            <!-- About section one-->
-            <section class="py-5 bg-light" id="scroll-target">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
-                        <div class="col-lg-6">
-                            <h2 class="fw-bolder">Наша компания</h2>
-                            <p class="lead fw-normal text-muted mb-0">Хотя кого я обманываю, эти хвалебные высеры копирайтера нужны исключительно копирайтеру. Ну ещё их гендир может почитать один раз и вставить свои пять копеек (а как же без его ценного мнения).</p>
-                        </div>
+            </section>
+            <section class="container py-5">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                    <div class="col-10 col-sm-8 col-lg-6"><img class="d-block mx-lg-auto img-fluid" src="https://dummyimage.com/600x300/343a40/6c757d" /></div>
+                    <div class="col-lg-6">
+                        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Заголовок и текст</h1>
+                        <p class="lead">Текстовое содержимое для блока лучше всего сделать строки на три-четыре, так оно визуально более приятно. Ну либо играться с высотой изображения справа, но зачем, если нетрудно наколбасить букв</p>
                     </div>
                 </div>
             </section>
-            <!-- About section two-->
-            <section class="py-5">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
-                        <div class="col-lg-6">
-                            <h2 class="fw-bolder">Растём унд развиваемся</h2>
-                            <p class="lead fw-normal text-muted mb-0">Конечно же, мы, как каждая компания с уставным капиталом в 10 000 рублей растём и развиваемся. У нас даже вакансии открытые есть, потому что поток кадров такой, что, если бы мы к входной двери приделали генератор, то никогда бы не платили за электричество</p>
+            <section class="container py-5">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" src="https://dummyimage.com/420x225/343a40/6c757d" />
+                            <div class="card-body">
+                                <h5 class="card-title">Короткий Заголовок</h5>
+                                <p class="card-text">Одинаковые блоки, подойдут для вывода каких-то услуг с кратким описанием</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" src="https://dummyimage.com/420x225/343a40/6c757d" />
+                            <div class="card-body">
+                                <h5 class="card-title">Короткий Заголовок</h5>
+                                <p class="card-text">Одинаковые блоки, подойдут для вывода каких-то услуг с кратким описанием</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" src="https://dummyimage.com/420x225/343a40/6c757d" />
+                            <div class="card-body">
+                                <h5 class="card-title">Короткий Заголовок</h5>
+                                <p class="card-text">Одинаковые блоки, подойдут для вывода каких-то услуг с кратким описанием</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,36 +92,36 @@
             <section class="py-5 bg-light">
                 <div class="container px-5 my-5">
                     <div class="text-center">
-                        <h2 class="fw-bolder">А вот и они</h2>
+                        <h2 class="fw-bolder">Люди в компании</h2>
                         <p class="lead fw-normal text-muted mb-5">Крестом и пестом уговорили сфоткаться четверых</p>
                     </div>
                     <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
                         <div class="col mb-5 mb-5 mb-xl-0">
                             <div class="text-center">
                                 <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Ibbie Eckart</h5>
-                                <div class="fst-italic text-muted">Founder &amp; CEO</div>
+                                <h5 class="fw-bolder">Иван Иванов</h5>
+                                <div class="fst-italic text-muted">Отец &amp; Основатель</div>
                             </div>
                         </div>
                         <div class="col mb-5 mb-5 mb-xl-0">
                             <div class="text-center">
                                 <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Arden Vasek</h5>
-                                <div class="fst-italic text-muted">CFO</div>
+                                <h5 class="fw-bolder">Петр Петров</h5>
+                                <div class="fst-italic text-muted">Директор</div>
                             </div>
                         </div>
                         <div class="col mb-5 mb-5 mb-sm-0">
                             <div class="text-center">
                                 <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Toribio Nerthus</h5>
-                                <div class="fst-italic text-muted">Operations Manager</div>
+                                <h5 class="fw-bolder">Елена Еленина</h5>
+                                <div class="fst-italic text-muted">Сижу на ресепшене</div>
                             </div>
                         </div>
                         <div class="col mb-5">
                             <div class="text-center">
                                 <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Malvina Cilla</h5>
-                                <div class="fst-italic text-muted">CTO</div>
+                                <h5 class="fw-bolder">Андрей Казунин</h5>
+                                <div class="fst-italic text-muted">Делал сайт</div>
                             </div>
                         </div>
                     </div>

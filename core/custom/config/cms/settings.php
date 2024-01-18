@@ -7,5 +7,5 @@ return [
     'server_protocol' => 'http',
     'filemanager_path' => env('MODX_BASE_PATH'), 
     'rb_base_dir' => env('MODX_BASE_PATH') . 'assets/',
-    'which_editor' => 'TinyMCE5'
+    'which_editor' => 'TinyMCE4'
 ]; 
