@@ -6,11 +6,12 @@
 Демо: [democompany.kazunin.ru](http://democompany.kazunin.ru/)
 
 ## Установка:
-* скачать или клонировать репозиторий
+* скачать дамп
 * импортировать БД из файла `evocompany.sql`. Удалите его.
 * настроить окружение в файле `/core/custom/.env` (пример из курса в `.env.example`)
 * задать настройки в файле `/core/custom/config/cms/settings.php`  (пример из курса в `settings.php.example`)
-* сделать `composer update` в папке `core`.
+* переименовать ht.access в .htaccess
+* сделать `composer install` в папке `core`.
 * удалите `evocompany.sql`!
   
 Логин/пароль для админки - `admin/adm1nk0`.
