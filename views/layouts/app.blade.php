@@ -14,6 +14,9 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="template/css/styles.css" rel="stylesheet" />
+
+    {!! $modx->getConfig('client_header_codes') !!}
+
 </head>
 
 <body class="d-flex flex-column h-100">
