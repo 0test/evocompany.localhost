@@ -1,13 +1,10 @@
 <?php
-
 namespace EvolutionCMS\Main\Controllers;
-class XmlSitemapController extends BaseController
+class SitemapController extends BaseController
 {
-
     public function setData()
     {
-        $sitemap = evo()->runSnippet('DLSitemap', [
-        ]);
+        $sitemap = evo()->runSnippet('DLSitemap', [],0,'sitemap');
         $this->data['sitemap'] = $sitemap;
     }
 }
