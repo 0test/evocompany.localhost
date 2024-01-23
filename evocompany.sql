@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 18 2024 г., 19:27
+-- Время создания: Янв 23 2024 г., 18:54
 -- Версия сервера: 10.8.4-MariaDB
 -- Версия PHP: 8.1.9
 
@@ -41,7 +41,7 @@ CREATE TABLE `jdz6_active_users` (
 --
 
 INSERT INTO `jdz6_active_users` (`sid`, `internalKey`, `username`, `lasthit`, `action`, `id`) VALUES
-('p8o4lqp1jakkqs9vlvvgjp9skcd4tr5g', 1, 'admin', 1705595142, '67', 1);
+('p8o4lqp1jakkqs9vlvvgjp9skcd4tr5g', 1, 'admin', 1706025124, '67', 13);
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE `jdz6_active_user_sessions` (
 --
 
 INSERT INTO `jdz6_active_user_sessions` (`sid`, `internalKey`, `lasthit`, `ip`) VALUES
-('p8o4lqp1jakkqs9vlvvgjp9skcd4tr5g', 1, 1705595142, '127.0.0.1');
+('p8o4lqp1jakkqs9vlvvgjp9skcd4tr5g', 1, 1706025124, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -144,6 +144,15 @@ CREATE TABLE `jdz6_event_log` (
   `description` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Дамп данных таблицы `jdz6_event_log`
+--
+
+INSERT INTO `jdz6_event_log` (`id`, `eventid`, `createdon`, `type`, `user`, `usertype`, `source`, `description`) VALUES
+(25, 0, 1706024730, 3, 1, 0, 'Parser / count(): Argument #1 ($value) must be of ', '<h2 style=\"color:red\">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style=\"color:red\">count(): Argument #1 ($value) must be of type Countable|array, string given</h3>\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>File</td>\n		<td>C:\\OSP\\domains\\evocompany.localhost\\manager\\media\\browser\\mcpuk\\lib\\class_image_gd.php</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Line</td>\n		<td>381</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/media/browser/mcpuk/browse.php?type=images&amp;lng=ru&amp;act=upload&amp;fileapi17060247037368</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/media/browser/mcpuk/browse.php?type=images&amp;amp;field_id=&amp;amp;popup=1&amp;amp;relative_url=1</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>Current time</td>\n		<td>2024-01-23 18:45:30</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>PHP</td>\n		<td>0.8585 s</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>Total</td>\n		<td>0.8585 s</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Memory</td>\n		<td>85.581192016602 mb</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td><strong>browser->action</strong>()<br />manager/media/browser/mcpuk/browse.php on line 27</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>browser->act_upload</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 134</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>browser->moveUploadFile</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 379</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>uploader->checkUploadedFile</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 872</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>uploader->imageResize</strong>()<br />manager/media/browser/mcpuk/core/uploader.php on line 424</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>image_gd->rotate</strong>()<br />manager/media/browser/mcpuk/core/uploader.php on line 593</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>image_gd->gdColor</strong>()<br />manager/media/browser/mcpuk/lib/class_image_gd.php on line 146</td>\n	</tr>\n</table>\n'),
+(26, 0, 1706024747, 3, 1, 0, 'Parser / count(): Argument #1 ($value) must be of ', '<h2 style=\"color:red\">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style=\"color:red\">count(): Argument #1 ($value) must be of type Countable|array, string given</h3>\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>File</td>\n		<td>C:\\OSP\\domains\\evocompany.localhost\\manager\\media\\browser\\mcpuk\\lib\\class_image_gd.php</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Line</td>\n		<td>381</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/media/browser/mcpuk/browse.php?type=images&amp;lng=ru&amp;act=upload&amp;fileapi170602470373613</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/media/browser/mcpuk/browse.php?type=images&amp;amp;field_id=&amp;amp;popup=1&amp;amp;relative_url=1</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>Current time</td>\n		<td>2024-01-23 18:45:47</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>PHP</td>\n		<td>0.8076 s</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>Total</td>\n		<td>0.8076 s</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Memory</td>\n		<td>85.581192016602 mb</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td><strong>browser->action</strong>()<br />manager/media/browser/mcpuk/browse.php on line 27</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>browser->act_upload</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 134</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>browser->moveUploadFile</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 379</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>uploader->checkUploadedFile</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 872</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>uploader->imageResize</strong>()<br />manager/media/browser/mcpuk/core/uploader.php on line 424</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>image_gd->rotate</strong>()<br />manager/media/browser/mcpuk/core/uploader.php on line 593</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>image_gd->gdColor</strong>()<br />manager/media/browser/mcpuk/lib/class_image_gd.php on line 146</td>\n	</tr>\n</table>\n'),
+(27, 0, 1706024874, 3, 1, 0, 'Parser / count(): Argument #1 ($value) must be of ', '<h2 style=\"color:red\">&laquo; Evolution CMS Parse Error &raquo;</h2><h3 style=\"color:red\">count(): Argument #1 ($value) must be of type Countable|array, string given</h3>\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Error information</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>File</td>\n		<td>C:\\OSP\\domains\\evocompany.localhost\\manager\\media\\browser\\mcpuk\\lib\\class_image_gd.php</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Line</td>\n		<td>381</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Basic info</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>REQUEST_URI</td>\n		<td>http://evocompany.localhost/manager/media/browser/mcpuk/browse.php?type=images&amp;lng=ru&amp;act=upload&amp;fileapi17060248706048</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Referer</td>\n		<td>http://evocompany.localhost/manager/media/browser/mcpuk/browse.php?type=images&amp;amp;field_id=&amp;amp;popup=1&amp;amp;relative_url=1</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>User Agent</td>\n		<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>IP</td>\n		<td>127.0.0.1</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>Current time</td>\n		<td>2024-01-23 18:47:54</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th width=\"100px\" >Benchmarks</th>\n		<th></th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td>MySQL</td>\n		<td>0.0000 s (0 Requests)</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>PHP</td>\n		<td>0.8317 s</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td>Total</td>\n		<td>0.8317 s</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td>Memory</td>\n		<td>85.581192016602 mb</td>\n	</tr>\n</table>\n<br />\n<table class=\"grid\">\n	<thead>\n	<tr class=\"\">\n		<th>Backtrace</th>\n	</tr>\n	</thead>\n	<tr class=\"gridItem\">\n		<td><strong>browser->action</strong>()<br />manager/media/browser/mcpuk/browse.php on line 27</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>browser->act_upload</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 134</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>browser->moveUploadFile</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 379</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>uploader->checkUploadedFile</strong>()<br />manager/media/browser/mcpuk/core/browser.php on line 872</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>uploader->imageResize</strong>()<br />manager/media/browser/mcpuk/core/uploader.php on line 424</td>\n	</tr>\n	<tr class=\"gridAltItem\">\n		<td><strong>image_gd->rotate</strong>()<br />manager/media/browser/mcpuk/core/uploader.php on line 593</td>\n	</tr>\n	<tr class=\"gridItem\">\n		<td><strong>image_gd->gdColor</strong>()<br />manager/media/browser/mcpuk/lib/class_image_gd.php on line 146</td>\n	</tr>\n</table>\n');
+
 -- --------------------------------------------------------
 
 --
@@ -169,7 +178,19 @@ CREATE TABLE `jdz6_manager_log` (
 
 INSERT INTO `jdz6_manager_log` (`id`, `timestamp`, `internalKey`, `username`, `action`, `itemid`, `itemname`, `message`, `ip`, `useragent`) VALUES
 (1, 1705595122, 1, 'admin', 13, '', '-', 'Viewing logging', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
-(2, 1705595130, 1, 'admin', 114, '', '-', 'View event log', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36');
+(2, 1705595130, 1, 'admin', 114, '', '-', 'View event log', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(3, 1705596414, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(4, 1706024697, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(5, 1706024866, 1, 'admin', 27, '4', 'О компании', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(6, 1706024924, 1, 'admin', 13, '', '-', 'Viewing logging', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(7, 1706024928, 1, 'admin', 114, '', '-', 'View event log', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(8, 1706024929, 1, 'admin', 115, '27', '-', 'View event log details', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(9, 1706024972, 1, 'admin', 115, '27', '-', 'View event log details', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(10, 1706024975, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(11, 1706024986, 1, 'admin', 16, '13', 'xmlsitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(12, 1706024993, 1, 'admin', 20, '13', 'sitemap', 'Saving template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(13, 1706024994, 1, 'admin', 16, '13', 'sitemap', 'Editing template', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36'),
+(14, 1706024997, 1, 'admin', 27, '28', 'sitemap.xml', 'Editing resource', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 YaBrowser/23.11.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1038,7 @@ INSERT INTO `jdz6_site_templates` (`id`, `templatename`, `templatealias`, `descr
 (10, 'Наши работы', 'portfolio_all', 'Всё портфолио', 0, 4, '', 0, '', 0, 1, 1704876097, 1704876185),
 (11, 'Работа', 'portfolio_one', 'Одна работа в портфолио', 0, 4, '', 0, '', 0, 1, 1704876126, 1704876197),
 (12, 'О компании', 'about', '', 0, 4, '', 0, '', 0, 1, 1705491731, 1705491731),
-(13, 'xmlsitemap', 'xmlsitemap', '', 0, 5, '', 0, '', 0, 1, 1705584509, 1705584509);
+(13, 'sitemap', 'sitemap', '', 0, 5, '', 0, '', 0, 1, 1705584509, 1706024993);
 
 -- --------------------------------------------------------
 
@@ -1993,7 +2014,7 @@ ALTER TABLE `jdz6_user_values`
 -- AUTO_INCREMENT для таблицы `jdz6_active_user_locks`
 --
 ALTER TABLE `jdz6_active_user_locks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `jdz6_categories`
@@ -2017,13 +2038,13 @@ ALTER TABLE `jdz6_document_groups`
 -- AUTO_INCREMENT для таблицы `jdz6_event_log`
 --
 ALTER TABLE `jdz6_event_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `jdz6_manager_log`
 --
 ALTER TABLE `jdz6_manager_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `jdz6_membergroup_access`
