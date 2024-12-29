@@ -1,23 +1,25 @@
 <?php
-if (! defined('MODX_BASE_PATH')) {
+if (!defined('MODX_BASE_PATH')) {
     die('HACK???');
 }
 
-$ID = $modx->documentObject['id'];
-$params = is_array($modx->Event->params) ? $modx->Event->params : array();
-$params = array_merge($params, array(
-    'api'   => 1,
+$ID = $modx->documentIdentifier;
+$params = array_merge($params, [
+    'returnDLObject' => 1,
     'debug' => '0',
-    'parents' => isset($parents) ? $parents : $modx->documentObject['parent'],
-    'loop' => '1'
-));
+    'parents' => $parents ?? $modx->documentObject['parent'],
+]);
+$loop = $loop ?? 0;
+$dl = $modx->runSnippet("DocLister", array_merge($params, ['selectFields' => 'c.id']));
+$children = $dl->getDocs();
 
-$json = $modx->runSnippet("DocLister", $params);
-$children = jsonHelper::jsonDecode($json, array('assoc' => true));
-$children = is_array($children) ? $children : array();
+if (count($children) < 2) {
+    return isset($api) && $api == 1 ? [] : '';
+}
+
 $self = $prev = $next = null;
 foreach ($children as $key => $data) {
-    if (! empty($self)) {
+    if (!empty($self)) {
         $next = $key;
         break;
     }
@@ -40,12 +42,26 @@ if ($next == $prev) {
     $next = '';
 }
 
-$TPL = DLTemplate::getInstance($modx);
-return ($prev == $ID)
-    ? ''
-    : (isset($api) && $api == 1
-        ? ['prev' => empty($prev) ? '' : $children[$prev], 'next' => empty($next) ? '' : $children[$next]]
-        : $TPL->parseChunk($prevnextTPL, array(
-            'prev' => empty($prev) ? '' : $TPL->parseChunk($prevTPL, $children[$prev]),
-            'next' => empty($next) ? '' : $TPL->parseChunk($nextTPL, $children[$next]),
-        )));
+$dl->config->setConfig(array_merge($params, [
+    'idType' => 'documents',
+    'selectFields' => $params['selectFields'] ?? 'c.*',
+]));
+$dl->setIDs([$next, $prev]);
+$children = $dl->getJSON($dl->getDocs($tvList ?? ''), ($api ?? 1));
+$children = json_decode($children, true);
+
+// обратная совместимость с параметрами где TPL, а не Tpl
+$prevnextTpl = $prevnextTpl ?? ($prevnextTPL ?? '@CODE: [+prev+] | [+next+]');
+$prevTpl = $prevTpl ?? ($prevTPL ?? '@CODE: <a href="[+url+]">&larr; [+title+]</a>');
+$nextTpl = $nextTpl ?? ($nextTPL ?? '@CODE: <a href="[+url+]">[+title+] &rarr;</a>');
+
+if (isset($api) && $api == 1) {
+    $out = ['prev' => empty($prev) ? '' : $children[$prev], 'next' => empty($next) ? '' : $children[$next]];
+} else {
+    $out = $dl->parseChunk($prevnextTpl, [
+        'prev' => empty($prev) ? '' : $dl->parseChunk($prevTpl, $children[$prev]),
+        'next' => empty($next) ? '' : $dl->parseChunk($nextTpl, $children[$next]),
+    ]);
+}
+
+return $out;
